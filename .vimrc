@@ -1,3 +1,22 @@
+set nocompatible 
+filetype off 
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+
+" vim-airline
+Plugin 'vim-airline/vim-airline'
+
+" vim-gitgutter
+Plugin 'airblade/vim-gitgutter'
+
+" vim-airline themes
+Plugin 'vim-airline/vim-airline-themes'
+
+call vundle#end()
+filetype plugin indent on
+
 syntax on
 
 colorscheme slate
@@ -8,6 +27,7 @@ set backspace=indent,eol,start
 
 set background=dark
 set number
+set updatetime=1
 
 let g:airline_powerline_fonts = 1
 
@@ -18,4 +38,3 @@ hi GitGutterChange guifg=#bbbb00 ctermfg=3
 hi GitGutterDelete guifg=#ff2222 ctermfg=1
 hi SignColumn ctermbg=0
 let g:airline_theme='bubblegum'
-
