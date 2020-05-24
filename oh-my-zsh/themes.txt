@@ -1,1 +1,1 @@
-https://github.com/bhilburn/powerlevel9k.git
+https://github.com/romkatv/powerlevel10k.git

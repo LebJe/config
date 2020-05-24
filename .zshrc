@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -67,13 +67,6 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh os_icon dir dir_writable vcs)
 
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time battery)
 
-export SITE=localhost:8080
-export EMAIL_PASSWORD=ykfzlgexwmmbmhrc
-export DATABASE_URL=postgres://bzjjiczqasdfey:c4e571f2fe010719ab01b65e452d50947b5cfc885a2b2e64aa9f3713d3f86a03@ec2-3-91-112-166.compute-1.amazonaws.com:5432/dfc51d2diggfu1
-export LOCATION=D
-export SALT=designersworkshop/
-export PORT=8080
-export API_KEY=Fw3keJO69rNjW0cHHwVg
 eval "$(rbenv init -)"
 
 alias list="exa -lah --git"

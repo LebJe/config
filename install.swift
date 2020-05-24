@@ -5,26 +5,35 @@
 import Rainbow
 import Files
 import SwiftShell
+import Foundation
 
 func ohMyZSH() {
-	let ohMyZSH = try! Folder.current.subfolder(named: "oh-my-zsh")
-}
-
-func vim() {
-	let vim = try! Folder.current.subfolder(named: "vim")
-	
-	let pluginsFile = try! vim.file(named: "plugins.txt")
-	
-	let pack = try! Folder.home.createSubfolderIfNeeded(withName: ".vim").createSubfolderIfNeeded(withName: "pack")
-	
-	for line in try! pluginsFile.readAsString().lines() {
-		
+	guard let ohMyZSHFolder = try? Folder.current.subfolder(named: "oh-my-zsh") else {
+		print("Not in config directory.")
+		Foundation.exit(1)
 	}
+	
+	let home = ProcessInfo.processInfo.environment["HOME"]!
+	
+	let pluginsFile = try! ohMyZSHFolder.file(named: "plugins.txt").readAsString()
+	let themesFile = try! ohMyZSHFolder.file(named: "themes.txt").readAsString()
+	
+	for line in pluginsFile.lines() {
+		let formattedURL = URL(string: line)!.lastPathComponent.replacingOccurrences(of: ".git", with: "")
+		
+		print(run("git", "clone", "--depth=1", line, "\(home)/.oh-my-zsh/custom/plugins/\(formattedURL)").stderror)
+	}
+	
+	for line in themesFile.lines() {
+		let formattedURL = URL(string: line)!.lastPathComponent.replacingOccurrences(of: ".git", with: "")
+		
+		print(run("git", "clone", "--depth=1", line, "\(home)/.oh-my-zsh/custom/themes/\(formattedURL)").stderror)
+	}
+
 }
 
 public func install() {
 	ohMyZSH()
-	vim()
 	
 	print("Success".green)
 }
