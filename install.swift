@@ -7,13 +7,13 @@ import Files
 import SwiftShell
 import Foundation
 
+let home = ProcessInfo.processInfo.environment["HOME"]!
+
 func ohMyZSH() {
 	guard let ohMyZSHFolder = try? Folder.current.subfolder(named: "oh-my-zsh") else {
 		print("Not in config directory.")
 		Foundation.exit(1)
 	}
-	
-	let home = ProcessInfo.processInfo.environment["HOME"]!
 	
 	let pluginsFile = try! ohMyZSHFolder.file(named: "plugins.txt").readAsString()
 	let themesFile = try! ohMyZSHFolder.file(named: "themes.txt").readAsString()
@@ -39,6 +39,9 @@ func vim() {
 public func install() {
 	ohMyZSH()
     vim()
+	
+	print(run("ln", ".vimrc", home).stdout)
+	print(run("ln", ".zshrc", home).stdout)
 	
 	print("Success".green)
 }

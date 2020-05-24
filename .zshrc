@@ -74,3 +74,4 @@ alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
 
 source ~/.iterm2_shell_integration.zsh
 fpath=(~/.zsh $fpath)
+export a=b
