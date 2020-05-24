@@ -32,8 +32,13 @@ func ohMyZSH() {
 
 }
 
+func vim() {
+    run("vim", "+PluginInstall", "+qall")
+}
+
 public func install() {
 	ohMyZSH()
+    vim()
 	
 	print("Success".green)
 }
