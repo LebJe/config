@@ -1,4 +1,3 @@
-
 " Vundle
 set nocompatible 
 filetype off 
@@ -16,15 +15,9 @@ Plugin 'airblade/vim-gitgutter'
 " vim-airline themes
 Plugin 'vim-airline/vim-airline-themes'
 
-" async.vim
-Plugin 'prabirshrestha/async.vim'
-
-" vim-lsp
-Plugin 'prabirshrestha/vim-lsp'
-
-Plugin 'davidhalter/jedi-vim'
-
+Plugin 'ycm-core/YouCompleteMe'
 call vundle#end()
+
 filetype plugin indent on
 
 " Personal config
@@ -52,14 +45,13 @@ hi GitGutterChange guifg=#bbbb00 ctermfg=3
 hi GitGutterDelete guifg=#ff2222 ctermfg=1
 hi SignColumn ctermbg=0
 
-" vim-lsp config
-if executable('sourcekit-lsp')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'sourcekit-lsp',
-        \ 'cmd': {server_info->['sourcekit-lsp']},
-        \ 'whitelist': ['swift'],
-        \ })
-endif
+" YouCompleteMe config
+let g:ycm_language_server = 
+  \ [ 
+  \   {
+  \     'name': 'swift',
+  \     'cmdline': [ 'sourcekit-lsp' ],
+  \     'filetypes': [ 'swift' ]
+  \   }
+  \ ]
 
-autocmd FileType swift setlocal omnifunc=lsp#complete
-autocmd FileType python setlocal omnifunc=jedi#completions
