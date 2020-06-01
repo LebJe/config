@@ -22,6 +22,8 @@ Plugin 'prabirshrestha/async.vim'
 " vim-lsp
 Plugin 'prabirshrestha/vim-lsp'
 
+Plugin 'davidhalter/jedi-vim'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -59,4 +61,5 @@ if executable('sourcekit-lsp')
         \ })
 endif
 
-autocmd FileType * setlocal omnifunc=lsp#complete
+autocmd FileType swift setlocal omnifunc=lsp#complete
+autocmd FileType python setlocal omnifunc=jedi#completions
