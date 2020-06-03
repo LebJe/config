@@ -17,6 +17,9 @@ Plugin 'vim-airline/vim-airline-themes'
 
 " YouCompleteMe
 Plugin 'ycm-core/YouCompleteMe'
+
+" lexima.vim
+Plugin 'cohama/lexima.vim'
 call vundle#end()
 
 filetype plugin indent on
@@ -84,3 +87,4 @@ hi SignColumn ctermbg=0
 
 
 hi LineNr ctermfg=grey
+set encoding=utf-8
