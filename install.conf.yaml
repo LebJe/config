@@ -8,6 +8,6 @@
     ~/config: ''
     ~/.zshrc:
     ~/.vimrc:
-    ~/.oh-my-zsh:
+    ~/cronFiles:
 - shell:
   - [echo ":q" > vim -c ":PluginInstall"]
