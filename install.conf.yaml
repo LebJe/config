@@ -6,8 +6,7 @@
 
 - link:
     ~/config: ''
-    ~/.zsh: zsh
-    ~/.zshrc: zsh
+    ~/.zshrc: zshrc
     ~/.vimrc: vimrc
     ~/.oh-my-zsh: oh-my-zsh
 - shell:
