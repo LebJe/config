@@ -29,6 +29,9 @@ Plugin 'arcticicestudio/nord-vim'
 
 " nerdtree-git-plugin
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+" indentLine
+Plugin 'Yggdroot/indentLine'
 call vundle#end()
 
 filetype plugin indent on

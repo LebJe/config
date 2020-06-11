@@ -2,12 +2,12 @@
     link:
       relink: true
 
-- clean: ['~']
+- clean: [""~"", "~/config/"]
 
 - link:
     ~/config: ''
-    ~/.zshrc: zshrc
-    ~/.vimrc: vimrc
-    ~/.oh-my-zsh: oh-my-zsh
+    ~/.zshrc:
+    ~/.vimrc:
+    ~/.oh-my-zsh:
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
+  - [echo ":q" > vim -c ":PluginInstall"]
