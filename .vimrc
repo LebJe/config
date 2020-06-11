@@ -20,15 +20,15 @@ Plugin 'ycm-core/YouCompleteMe'
 
 " lexima.vim
 Plugin 'cohama/lexima.vim'
+
+" NERDTree
+Plugin 'preservim/nerdtree'
+
+" Nord theme
+Plugin 'arcticicestudio/nord-vim'
 call vundle#end()
 
 filetype plugin indent on
-
-syntax on
-
-" vim-airline config
-let g:airline_powerline_fonts = 1
-let g:airline_theme='bubblegum'
 
 " YouCompleteMe config
 
@@ -68,23 +68,45 @@ let g:ycm_language_server =
 
 " Personal config
 
-colorscheme slate
-
 set tabstop=4
 set shiftwidth=4
 set backspace=indent,eol,start
 
-set background=dark
 set number
 set updatetime=1
+set cursorline
+
+syntax enable
+
 
 " Gitgutter config
-hi Visual ctermfg=grey ctermbg=black
+"hi Visual ctermfg=grey ctermbg=black
 hi GitGutterAdd guifg=#009900 ctermfg=2
 hi GitGutterChange guifg=#bbbb00 ctermfg=3
 hi GitGutterDelete guifg=#ff2222 ctermfg=1
-hi SignColumn ctermbg=0
+
+"hi SignColumn ctermbg=0
 
 
-hi LineNr ctermfg=grey
+" vim-airline config
+let g:airline_powerline_fonts = 1
+let g:airline_theme='nord'
+
+
+
 set encoding=utf-8
+
+" NERDTree config
+let NERDTreeIgnore=[]
+let NERDTreeShowHidden=1
+map <C-n> :NERDTreeToggle<CR>
+
+" Nord config
+
+let g:nord_cursor_line_number_background = 1
+let g:nord_bold = 1
+"let g:nord_italic = 1
+let g:nord_italic_comments = 1
+let g:nord_underline = 1
+
+colorscheme nord
