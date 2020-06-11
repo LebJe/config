@@ -26,6 +26,9 @@ Plugin 'preservim/nerdtree'
 
 " Nord theme
 Plugin 'arcticicestudio/nord-vim'
+
+" nerdtree-git-plugin
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 call vundle#end()
 
 filetype plugin indent on
