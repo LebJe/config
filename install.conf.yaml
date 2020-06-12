@@ -10,4 +10,4 @@
     ~/.vimrc:
     ~/cronFiles:
 - shell:
-  - [echo ":q" > vim -c ":PluginInstall"]
+  - [echo ":q" | vim -c ":PluginInstall"]
