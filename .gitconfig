@@ -1,0 +1,17 @@
+[user]
+	name = LebJe
+	email = 51171427+LebJe@users.noreply.github.com
+	signingkey = C908B49930BF5A2F
+	
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = vim
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

@@ -32,6 +32,15 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " indentLine
 Plugin 'Yggdroot/indentLine'
+
+" pgsql.vim
+Plugin 'lifepillar/pgsql.vim'
+
+" dadbod
+Plugin 'tpope/vim-dadbod'
+
+" csv.vim
+Plugin 'chrisbra/csv.vim'
 call vundle#end()
 
 filetype plugin indent on
@@ -84,6 +93,9 @@ set cursorline
 
 syntax enable
 
+" Vimspector config
+let g:vimspector_enable_mappings = 'HUMAN'
+packadd! vimspector
 
 " Gitgutter config
 "hi Visual ctermfg=grey ctermbg=black
@@ -106,6 +118,9 @@ set encoding=utf-8
 let NERDTreeIgnore=[]
 let NERDTreeShowHidden=1
 map <C-n> :NERDTreeToggle<CR>
+
+" pgsql config
+let g:sql_type_default = 'pgsql'
 
 " Nord config
 
