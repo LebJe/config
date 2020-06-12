@@ -41,6 +41,9 @@ Plugin 'tpope/vim-dadbod'
 
 " csv.vim
 Plugin 'chrisbra/csv.vim'
+
+"
+Plugin 'kkvh/vim-docker-tools'
 call vundle#end()
 
 filetype plugin indent on
