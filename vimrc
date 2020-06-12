@@ -4,46 +4,53 @@ filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" Vundle, the plug-in manager for Vim.
 Plugin 'VundleVim/Vundle.vim'
 
-" vim-airline
+" lean & mean status/tabline for vim that's light as air.
 Plugin 'vim-airline/vim-airline'
 
-" vim-gitgutter
+" A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
 Plugin 'airblade/vim-gitgutter'
 
-" vim-airline themes
+" A collection of themes for vim-airline.
 Plugin 'vim-airline/vim-airline-themes'
 
-" YouCompleteMe
+" A code-completion engine for Vim
 Plugin 'ycm-core/YouCompleteMe'
 
-" lexima.vim
+" Auto close parentheses and repeat by dot dot dot...
 Plugin 'cohama/lexima.vim'
 
-" NERDTree
+" A tree explorer plugin for vim.
 Plugin 'preservim/nerdtree'
 
-" Nord theme
+" An arctic, north-bluish clean and elegant Vim theme.
 Plugin 'arcticicestudio/nord-vim'
 
-" nerdtree-git-plugin
+" A plugin of NERDTree showing git status.
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
-" indentLine
+" A vim plugin to display the indention levels with thin vertical lines.
 Plugin 'Yggdroot/indentLine'
 
-" pgsql.vim
+" The best PostgreSQL plugin for Vim!
 Plugin 'lifepillar/pgsql.vim'
 
-" dadbod
+" dadbod.vim: Modern database interface for Vim.
 Plugin 'tpope/vim-dadbod'
 
-" csv.vim
+" A Filetype plugin for csv files.
 Plugin 'chrisbra/csv.vim'
 
-"
+" Toolkit for managing docker containers in vim.
 Plugin 'kkvh/vim-docker-tools'
+
+" fugitive.vim: A Git wrapper so awesome, it should be illegal.
+Plugin 'tpope/vim-fugitive'
+
+" This should always be last.
+Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
 
 filetype plugin indent on
@@ -112,7 +119,7 @@ hi GitGutterDelete guifg=#ff2222 ctermfg=1
 " vim-airline config
 let g:airline_powerline_fonts = 1
 let g:airline_theme='nord'
-
+let g:airline#extensions#tabline#enabled = 1
 
 
 set encoding=utf-8
