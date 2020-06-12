@@ -49,6 +49,7 @@ Plugin 'kkvh/vim-docker-tools'
 " fugitive.vim: A Git wrapper so awesome, it should be illegal.
 Plugin 'tpope/vim-fugitive'
 
+" Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more.
 " This should always be last.
 Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
