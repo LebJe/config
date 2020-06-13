@@ -49,6 +49,12 @@ Plugin 'kkvh/vim-docker-tools'
 " fugitive.vim: A Git wrapper so awesome, it should be illegal.
 Plugin 'tpope/vim-fugitive'
 
+"  Vim runtime files for Swift.
+Plugin 'keith/swift.vim'
+
+" A Sublime-like minimap for VIM, based on the Drawille console-based drawing library.
+Plugin 'severin-lemaignan/vim-minimap'
+
 " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more.
 " This should always be last.
 Plugin 'ryanoasis/vim-devicons'
@@ -142,3 +148,4 @@ let g:nord_italic_comments = 1
 let g:nord_underline = 1
 
 colorscheme nord
+
