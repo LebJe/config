@@ -138,7 +138,6 @@ set encoding=utf-8
 " NERDTree config
 let NERDTreeIgnore=[]
 let NERDTreeShowHidden=1
-map <C-n> :NERDTreeToggle<CR>
 
 " pgsql config
 let g:sql_type_default = 'pgsql'
@@ -301,3 +300,4 @@ let g:nord_underline = 1
 colorscheme nord
 
 
+map <C-n> :NERDTreeToggle<CR>
