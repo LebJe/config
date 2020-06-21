@@ -16,9 +16,7 @@ Plugin 'airblade/vim-gitgutter'
 " A collection of themes for vim-airline.
 Plugin 'vim-airline/vim-airline-themes'
 
-" A code-completion engine for Vim
-"Plugin 'ycm-core/YouCompleteMe'
-
+" Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode.
 Plugin 'neoclide/coc.nvim'
 
 " Auto close parentheses and repeat by dot dot dot...
@@ -145,18 +143,10 @@ map <C-n> :NERDTreeToggle<CR>
 " pgsql config
 let g:sql_type_default = 'pgsql'
 
-" Nord config
-
-let g:nord_cursor_line_number_background = 1
-let g:nord_bold = 1
-"let g:nord_italic = 1
-let g:nord_italic_comments = 1
-let g:nord_underline = 1
-
-colorscheme nord
+" csv.vim config
 let b:csv_arrange_align = 'l*'
 
-
+" Coc.nvim config
 " Give more space for displaying messages.
 set cmdheight=2
 
@@ -179,16 +169,16 @@ endif
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible( ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"inoremap <silent><expr> <TAB>
+"      \ pumvisible( ? "\<C-n>" :
+"      \ <SID>check_back_space() ? "\<TAB>" :
+"      \ coc#refresh()
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+"function! s:check_back_space() abort
+"  let col = col('.') - 1
+"  return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -299,3 +289,15 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>)
+
+" Nord config
+
+let g:nord_cursor_line_number_background = 1
+let g:nord_bold = 1
+"let g:nord_italic = 1
+let g:nord_italic_comments = 1
+let g:nord_underline = 1
+
+colorscheme nord
+
+
