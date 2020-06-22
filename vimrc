@@ -64,44 +64,6 @@ call vundle#end()
 
 filetype plugin indent on
 
-" YouCompleteMe config
-
-"let s:lsp = '~/.vim/lsp-examples'
-
-"let g:ycm_language_server = 
-"  \ [ 
-"  \   {
-"  \     'name': 'swift',
-"  \     'cmdline': [ 'sourcekit-lsp' ],
-"  \     'filetypes': [ 'swift' ]
-"  \   },
-"  \	  {
-"  \     'name': 'bash',
-"  \     'cmdline': [ 'node', expand( s:lsp . '/bash/node_modules/.bin/bash-language-server' ), 'start' ],
-"  \     'filetypes': [ 'sh', 'bash' ],
-"  \   },
-"  \   {
-"  \     'name': 'yaml',
-"  \     'cmdline': [ 'node', expand( s:lsp . '/yaml/node_modules/.bin/yaml-language-server' ), '--stdio' ],
-"  \     'filetypes': [ 'yaml' ],
-"  \   },
-"  \   {
-"  \     'name': 'json',
-"  \     'cmdline': [ 'node', expand( s:lsp . '/json/node_modules/.bin/vscode-json-languageserver' ), '--stdio' ],
-"  \     'filetypes': [ 'json' ],
-"  \   },
-"  \   { 'name': 'docker',
-"  \     'filetypes': [ 'dockerfile' ], 
-"  \     'cmdline': [ expand( s:lsp . '/docker/node_modules/.bin/docker-langserver' ), '--stdio' ]
-"  \   },
-"  \   { 'name': 'vim',
-"  \     'filetypes': [ 'vim' ],
-"  \     'cmdline': [ expand( s:lsp . '/viml/node_modules/.bin/vim-language-server' ), '--stdio' ]
-"  \   }
-"  \ ]
-
-"let g:ycm_auto_hover=1
-
 " Personal config
 
 set tabstop=4
