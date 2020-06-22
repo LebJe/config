@@ -301,3 +301,5 @@ colorscheme nord
 
 
 map <C-n> :NERDTreeToggle<CR>
+
+let g:coc_global_extensions = ["coc-json", "coc-sql", "coc-java", "coc-xml", "coc-yaml", "coc-vimlsp", "coc-tsserver", "coc-html", "coc-css", "coc-python", "coc-solargraph", "coc-go", "coc-emmet"]
