@@ -52,9 +52,7 @@ Plugin 'tpope/vim-fugitive'
 "  Vim runtime files for Swift.
 Plugin 'keith/swift.vim'
 
-" A Sublime-like minimap for VIM, based on the Drawille console-based drawing library.
-Plugin 'severin-lemaignan/vim-minimap'
-
+" A Vim plugin that always highlights the enclosing html/xml tags.
 Plugin 'Valloric/MatchTagAlways'
 
 " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more.
@@ -251,6 +249,22 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>)
 
+
+let g:coc_global_extensions = ["coc-json", "coc-sql", "coc-java", "coc-xml", "coc-yaml", "coc-vimlsp", "coc-tsserver", "coc-html", "coc-css", "coc-python", "coc-solargraph", "coc-go", "coc-emmet", "coc-snippets"]
+
+" Use <Tab> and <S-Tab> to navigate the completion list:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+
+map <C-n> :NERDTreeToggle<CR>
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<Tab>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<S-Tab>'
+
 " Nord config
 
 let g:nord_cursor_line_number_background = 1
@@ -262,10 +276,3 @@ let g:nord_underline = 1
 colorscheme nord
 
 
-map <C-n> :NERDTreeToggle<CR>
-
-let g:coc_global_extensions = ["coc-json", "coc-sql", "coc-java", "coc-xml", "coc-yaml", "coc-vimlsp", "coc-tsserver", "coc-html", "coc-css", "coc-python", "coc-solargraph", "coc-go", "coc-emmet"]
-
-" Use <Tab> and <S-Tab> to navigate the completion list:
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
