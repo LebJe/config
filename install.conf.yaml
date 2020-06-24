@@ -10,5 +10,5 @@
     ~/cronFiles:
     ~/.config/nvim/init.vim:
 - shell:
-  - 'echo ":q" | vim -c ":PlugInstall"'
   - './installVimPlug.sh'
+  - 'echo ":q" | vim -c ":PlugInstall"'
