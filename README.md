@@ -2,10 +2,11 @@
 My personal configuration (zshrc, vimrc, etc)
 
 ## Install
-Install [Beak](https://github.com/yonaskolb/Beak), then run:
 
-Install [YouCompleteMe][https://github.com/ycm-core/YouCompleteMe]
+Install...
+  - [NodeJS](https://nodejs.org/en/download/)
+  - [Nord](https://www.nordtheme.com/ports#search)
 
 ```sh
-prompt $ beak run -p install.swift install
+prompt $ git clone https://github.com/LebJe/config.git && cd config && ./install
 ```
