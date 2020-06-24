@@ -7,7 +7,8 @@
 - link:
     ~/config: ''
     ~/.zshrc:
-    ~/.vimrc:
     ~/cronFiles:
+    ~/.config/nvim/init.vim:
 - shell:
-  - [echo ":q" | vim -c ":PluginInstall"]
+  - 'echo ":q" | vim -c ":PlugInstall"'
+  - './installVimPlug.sh'
