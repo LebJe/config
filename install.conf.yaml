@@ -11,5 +11,6 @@
     ~/.config/nvim/init.vim:
     ~/.config/nvim/coc-settings.json:
 - shell:
+  - 'mkdir ~/.config/nvim/'
   - './installVimPlug.sh'
   - 'echo ":q" | vim -c ":PlugInstall"'

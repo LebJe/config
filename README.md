@@ -8,5 +8,5 @@ Install...
   - [Nord](https://www.nordtheme.com/ports#search)
 
 ```sh
-prompt $ git clone https://github.com/LebJe/config.git && cd config && ./install
+prompt $ git clone https://github.com/LebJe/config.git --recursive && cd config && ./install
 ```
