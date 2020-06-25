@@ -1,0 +1,33 @@
+{
+	"languageserver": {
+		"sourcekit-lsp": {
+			"command": "sourcekit-lsp",
+			"args": [],
+			"filetypes": [
+				"swift",
+				"objective-c"
+			],
+			"initializationOptions": {},
+			"settings": {}
+		},
+
+		"dockerfile": {
+			"command": "docker-langserver",
+			"filetypes": ["dockerfile"],
+			"args": ["--stdio"]
+		  },
+
+		  "bash": {
+			"command": "bash-language-server",
+			"args": ["start"],
+			"filetypes": ["sh"],
+			"ignoredRootPaths": ["~"]
+		  },
+
+		  "sql": {
+			"command": "sql-language-server",
+			"args" : ["up", "--method", "stdio"],
+			"filetypes": ["sql", "mysql"]
+		   }
+	}
+}
