@@ -10,6 +10,7 @@
     ~/cronFiles:
     ~/.config/nvim/init.vim:
     ~/.config/nvim/coc-settings.json:
+    ~/.prettierrc.json:
 - shell:
   - 'mkdir ~/.config/nvim/'
   - './installVimPlug.sh'

@@ -17,6 +17,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Auto close parentheses and repeat by dot dot dot...
 Plug 'cohama/lexima.vim'
 
+" A vim plugin to display the indention levels with thin vertical lines.
+Plug 'Yggdroot/indentLine'
+
 " A tree explorer plugin for vim.
 Plug 'preservim/nerdtree'
 
@@ -25,9 +28,6 @@ Plug 'arcticicestudio/nord-vim'
 
 " A plugin of NERDTree showing git status.
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
-" A vim plugin to display the indention levels with thin vertical lines.
-Plug 'Yggdroot/indentLine'
 
 " The best PostgreSQL plugin for Vim!
 Plug 'lifepillar/pgsql.vim'
@@ -55,6 +55,9 @@ Plug 'skywind3000/asyncrun.vim'
 
 " 🚀 Modern Task System for Project Building, Testing and Deployin 
 Plug 'skywind3000/asyncrun.vim'
+
+" A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing. Pathogen-friendly.
+Plug 'elzr/vim-json'
 
 " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more.
 " This should always be last.
@@ -262,7 +265,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>)
 
 
-let g:coc_global_extensions = ["coc-json", "coc-sql", "coc-java", "coc-xml", "coc-yaml", "coc-vimlsp", "coc-tsserver", "coc-html", "coc-css", "coc-python", "coc-solargraph", "coc-go", "coc-emmet", "coc-snippets"]
+let g:coc_global_extensions = ["coc-json", "coc-sql", "coc-java", "coc-xml", "coc-yaml", "coc-vimlsp", "coc-tsserver", "coc-html", "coc-css", "coc-python", "coc-solargraph", "coc-go", "coc-emmet", "coc-snippets", "coc-prettier"]
 
 " Use <Tab> and <S-Tab> to navigate the completion list:
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -271,11 +274,14 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 map <C-n> :NERDTreeToggle<CR>
 
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+" Use <S-Tab> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_next = '<Tab>'
 
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+" Use <S-Tab> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<S-Tab>'
+
+" Format current buffer using :Prettier.
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Nord config
 
@@ -285,6 +291,12 @@ let g:nord_bold = 1
 let g:nord_italic_comments = 1
 let g:nord_underline = 1
 
+set background=dark
+
 colorscheme nord
 
+set list
 
+set list lcs=tab:\¦\ 
+
+let g:vim_json_syntax_conceal = 0
