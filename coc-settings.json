@@ -17,13 +17,6 @@
 			"args": ["--stdio"]
 		  },
 
-		  "bash": {
-			"command": "bash-language-server",
-			"args": ["start"],
-			"filetypes": ["sh"],
-			"ignoredRootPaths": ["~"]
-		  },
-
 		  "sql": {
 			"command": "sql-language-server",
 			"args" : ["up", "--method", "stdio"],
