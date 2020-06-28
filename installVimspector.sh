@@ -1,18 +1,27 @@
-# Clone Vimspector
-http --ignore-stdin -d https://github.com/puremourning/vimspector/releases/download/1565/macos-d1f2df36cc8e124e35b83c2ecb5fbf463fa3ceb0.tar.gz
-
-# Untar it.
-tar -C $HOME/.local/share/nvim/site/pack/ -zxf macos-d1f2df36cc8e124e35b83c2ecb5fbf463fa3ceb0.tar.gz
-
-rm -rf macos-d1f2df36cc8e124e35b83c2ecb5fbf463fa3ceb0.tar.gz
-
 # install gadgets.
 
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then    
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then 
+	# Clone Vimspector
+	wget https://github.com/puremourning/vimspector/releases/download/1605/linux-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
+
+	# Untar it.
+	tar -C $HOME/.local/share/nvim/site/pack/ -zxf linux-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
+
+	rm -rf linux-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
+	
+
 	mkdir -p ~/.config/nvim/pack/vimspector/opt/vimspector/gadgets/linux/.gadgets.d/
 
 	cat lldb-vscode.json > ~/.config/nvim/pack/vimspector/opt/vimspector/gadgets/linux/.gadgets.d/lldb-vscode.json
 elif [[ "$OSTYPE" == "darwin"* ]]; then    
+	# Clone Vimspector
+	wget https://github.com/puremourning/vimspector/releases/download/1605/macos-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
+
+	# Untar it.
+	tar -C $HOME/.local/share/nvim/site/pack/ -zxf macos-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
+
+	rm -rf macos-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
+
 	mkdir -p ~/.config/nvim/pack/vimspector/opt/vimspector/gadgets/macos/.gadgets.d/
 
 	cat lldb-vscode.json > ~/.config/nvim/pack/vimspector/opt/vimspector/gadgets/macos/.gadgets.d/lldb-vscode.json
