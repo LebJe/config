@@ -9,7 +9,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	wget https://github.com/puremourning/vimspector/releases/download/1605/linux-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
 
 	# Untar it.
-	tar -C $HOME/.local/share/nvim/site/pack/ -zxf linux-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
+	tar -C ~/.config/nvim/pack/ -zxf linux-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
 
 	rm -rf linux-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
 	
@@ -22,7 +22,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	wget https://github.com/puremourning/vimspector/releases/download/1605/macos-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
 
 	# Untar it.
-	tar -C $HOME/.local/share/nvim/site/pack/ -zxf macos-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
+	tar -C ~/.config/nvim/pack/ -zxf macos-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
 
 	rm -rf macos-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
 
@@ -31,10 +31,5 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	cat lldb-vscode.json > ~/.config/nvim/pack/vimspector/opt/vimspector/gadgets/macos/.gadgets.d/lldb-vscode.json
 fi
 
-cd ~/.config/nvim/pack/vimspector/opt/vimspector/
-
-python3 install_gadget.py
-
-cd
-cd config
+python3 ~/.config/nvim/pack/vimspector/opt/vimspector/install_gadget.py
 
