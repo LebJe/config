@@ -2,6 +2,8 @@
 
 mkdir ~/.config/nvim/pack/
 
+mkdir ~/.local/share/nvim/site/pack/
+
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then 
 	# Clone Vimspector
 	wget https://github.com/puremourning/vimspector/releases/download/1605/linux-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
