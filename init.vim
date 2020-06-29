@@ -20,9 +20,6 @@ Plug 'cohama/lexima.vim'
 " A vim plugin to display the indention levels with thin vertical lines.
 Plug 'Yggdroot/indentLine'
 
-" A tree explorer plugin for vim.
-Plug 'preservim/nerdtree'
-
 " An arctic, north-bluish clean and elegant Vim theme.
 Plug 'arcticicestudio/nord-vim'
 
