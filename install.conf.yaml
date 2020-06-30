@@ -13,9 +13,10 @@
     ~/.prettierrc.json:
 - shell:
   - 'mkdir -p $HOME/.config/nvim/'
-  - 'bash installVimPlug.sh'
-  - 'rm -rf $HOME/.local/share/nvim/site/pack/vimspector'
-  - 'echo ":q" | vim -c ":PlugInstall"'
+  - 
+    command: 'nvim -es -i NONE -c "PlugInstall" -c "qa"'
+    stdout: true
+    stderr: true
   - 
     command: 'bash installVimspector.sh'
     stdout: true

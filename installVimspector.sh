@@ -1,35 +1,15 @@
+VIMSPECTORPATH=~/.config/nvim/plugged/vimspector
+
 # install gadgets.
-
-mkdir ~/.config/nvim/pack/
-
-mkdir ~/.local/share/nvim/site/pack/
-
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then 
-	# Clone Vimspector
-	wget https://github.com/puremourning/vimspector/releases/download/1605/linux-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
+	mkdir -p $VIMSPECTORPATH/gadgets/linux/.gadgets.d/
 
-	# Untar it.
-	tar -C ~/.config/nvim/pack/ -zxf linux-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
-
-	rm -rf linux-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
-	
-
-	mkdir -p ~/.config/nvim/pack/vimspector/opt/vimspector/gadgets/linux/.gadgets.d/
-
-	cat lldb-vscode.json > ~/.config/nvim/pack/vimspector/opt/vimspector/gadgets/linux/.gadgets.d/lldb-vscode.json
+	cat lldb-vscode.json > $VIMSPECTORPATH/gadgets/linux/.gadgets.d/lldb-vscode.json
 elif [[ "$OSTYPE" == "darwin"* ]]; then    
-	# Clone Vimspector
-	wget https://github.com/puremourning/vimspector/releases/download/1605/macos-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
+	mkdir -p $VIMSPECTORPATH/gadgets/macos/.gadgets.d/
 
-	# Untar it.
-	tar -C ~/.config/nvim/pack/ -zxf macos-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
-
-	rm -rf macos-df8389380a56ca6bc60d3bbadf266ab8009b825e.tar.gz
-
-	mkdir -p ~/.config/nvim/pack/vimspector/opt/vimspector/gadgets/macos/.gadgets.d/
-
-	cat lldb-vscode.json > ~/.config/nvim/pack/vimspector/opt/vimspector/gadgets/macos/.gadgets.d/lldb-vscode.json
+	cat lldb-vscode.json > $VIMSPECTORPATH/gadgets/macos/.gadgets.d/lldb-vscode.json
 fi
 
-python3 ~/.config/nvim/pack/vimspector/opt/vimspector/install_gadget.py
+python3 $VIMSPECTORPATH/install_gadget.py
 

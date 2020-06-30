@@ -1,6 +1,14 @@
 " Vim-Plug plugins.
 set nocompatible 
 
+" Install Vim-Plug
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Install Plugins.
 call plug#begin()
 " lean & mean status/tabline for vim that's light as air.
 Plug 'vim-airline/vim-airline'
@@ -41,9 +49,6 @@ Plug 'kkvh/vim-docker-tools'
 " fugitive.vim: A Git wrapper so awesome, it should be illegal.
 Plug 'tpope/vim-fugitive'
 
-"  Vim runtime files for Swift.
-Plug 'keith/swift.vim'
-
 " A Vim plugin that always highlights the enclosing html/xml tags.
 Plug 'Valloric/MatchTagAlways'
 
@@ -55,6 +60,12 @@ Plug 'skywind3000/asyncrun.vim'
 
 " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing. Pathogen-friendly.
 Plug 'elzr/vim-json'
+
+" Vim runtime files for Swift.
+Plug 'keith/swift.vim'
+
+" vimspector - A multi-language debugging system for Vim.
+Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --force-enable-java --force-enable-javac --enable-go'} 
 
 " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more.
 " This should always be last.
@@ -84,11 +95,10 @@ nnoremap rsw :!swift run<enter>
 nnoremap bsw :!swift build<enter>
 
 " Resolve all packages for the current Swift project.
-nnoremap spr :!swift build<enter>
+nnoremap spr :!swift package resolve<enter>
 
 " Vimspector config
 let g:vimspector_enable_mappings = 'HUMAN'
-packadd! vimspector
 
 " Gitgutter config
 "hi Visual ctermfg=grey ctermbg=black
@@ -136,20 +146,6 @@ if has("patch-8.1.1564")
 else
   set signcolumn=yes
 endif
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-"inoremap <silent><expr> <TAB>
-"      \ pumvisible( ? \"\<C-n>\" :
-"      \ <SID>check_back_space() ? \"\<TAB>\" :
-"      \ coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? \"\<C-p>\" : \"\<C-h>\"
-
-"function! s:check_back_space() abort
-"  let col = col('.') - 1
-"  return !col || getline('.')[col - 1]  =~# '\s'
-"endfunction
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -271,7 +267,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 noremap <C-n> :CocCommand explorer<CR>
 
-" Use <S-Tab> for jump to next placeholder, it's default of coc.nvim
+" Use <Tab> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_next = '<Tab>'
 
 " Use <S-Tab> for jump to previous placeholder, it's default of coc.nvim
