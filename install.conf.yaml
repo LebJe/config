@@ -14,7 +14,7 @@
 - shell:
   - 'mkdir -p $HOME/.config/nvim/'
   - 
-    command: 'nvim -es -i NONE -c "PlugInstall" -c "qa"'
+    command: 'nvim -es --u init.vim i NONE -c "PlugInstall" -c "qa"'
     stdout: true
     stderr: true
   - 
