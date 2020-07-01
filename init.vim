@@ -13,6 +13,14 @@ call plug#begin()
 " lean & mean status/tabline for vim that's light as air.
 Plug 'vim-airline/vim-airline'
 
+Plug 'kristijanhusak/vim-dadbod-ui'
+
+" Semantic Highlighting for Vim.
+Plug 'jaxbot/semantic-highlight.vim'
+
+" 🌈 Semantic Highlighting for Python in Neovi.
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+
 " A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
 Plug 'airblade/vim-gitgutter'
 
@@ -258,7 +266,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>)
 
 
-let g:coc_global_extensions = ["coc-json", "coc-sql", "coc-java", "coc-xml", "coc-yaml", "coc-vimlsp", "coc-tsserver", "coc-html", "coc-css", "coc-python", "coc-solargraph", "coc-go", "coc-emmet", "coc-snippets", "coc-prettier", "coc-marketplace", "coc-sh", "coc-java-debug", "coc-explorer"]
+let g:coc_global_extensions = ["coc-json", "coc-sql", "coc-java", "coc-xml", "coc-yaml", "coc-vimlsp", "coc-tsserver", "coc-html", "coc-css", "coc-python", "coc-solargraph", "coc-go", "coc-emmet", "coc-snippets", "coc-prettier", "coc-marketplace", "coc-sh", "coc-java-debug", "coc-explorer", "coc-docker", "coc-db"]
 
 " Use <Tab> and <S-Tab> to navigate the completion list:
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -331,6 +339,31 @@ nmap <space>ef :CocCommand explorer --preset floating<CR>
 " List all presets
 nmap <space>el :CocList explPresets
 
+" coc-explorer config
 let g:indent_guides_exclude_filetypes = ['coc-explorer']
 
 set termguicolors
+
+" SemanticHighlight config
+
+"au BufWritePost <buffer> :SemanticHighlight
+
+
+" taken from https://stackoverflow.com/a/6496995/12570844
+fun! EnableSemanticHighlight()
+
+	:echom &ft
+
+    " Don't highlight these filetypes
+    if &ft =~ 'docker\|python\|xml\|.*ignore\|markdown\'
+        return
+    endif
+
+	:SemanticHighlight
+endfun
+
+autocmd BufRead * call EnableSemanticHighlight()
+
+
+let g:semshi#error_sign=v:false
+let g:semshi#mark_selected_nodes=0
