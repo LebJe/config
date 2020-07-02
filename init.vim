@@ -355,7 +355,7 @@ fun! EnableSemanticHighlight()
 	:echom &ft
 
     " Don't highlight these filetypes
-    if &ft =~ 'docker\|python\|xml\|.*ignore\|markdown\'
+    if &ft =~ 'docker\|python\|xml\|.*ignore\|markdown\html\'
         return
     endif
 

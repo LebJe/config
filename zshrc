@@ -82,3 +82,7 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
 alias nvim-config="nvim ~/.config/nvim/init.vim"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#export FZF_DEFAULT_COMMAND="fd"
