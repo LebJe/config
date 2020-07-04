@@ -69,12 +69,11 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time battery)
 
 eval "$(rbenv init -)"
 
-alias list="exa -lah --git"
+alias list="exa -lah --git --icons"
 alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
 
 source ~/.iterm2_shell_integration.zsh
 fpath=(~/.zsh $fpath)
-export a=b
 
 # added by travis gem
 [ ! -s /Users/jefflebrun/.travis/travis.sh ] || source /Users/jefflebrun/.travis/travis.sh
@@ -86,3 +85,6 @@ alias nvim-config="nvim ~/.config/nvim/init.vim"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #export FZF_DEFAULT_COMMAND="fd"
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+
+export GPG_TTY=`tty`
