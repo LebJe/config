@@ -88,3 +88,6 @@ alias nvim-config="nvim ~/.config/nvim/init.vim"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 
 export GPG_TTY=`tty`
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+ export LDFLAGS="-L/usr/local/opt/ruby/lib"
+ export CPPFLAGS="-I/usr/local/opt/ruby/include"
