@@ -11,5 +11,5 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	cat lldb-vscode.json > $VIMSPECTORPATH/gadgets/macos/.gadgets.d/lldb-vscode.json
 fi
 
-python3 $VIMSPECTORPATH/install_gadget.py
+python3 $VIMSPECTORPATH/install_gadget.py --enable-c --enable-python --enable-bash --force-enable-java --force-enable-rust
 
