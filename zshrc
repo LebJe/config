@@ -67,6 +67,11 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh os_icon dir dir_writable vcs)
 
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time battery)
 
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\UE0B4'
+
+POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\UE0B6'
+
+
 eval "$(rbenv init -)"
 
 alias list="exa -lah --git --icons"

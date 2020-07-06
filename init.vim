@@ -117,17 +117,17 @@ hi GitGutterDelete guifg=#ff2222 ctermfg=1
 "hi SignColumn ctermbg=0
 
 
+set encoding=utf-8
+
 " vim-airline config
 let g:airline_powerline_fonts = 1
 let g:airline_theme='nord'
 let g:airline#extensions#tabline#enabled = 1
 
+let g:airline_left_sep=''
 
-set encoding=utf-8
+let g:airline_right_sep=''
 
-" NERDTree config
-let NERDTreeIgnore=[]
-let NERDTreeShowHidden=1
 
 " pgsql config
 let g:sql_type_default = 'pgsql'
