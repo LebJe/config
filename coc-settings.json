@@ -3,27 +3,17 @@
 		"sourcekit-lsp": {
 			"command": "sourcekit-lsp",
 			"args": [],
-			"filetypes": ["swift", "objective-c", "c", "objc", "objcpp"],
+			"filetypes": ["swift", "c", "objc", "objcpp"],
+			"trace.server": "verbose",
 			"initializationOptions": {},
 			"settings": {}
-		},
-
-		"bash": {
-			"command": "bash-language-server",
-			"args": ["start"],
-			"filetypes": ["sh"],
-			"ignoredRootPaths": ["~"]
-		},
-
-		"sql": {
-			"command": "sql-language-server",
-			"args": ["up", "--method", "stdio"],
-			"filetypes": ["sql", "mysql"]
 		}
 	},
 
+	"coc.preferences.jumpCommand": "tabe",
+	
 	"explorer.icon.enableNerdfont": true,
-	"explorer.datetime.format": "eee, MMM yyyy h:mm:ss a",
+	"explorer.datetime.format": "eee, MMM yyyy, h:mm:ss a",
 	"explorer.file.column.indent.indentLine": true,
 
 	"explorer.keyMappings": {
@@ -97,5 +87,8 @@
   "python.autoComplete.extraPaths": [
     "${env:SPARK_HOME}/python",
     "${env:SPARK_HOME}/python/pyspark"
+  ],
+  "cSpell.userWords": [
+    "datetime"
   ]
 }
