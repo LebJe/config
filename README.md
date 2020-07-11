@@ -19,7 +19,7 @@ My personal configuration (zshrc, vimrc, etc)
       
     </details>
   1. [Nord](https://www.nordtheme.com/ports#search)
-  2. [Oh-My-ZSH](https://ohmyz.sh)
+  2. [Oh-My-ZSH](https://ohmyz.sh): `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
   3. <details>
 	  <summary>[Powerlevel10k](https://github.com/romkatv/powerlevel10k#oh-my-zsh)</summary>
 	  

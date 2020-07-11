@@ -359,7 +359,6 @@ fun! EnableSemanticHighlight()
         return
     endif
 
-	:SemanticHighlight
 endfun
 
 autocmd BufRead * call EnableSemanticHighlight()
