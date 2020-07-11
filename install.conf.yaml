@@ -12,7 +12,6 @@
     ~/.config/nvim/coc-settings.json:
     ~/.prettierrc.json:
 - shell:
-  - 'mkdir -p $HOME/.config/nvim/'
   - 
     command: 'nvim -es -u init.vim -i NONE -c "PlugInstall" -c -c "PlugUpgrade" -c "PlugUpdate" "qa"'
     stdout: true

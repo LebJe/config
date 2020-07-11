@@ -61,5 +61,5 @@ Set your terminal emulator's font to the Nerd Font you installed; this will ensu
 
 ## Run
 ```sh
-$ git clone https://github.com/LebJe/config.git && cd config && ./install
+$ git clone https://github.com/LebJe/config.git && cd config && bash setup.sh
 ```
