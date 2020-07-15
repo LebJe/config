@@ -4,7 +4,7 @@ My personal configuration (zshrc, vimrc, etc)
 ## Setup
 
 ### Install
-  -  <details>
+  1. <details>
 	  <summary>[NodeJS](https://nodejs.org/en/download/current/)</summary>
     #### [Homebrew](https://brew.sh)
      `brew install node`
@@ -18,9 +18,9 @@ My personal configuration (zshrc, vimrc, etc)
      ```	 
       
     </details>
-  1. [Nord](https://www.nordtheme.com/ports#search)
-  2. [Oh-My-ZSH](https://ohmyz.sh): `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
-  3. <details>
+  2. [Nord](https://www.nordtheme.com/ports#search)
+  3. [Oh-My-ZSH](https://ohmyz.sh): `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+  4. <details>
 	  <summary>[Powerlevel10k](https://github.com/romkatv/powerlevel10k#oh-my-zsh)</summary>
 	  
 	  ```bash
@@ -28,15 +28,15 @@ My personal configuration (zshrc, vimrc, etc)
 	  ```
      </details>
  
-  4. <details>
+  5. <details>
 	  <summary>[zsh-syntax-highlighing](https://github.com/zsh-users/zsh-syntax-highlighting)</summary>
 	  
 	  ```bash
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	  ```
      </details>
-  5. [Nerd Font](https://www.nerdfonts.com/font-downloads)
-  6. <details>
+  6. [Nerd Font](https://www.nerdfonts.com/font-downloads)
+  7. <details>
 	  <summary>[NeoVim](https://github.com/neovim/neovim/wiki/Installing-Neovim)</summary>
     #### [Homebrew](https://brew.sh)
      `brew install neovim`
@@ -52,7 +52,7 @@ My personal configuration (zshrc, vimrc, etc)
      ```	 
       
     </details>
-  7. A Terminal Emulator That Lets You Choose A Custom Font
+  8. A Terminal Emulator That Lets You Choose A Custom Font
 
 When Installing Oh-My-ZSH, Make sure to set your default shell to ZSH.
 Set your terminal emulator's font to the Nerd Font you installed; this will ensure the ZSH prompt renders correctly.
