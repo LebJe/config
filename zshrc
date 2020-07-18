@@ -80,17 +80,21 @@ alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
 source ~/.iterm2_shell_integration.zsh
 fpath=(~/.zsh $fpath)
 
-# added by travis gem
-[ ! -s /Users/jefflebrun/.travis/travis.sh ] || source /Users/jefflebrun/.travis/travis.sh
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
 alias nvim-config="nvim ~/.config/nvim/init.vim"
 
+export EDITOR="nvim"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #export FZF_DEFAULT_COMMAND="fd"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+
+
+# added by travis gem
+[ ! -s /Users/jefflebrun/.travis/travis.sh ] || source /Users/jefflebrun/.travis/travis.sh
 
 export GPG_TTY=`tty`
 export PATH="/usr/local/opt/ruby/bin:$PATH"
