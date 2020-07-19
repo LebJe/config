@@ -75,6 +75,8 @@ Plug 'keith/swift.vim'
 " vimspector - A multi-language debugging system for Vim.
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-bash --force-enable-java --force-enable-rust'} 
 
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+
 " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more.
 " This should always be last.
 Plug 'ryanoasis/vim-devicons'
@@ -89,6 +91,8 @@ set backspace=indent,eol,start
 set number
 set updatetime=1
 set cursorline
+
+tnoremap <Esc> <C-\><C-n>
 
 " Open quick fix window.
 let g:asyncrun_open = 6
@@ -266,7 +270,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>)
 
 
-let g:coc_global_extensions = ["coc-json", "coc-sql", "coc-java", "coc-xml", "coc-yaml", "coc-vimlsp", "coc-tsserver", "coc-html", "coc-css", "coc-python", "coc-solargraph", "coc-go", "coc-emmet", "coc-snippets", "coc-prettier", "coc-marketplace", "coc-sh", "coc-java-debug", "coc-explorer", "coc-docker", "coc-db", "coc-spell-checker"]
+let g:coc_global_extensions = ["coc-json", "coc-sql", "coc-java", "coc-xml", "coc-yaml", "coc-vimlsp", "coc-tsserver", "coc-html", "coc-css", "coc-python", "coc-solargraph", "coc-go", "coc-emmet", "coc-snippets", "coc-prettier", "coc-marketplace", "coc-sh", "coc-java-debug", "coc-explorer", "coc-docker", "coc-db", "coc-spell-checker", "coc-clangd"]
 
 " Use <Tab> and <S-Tab> to navigate the completion list:
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"

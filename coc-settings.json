@@ -3,7 +3,7 @@
 		"sourcekit-lsp": {
 			"command": "sourcekit-lsp",
 			"args": [],
-			"filetypes": ["swift", "c", "objc", "objcpp"],
+			"filetypes": ["swift", "objc", "objcpp"],
 			"trace.server": "verbose",
 			"initializationOptions": {},
 			"settings": {}
@@ -12,6 +12,14 @@
 
 	"coc.preferences.jumpCommand": "tabe",
 	
+	"diagnostic.refreshOnInsertMode": true,	
+
+	"coc.preferences.colorSupport": true,
+
+	"clangd.semanticHighlighting": true,
+
+	//"clangd.arguments": ["lcs50"],
+
 	"explorer.icon.enableNerdfont": true,
 	"explorer.datetime.format": "eee, MMM yyyy, h:mm:ss a",
 	"explorer.file.column.indent.indentLine": true,
@@ -91,5 +99,6 @@
   "cSpell.userWords": [
     "datetime",
     "lldb"
-  ]
+  ],
+  "clangd.path": "/Users/jefflebrun/.config/coc/extensions/coc-clangd-data/install/10.0.0/clangd_10.0.0/bin/clangd"
 }
