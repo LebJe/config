@@ -89,6 +89,7 @@
     "${env:SPARK_HOME}/python/pyspark"
   ],
   "cSpell.userWords": [
-    "datetime"
+    "datetime",
+    "lldb"
   ]
 }
