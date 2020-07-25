@@ -109,8 +109,14 @@ nnoremap bsw :!swift build<enter>
 " Resolve all packages for the current Swift project.
 nnoremap spr :!swift package resolve<enter>
 
+set list
+
+set list lcs=tab:\¦\ 
+
 " Vimspector config
 let g:vimspector_enable_mappings = 'HUMAN'
+
+let g:vimspector_install_gadgets = ['vscode-cpptools', 'CodeLLDB']
 
 " Gitgutter config
 "hi Visual ctermfg=grey ctermbg=black
@@ -300,10 +306,6 @@ set background=dark
 
 colorscheme nord
 
-set list
-
-set list lcs=tab:\¦\ 
-
 let g:vim_json_syntax_conceal = 0
 
 let g:coc_explorer_global_presets = {
@@ -367,6 +369,6 @@ endfun
 
 autocmd BufRead * call EnableSemanticHighlight()
 
-
+" Semshi config
 let g:semshi#error_sign=v:false
 let g:semshi#mark_selected_nodes=0
