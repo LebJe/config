@@ -294,20 +294,6 @@ let g:coc_snippet_prev = '<S-Tab>'
 " Format current buffer using :Prettier.
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-" Nord config
-
-let g:nord_cursor_line_number_background = 1
-let g:nord_bold = 1
-"let g:nord_italic = 1
-let g:nord_italic_comments = 1
-let g:nord_underline = 1
-
-set background=dark
-
-colorscheme nord
-
-let g:vim_json_syntax_conceal = 0
-
 let g:coc_explorer_global_presets = {
 \   '.vim': {
 \     'root-uri': '~/.vim',
@@ -337,6 +323,22 @@ let g:coc_explorer_global_presets = {
 \     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
 \   }
 \ }
+
+
+
+" Nord config
+
+let g:nord_cursor_line_number_background = 1
+let g:nord_bold = 1
+"let g:nord_italic = 1
+let g:nord_italic_comments = 1
+let g:nord_underline = 1
+
+set background=dark
+
+colorscheme nord
+
+let g:vim_json_syntax_conceal = 0
 
 " Use preset argument to open it
 nmap <space>ed :CocCommand explorer --preset .vim<CR>
