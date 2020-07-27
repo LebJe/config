@@ -98,3 +98,7 @@ export CPPFLAGS="-I/usr/local/opt/ruby/include"
 
 export C_INCLUDE_PATH=/usr/local/include
 export LIBRARY_PATH=/usr/local/lib
+
+fpath=(~/.zsh/completion $fpath)
+autoload -U compinit
+compinit
