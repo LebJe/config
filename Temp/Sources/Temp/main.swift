@@ -2,8 +2,11 @@ import Foundation
 import SwiftShell
 
 func getLinuxCPUTemp() {
-	#if os(Linux)
-	#endif
+	let strTemp = (try? String(contentsOf: URL(fileURLWithPath: "/sys/class/thermal/thermal_zone0/temp"))) ?? ""
+
+	let temp = (((Double(strTemp) ?? 0.0) / 1000.0) * 1.8) + 32
+
+	print(temp)
 }
 
 func getCPUTemp() {
