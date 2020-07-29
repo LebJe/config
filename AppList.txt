@@ -44,6 +44,8 @@ Turbo Boost Switcher Pro.app
 Utilities
 VirtualBox.app
 Visual Studio Code.app
+Xcode-beta.app
+Xcode.app
 gfxCardStatus.app
 iMovie.app
 iTerm.app

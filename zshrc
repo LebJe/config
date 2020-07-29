@@ -65,7 +65,7 @@ POWERLEVEL9K_MODE='awesome-fontconfig'
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh os_icon dir dir_writable vcs)
 
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time battery)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time load disk_usage ram battery)
 
 POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\UE0B4'
 
