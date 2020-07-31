@@ -6,7 +6,7 @@ func getLinuxCPUTemp() {
 
 	print("StrTemp: \(strTemp)")
 
-	let celTemp = Double(Double(Int(strTemp) ?? 0) / 1000.0)
+	let celTemp = (Int(strTemp) ?? 0) / 1000.0 
 
 	print("CelTemp: \(celTemp)")
 
