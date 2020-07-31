@@ -4,7 +4,11 @@ import SwiftShell
 func getLinuxCPUTemp() {
 	let strTemp = try! String(contentsOf: URL(fileURLWithPath: "/sys/class/thermal/thermal_zone0/temp"))
 
-	print(((Double(strTemp) ?? 0.0) / (9 / 5)) + 32)
+	let celTemp = Double(Double(Int(strTemp) ?? 0) / 1000.0)
+
+	let fTemp = celTemp * (9 / 5) + 32
+
+	print(fTemp)
 }
 
 func getCPUTemp() {
