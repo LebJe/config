@@ -12,7 +12,7 @@ func getLinuxCPUTemp() {
 
 	let fTemp = celTemp * (9 / 5) + 32
 
-	print(fTemp)
+	print(String(format: "%.2f °F", arguments: fTemp))
 }
 
 func getCPUTemp() {
