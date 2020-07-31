@@ -6,8 +6,8 @@ func getLinuxCPUTemp() {
 
 	print("StrTemp: \(strTemp)")
 
-	let celTemp = (Int(strTemp) ?? 0) / 1000.0 
-
+	let celTemp = Double((Int(strTemp) ?? 0)) / 1000.0 
+	
 	print("CelTemp: \(celTemp)")
 
 	let fTemp = celTemp * (9 / 5) + 32
