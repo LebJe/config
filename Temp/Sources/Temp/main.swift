@@ -6,7 +6,7 @@ func getLinuxCPUTemp() {
 
 	print("StrTemp: \(strTemp)")
 
-	let celTemp = Double((Int(strTemp)!)) / 1000.0 
+	let celTemp = Double((Int(strTemp.trimmingCharacters(in: .whitespacesAndNewlines))!)) / 1000.0 
 	
 	print("CelTemp: \(celTemp)")
 
