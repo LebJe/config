@@ -63,14 +63,21 @@ POWERLEVEL9K_TIME_FORMAT="%D{%r, %a %b %d, %Y}"
 
 POWERLEVEL9K_MODE='awesome-fontconfig'
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh os_icon dir dir_writable load vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh os_icon dir dir_writable load my_cpu_temp ram vcs)
 
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time disk_usage ram battery)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(battery disk_usage time)
 
 POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\UE0B4'
 
 POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\UE0B6'
 
+function prompt_my_cpu_temp() {
+	p10k segment -t " $(Temp)"
+}
+
+export PATH="$HOME/config/:$PATH"
+
+POWERLEVEL9K_MY_CPU_TEMP_FOREGROUND=208
 
 eval "$(rbenv init -)"
 
