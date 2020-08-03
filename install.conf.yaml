@@ -20,3 +20,8 @@
     command: 'bash configureVimspector.sh'
     stdout: true
     stderr: true
+
+  - 
+    command: 'zsh setupTemp'
+    stderr: true
+    stdout: true

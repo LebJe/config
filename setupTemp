@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+if [[ "$(arch)" == "i386" ]]; then
+	mv TempPackage/TempMac .
+	mv TempMac Temp
+elif [[ "$(arch)" == "aarch64" ]]; then
+	mv TempPackage/TempArm .
+	mv TempArm Temp
+else
+	mv TempPackage/TempX86_64 .
+	mv TempX86_64 Temp
+fi
