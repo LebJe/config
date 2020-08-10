@@ -13,7 +13,7 @@
     ~/.prettierrc.json:
     ~/.wgetrc:
 - shell:
- -
+  -
     command: 'bash configureVimspector.sh'
     stdout: true
     stderr: true
