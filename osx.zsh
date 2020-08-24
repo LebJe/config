@@ -87,14 +87,39 @@ if [ "$(uname 2> /dev/null)" != "Linux" ]; then
 	# Add a context menu item for showing the Web Inspector in web views
 	defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
-	# Show the main window when launching Activity Monitor
-	defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
+	###############################################################################
+	# Spotlight                                                                   #
+	###############################################################################
 
-	# Visualize CPU usage in the Activity Monitor Dock icon
-	defaults write com.apple.ActivityMonitor IconType -int 5
-
-	# Show all processes in Activity Monitor
-	defaults write com.apple.ActivityMonitor ShowCategory -int 0
+	defaults write com.apple.spotlight orderedItems -array \
+	'{"enabled" = 1;"name" = "APPLICATIONS";}' \
+	'{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
+	'{"enabled" = 0;"name" = "DIRECTORIES";}' \
+	'{"enabled" = 0;"name" = "PDF";}' \
+	'{"enabled" = 0;"name" = "FONTS";}' \
+	'{"enabled" = 0;"name" = "DOCUMENTS";}' \
+	'{"enabled" = 0;"name" = "MESSAGES";}' \
+	'{"enabled" = 0;"name" = "CONTACT";}' \
+	'{"enabled" = 0;"name" = "EVENT_TODO";}' \
+	'{"enabled" = 0;"name" = "IMAGES";}' \
+	'{"enabled" = 0;"name" = "BOOKMARKS";}' \
+	'{"enabled" = 0;"name" = "MUSIC";}' \
+	'{"enabled" = 0;"name" = "MOVIES";}' \
+	'{"enabled" = 0;"name" = "PRESENTATIONS";}' \
+	'{"enabled" = 0;"name" = "SPREADSHEETS";}' \
+	'{"enabled" = 0;"name" = "SOURCE";}' \
+	'{"enabled" = 1;"name" = "MENU_DEFINITION";}' \
+	'{"enabled" = 0;"name" = "MENU_OTHER";}' \
+	'{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
+	'{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
+	'{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
+	'{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
+	# Load new settings before rebuilding the index
+	killall mds > /dev/null 2>&1
+	# Make sure indexing is enabled for the main volume
+	sudo mdutil -i on / > /dev/null
+	# Rebuild the index from scratch
+	sudo mdutil -E / > /dev/null
 
 	###############################################################################
 	# Activity Monitor                                                            #
@@ -103,6 +128,15 @@ if [ "$(uname 2> /dev/null)" != "Linux" ]; then
 	# Sort Activity Monitor results by CPU usage
 	defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 	defaults write com.apple.ActivityMonitor SortDirection -int 0
+
+# Show the main window when launching Activity Monitor
+	defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
+
+	# Visualize CPU usage in the Activity Monitor Dock icon
+	defaults write com.apple.ActivityMonitor IconType -int 5
+
+	# Show all processes in Activity Monitor
+	defaults write com.apple.ActivityMonitor ShowCategory -int 0
 
 	###############################################################################
 	# Address Book, Dashboard, iCal, TextEdit, and Disk Utility                   #

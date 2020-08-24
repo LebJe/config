@@ -63,9 +63,9 @@ POWERLEVEL9K_TIME_FORMAT="%D{%r, %a %b %d, %Y}"
 
 POWERLEVEL9K_MODE='awesome-fontconfig'
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh os_icon dir dir_writable load my_cpu_temp ram vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context os_icon dir dir_writable newline load my_cpu_temp ram vcs)
 
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(battery disk_usage time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(battery disk_usage newline time)
 
 POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\UE0B4'
 

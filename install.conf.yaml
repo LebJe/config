@@ -14,7 +14,7 @@
     ~/.wgetrc:
 - shell:
   -
-    command: 'bash configureVimspector.sh'
+    command: 'bash setupShell.zsh'
     stdout: true
     stderr: true
   -
@@ -22,9 +22,13 @@
     stderr: true
     stdout: true
   -
-    command: 'zsh osx.sh'
+    command: 'zsh osx.zsh'
     stderr: true
     stdout: true
+  -
+    command: 'zsh configureVimspector.zsh'
+    stdout: true
+    stderr: true
   - 
     command: 'nvim -es -u init.vim -i NONE -c "PlugInstall" -c -c "PlugUpgrade" -c "PlugUpdate" "qa"'
     stdout: true
