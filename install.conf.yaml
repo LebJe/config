@@ -26,6 +26,10 @@
     stderr: true
     stdout: true
   -
+    command: 'zsh installFonts.zsh'
+    stderr: true
+    stdout: true
+-
     command: 'zsh configureVimspector.zsh'
     stdout: true
     stderr: true
