@@ -84,6 +84,11 @@ eval "$(rbenv init -)"
 alias list="exa -lah --git --icons"
 alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
 
+function dockerDeleteAll() {
+	docker rm $(docker ps --filter=status=exited --filter=status=created -q)
+	docker rmi $(docker images -a -q)
+}
+
 fpath=(~/.zsh $fpath)
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
