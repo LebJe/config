@@ -18,6 +18,10 @@
 
 	"clangd.semanticHighlighting": true,
 
+	"python.linting.pylintEnabled": false,
+	"python.linting.mypyEnabled": true,
+  	"python.linting.enabled": true
+
 	//"clangd.arguments": ["lcs50"],
 
 	"explorer.icon.enableNerdfont": true,

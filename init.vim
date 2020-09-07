@@ -13,6 +13,8 @@ call plug#begin()
 " lean & mean status/tabline for vim that's light as air.
 Plug 'vim-airline/vim-airline'
 
+Plug 'liuchengxu/vista.vim'
+
 Plug 'kristijanhusak/vim-dadbod-ui'
 
 " Semantic Highlighting for Vim.
