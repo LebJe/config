@@ -20,7 +20,7 @@
 
 	"python.linting.pylintEnabled": false,
 	"python.linting.mypyEnabled": true,
-  	"python.linting.enabled": true
+  	"python.linting.enabled": true,
 
 	//"clangd.arguments": ["lcs50"],
 
