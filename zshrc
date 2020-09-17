@@ -121,3 +121,5 @@ compinit
 
 . /usr/local/etc/profile.d/z.sh
 export PATH="/usr/local/sbin:$PATH"
+
+alias weather="curl wttr.in"
