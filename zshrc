@@ -89,6 +89,10 @@ function dockerDeleteAll() {
 	docker rmi $(docker images -a -q)
 }
 
+function dockerRunCommand {
+	docker run --rm -v $(pwd):/src -w /src $@
+}
+
 fpath=(~/.zsh $fpath)
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
@@ -114,3 +118,6 @@ export LIBRARY_PATH=/usr/local/lib
 fpath=($HOME/.zsh/completion $fpath)
 autoload -U compinit
 compinit
+
+. /usr/local/etc/profile.d/z.sh
+export PATH="/usr/local/sbin:$PATH"
