@@ -14,7 +14,6 @@ My personal configuration (zshrc, vimrc, etc)
      ```sh
     curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
     sudo apt install -y nodejs
-
      ```	 
       
     </details>
@@ -27,7 +26,6 @@ My personal configuration (zshrc, vimrc, etc)
 	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 	  ```
      </details>
- 
   5. <details>
 	  <summary>[zsh-syntax-highlighing](https://github.com/zsh-users/zsh-syntax-highlighting)</summary>
 	  
