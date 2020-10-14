@@ -123,3 +123,5 @@ compinit
 export PATH="/usr/local/sbin:$PATH"
 
 alias weather="curl wttr.in"
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
