@@ -41,7 +41,7 @@ COMPLETION_WAITING_DOTS5="true"
 # Example format: plugins=(git textmate ruby lighthouse)
 plugins=(git ruby zsh-syntax-highlighting)
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 # User configuration
 
@@ -57,19 +57,19 @@ export LANG=en_US.UTF-8
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-POWERLEVEL9K_DISABLE_RPROMPT=false
+export POWERLEVEL9K_DISABLE_RPROMPT=false
 
-POWERLEVEL9K_TIME_FORMAT="%D{%r, %a %b %d, %Y}"
+export POWERLEVEL9K_TIME_FORMAT="%D{%r, %a %b %d, %Y}"
 
-POWERLEVEL9K_MODE='awesome-fontconfig'
+export POWERLEVEL9K_MODE='awesome-fontconfig'
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context os_icon dir dir_writable newline load my_cpu_temp ram vcs)
+export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context os_icon dir dir_writable newline load my_cpu_temp ram vcs)
 
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(battery disk_usage newline time)
+export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(battery disk_usage newline time)
 
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\UE0B4'
+export POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\UE0B4'
 
-POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\UE0B6'
+export POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\UE0B6'
 
 function prompt_my_cpu_temp() {
 	p10k segment -t " $(Temp)"
@@ -77,7 +77,7 @@ function prompt_my_cpu_temp() {
 
 export PATH="$HOME/config/:$PATH"
 
-POWERLEVEL9K_MY_CPU_TEMP_FOREGROUND=208
+export POWERLEVEL9K_MY_CPU_TEMP_FOREGROUND=208
 
 eval "$(rbenv init -)"
 
@@ -85,8 +85,8 @@ alias list="exa -lah --git --icons"
 alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
 
 function dockerDeleteAll() {
-	docker rm $(docker ps --filter=status=exited --filter=status=created -q)
-	docker rmi $(docker images -a -q)
+	docker rm "$(docker ps --filter=status=exited --filter=status=created -q)"
+	docker rmi "$(docker images -a -q)"
 }
 
 function dockerRunCommand {
@@ -97,7 +97,7 @@ function clearFinderCache() {
 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system -domain user
 }
 
-fpath=(~/.zsh $fpath)
+fpath=($HOME/.zsh $fpath)
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 #export LDFLAGS="-L/usr/local/opt/llvm/lib"
@@ -111,7 +111,7 @@ export EDITOR="nvim"
 #export FZF_DEFAULT_COMMAND="fd"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 
-export GPG_TTY=`tty`
+export GPG_TTY=$(tty)
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 #export LDFLAGS="-L/usr/local/opt/ruby/lib"
 #export CPPFLAGS="-I/usr/local/opt/ruby/include"
@@ -123,9 +123,25 @@ fpath=($HOME/.zsh/completion $fpath)
 autoload -U compinit
 compinit
 
-. /usr/local/etc/profile.d/z.sh
+./usr/local/etc/profile.d/z.sh
 export PATH="/usr/local/sbin:$PATH"
 
 alias weather="curl wttr.in"
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
-if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+setopt BANG_HIST                 # Treat the '!' character specially during expansion.
+setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
+setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
+setopt HIST_BEEP                 # Beep when accessing nonexistent history.
+export SAVEHIST=$HISTSIZE

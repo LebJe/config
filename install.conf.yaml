@@ -12,6 +12,7 @@
     ~/.config/nvim/coc-settings.json:
     ~/.prettierrc.json:
     ~/.wgetrc:
+    ~/.tmux.conf:
 - shell:
   -
     command: 'bash setupShell.zsh'
