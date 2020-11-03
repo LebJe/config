@@ -93,11 +93,15 @@ function dockerRunCommand {
 	docker run --rm -v $(pwd):/src -w /src $@
 }
 
+function clearFinderCache() {
+	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system -domain user
+}
+
 fpath=(~/.zsh $fpath)
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/llvm/lib"
-export CPPFLAGS="-I/usr/local/opt/llvm/include"
+#export LDFLAGS="-L/usr/local/opt/llvm/lib"
+#export CPPFLAGS="-I/usr/local/opt/llvm/include"
 alias nvim-config="nvim ~/.config/nvim/init.vim"
 
 export EDITOR="nvim"
@@ -109,11 +113,11 @@ export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 
 export GPG_TTY=`tty`
 export PATH="/usr/local/opt/ruby/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/ruby/lib"
-export CPPFLAGS="-I/usr/local/opt/ruby/include"
+#export LDFLAGS="-L/usr/local/opt/ruby/lib"
+#export CPPFLAGS="-I/usr/local/opt/ruby/include"
 
-export C_INCLUDE_PATH=/usr/local/include
-export LIBRARY_PATH=/usr/local/lib
+#export C_INCLUDE_PATH=/usr/local/include
+#export LIBRARY_PATH=/usr/local/lib
 
 fpath=($HOME/.zsh/completion $fpath)
 autoload -U compinit

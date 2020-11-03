@@ -1,3 +1,5 @@
+#!/bin/bash
+
 brew install zsh
 
 sudo sh -c "echo $(which zsh) >> /etc/shells"
