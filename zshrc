@@ -99,6 +99,8 @@ function clearFinderCache() {
 
 fpath=($HOME/.zsh $fpath)
 
+fpath=($HOME/.zsh/completion $fpath)
+
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 #export LDFLAGS="-L/usr/local/opt/llvm/lib"
 #export CPPFLAGS="-I/usr/local/opt/llvm/include"
@@ -123,7 +125,7 @@ fpath=($HOME/.zsh/completion $fpath)
 autoload -U compinit
 compinit
 
-./usr/local/etc/profile.d/z.sh
+.//usr/local/etc/profile.d/z.sh
 export PATH="/usr/local/sbin:$PATH"
 
 alias weather="curl wttr.in"
@@ -144,4 +146,14 @@ setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history 
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
-export SAVEHIST=$HISTSIZEexport PATH="/usr/local/opt/m4/bin:$PATH"
+export SAVEHIST=$HISTSIZE
+export PATH="/usr/local/opt/m4/bin:$PATH"
+
+roi() {
+	env /usr/bin/arch -x86_64 $@
+}
+
+iBrew() {
+	roi /usr/local/bin/brew
+}
+}

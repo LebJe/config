@@ -20,7 +20,7 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 " Semantic Highlighting for Vim.
 Plug 'jaxbot/semantic-highlight.vim'
 
-" 🌈 Semantic Highlighting for Python in Neovi.
+" 🌈 Semantic Highlighting for Python in Neovim.
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
@@ -40,9 +40,6 @@ Plug 'Yggdroot/indentLine'
 
 " An arctic, north-bluish clean and elegant Vim theme.
 Plug 'arcticicestudio/nord-vim'
-
-" A plugin of NERDTree showing git status.
-Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " The best PostgreSQL plugin for Vim!
 Plug 'lifepillar/pgsql.vim'
@@ -75,7 +72,7 @@ Plug 'elzr/vim-json'
 Plug 'keith/swift.vim'
 
 " vimspector - A multi-language debugging system for Vim.
-Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-bash --force-enable-java --force-enable-rust'} 
+Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --force-enable-rust'} 
 
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 
@@ -118,7 +115,7 @@ set list lcs=tab:\¦\
 " Vimspector config
 let g:vimspector_enable_mappings = 'HUMAN'
 
-let g:vimspector_install_gadgets = ['vscode-cpptools', 'CodeLLDB']
+let g:vimspector_install_gadgets = ["vscode-python", "vscode-cpptools", "CodeLLDB"]
 
 " Gitgutter config
 "hi Visual ctermfg=grey ctermbg=black
