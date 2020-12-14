@@ -154,5 +154,5 @@ roi() {
 }
 
 iBrew() {
-	roi /usr/local/bin/brew
+	roi /usr/local/bin/brew $@
 }
