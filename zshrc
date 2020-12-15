@@ -72,7 +72,7 @@ export POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\UE0B4'
 export POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\UE0B6'
 
 function prompt_my_cpu_temp() {
-	p10k segment -t " $(Temp)"
+	p10k segment -t " $(temp)"
 }
 
 export PATH="$HOME/config/:$PATH"
