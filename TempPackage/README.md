@@ -1,3 +1,3 @@
 # Temp
 
-A description of this package.
+Calculates CPU temperature on Mac and Linux.
