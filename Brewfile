@@ -106,7 +106,6 @@ brew "swiftwasm/tap/carton"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD", "with-jansson"]
 brew "yonaskolb/beak/beak"
 cask "altair-graphql-client"
-cask "cocoarestclient"
 cask "docker"
 cask "eul"
 cask "font-hack-nerd-font"
