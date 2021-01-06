@@ -72,7 +72,7 @@ Plug 'elzr/vim-json'
 Plug 'keith/swift.vim'
 
 " vimspector - A multi-language debugging system for Vim.
-Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --force-enable-rust'} 
+Plug 'puremourning/vimspector' 
 
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 

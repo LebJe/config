@@ -111,7 +111,7 @@ export EDITOR="nvim"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #export FZF_DEFAULT_COMMAND="fd"
-export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export PATH="/usr/local/opt/python@3.9/bin:$PATH"
 
 export GPG_TTY=$(tty)
 export PATH="/usr/local/opt/ruby/bin:$PATH"
@@ -156,3 +156,4 @@ roi() {
 iBrew() {
 	roi /usr/local/bin/brew $@
 }
+export PATH="/usr/local/lib/python3.9/site-packages/:$PATH"
