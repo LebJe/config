@@ -104,5 +104,4 @@
     "datetime",
     "lldb"
   ],
-  "clangd.path": "/Users/jefflebrun/.config/coc/extensions/coc-clangd-data/install/10.0.0/clangd_10.0.0/bin/clangd"
 }
