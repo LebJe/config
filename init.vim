@@ -30,16 +30,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline-themes'
 
 " Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode.
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'feat/lsp-316', 'do': 'yarn install --frozen-lockfile'}
 
 " Auto close parentheses and repeat by dot dot dot...
 Plug 'cohama/lexima.vim'
 
 " A vim plugin to display the indention levels with thin vertical lines.
 Plug 'Yggdroot/indentLine'
-
-" An arctic, north-bluish clean and elegant Vim theme.
-Plug 'arcticicestudio/nord-vim'
 
 " The best PostgreSQL plugin for Vim!
 Plug 'lifepillar/pgsql.vim'
@@ -79,6 +76,8 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more.
 " This should always be last.
 Plug 'ryanoasis/vim-devicons'
+
+Plug 'tomasiser/vim-code-dark'
 call plug#end()
 
 " Personal config
@@ -90,6 +89,10 @@ set backspace=indent,eol,start
 set number
 set updatetime=1
 set cursorline
+
+set background=dark
+
+colorscheme codedark
 
 tnoremap <Esc> <C-\><C-n>
 
@@ -130,7 +133,7 @@ set encoding=utf-8
 
 " vim-airline config
 let g:airline_powerline_fonts = 1
-let g:airline_theme='nord'
+let g:airline_theme='codedark'
 let g:airline#extensions#tabline#enabled = 1
 
 let g:airline_left_sep=''
@@ -323,20 +326,6 @@ let g:coc_explorer_global_presets = {
 \   }
 \ }
 
-
-
-" Nord config
-
-let g:nord_cursor_line_number_background = 1
-let g:nord_bold = 1
-"let g:nord_italic = 1
-let g:nord_italic_comments = 1
-let g:nord_underline = 1
-
-set background=dark
-
-colorscheme nord
-
 let g:vim_json_syntax_conceal = 0
 
 " Use preset argument to open it
@@ -373,3 +362,11 @@ autocmd BufRead * call EnableSemanticHighlight()
 " Semshi config
 let g:semshi#error_sign=v:false
 let g:semshi#mark_selected_nodes=0
+
+hi! link CocSem_enum Structure
+hi! link CocSem_struct Structure
+hi! link CocSem_keyword Keyword
+hi! link CocSem_function Function
+hi! link CocSem_type Type
+hi! link CocSem_variable Identifier
+hi! link CocSem_parameter Label

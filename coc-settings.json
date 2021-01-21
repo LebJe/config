@@ -1,7 +1,7 @@
 {
 	"languageserver": {
 		"sourcekit-lsp": {
-			"command": "sourcekit-lsp",
+			"command": "/Users/jefflebrun/Programs/sourcekit-lsp/.build/release/sourcekit-lsp",
 			"args": [],
 			"filetypes": ["swift", "objc", "objcpp"],
 			"trace.server": "verbose",
@@ -10,8 +10,7 @@
 		}
 	},
 
-	"coc.preferences.jumpCommand": "tabe",
-	
+	"coc.preferences.jumpCommand": "tabe", "coc.preferences.semanticTokensHighlights": true,
 	"diagnostic.refreshOnInsertMode": true,	
 
 	"coc.preferences.colorSupport": true,

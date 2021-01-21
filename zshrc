@@ -157,3 +157,4 @@ iBrew() {
 	roi /usr/local/bin/brew $@
 }
 export PATH="/usr/local/lib/python3.9/site-packages/:$PATH"
+export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
