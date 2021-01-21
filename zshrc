@@ -98,6 +98,7 @@ function clearFinderCache() {
 }
 
 fpath=($HOME/.zsh $fpath)
+fpath=(/Users/stanleylebrun/homebrew/share/zsh/site-functions/ $fpath)
 
 fpath=($HOME/.zsh/completion $fpath)
 
@@ -118,8 +119,10 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 #export LDFLAGS="-L/usr/local/opt/ruby/lib"
 #export CPPFLAGS="-I/usr/local/opt/ruby/include"
 
+export C_INCLUDE_PATH="/Users/stanleylebrun/homebrew/include:$C_INCLUDE_PATH"
+
 #export C_INCLUDE_PATH=/usr/local/include
-#export LIBRARY_PATH=/usr/local/lib
+export LIBRARY_PATH="/Users/stanleylebrun/homebrew/lib"
 
 fpath=($HOME/.zsh/completion $fpath)
 autoload -U compinit
@@ -154,7 +157,11 @@ roi() {
 }
 
 iBrew() {
-	roi /usr/local/bin/brew $@
+	roi /Users/stanleylebrun/homebrew/bin/brew $@
 }
+export PATH="/Users/stanleylebrun/homebrew/bin:$PATH"
+export PATH="/Users/stanleylebrun/homebrew/opt/icu4c/bin:$PATH"
+export PATH="/Users/stanleylebrun/homebrew/opt/icu4c/sbin:$PATH"
+export PATH="/Users/stanleylebrun/homebrew/opt/llvm/bin:$PATH"
 export PATH="/usr/local/lib/python3.9/site-packages/:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
