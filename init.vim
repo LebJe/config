@@ -370,3 +370,4 @@ hi! link CocSem_function Function
 hi! link CocSem_type Type
 hi! link CocSem_variable Identifier
 hi! link CocSem_parameter Label
+hi! link CocSem_semicolon Variable
