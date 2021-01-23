@@ -165,3 +165,4 @@ export PATH="/Users/stanleylebrun/homebrew/opt/icu4c/sbin:$PATH"
 export PATH="/Users/stanleylebrun/homebrew/opt/llvm/bin:$PATH"
 export PATH="/usr/local/lib/python3.9/site-packages/:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
+test -e /Users/jefflebrun/.iterm2_shell_integration.zsh && source /Users/jefflebrun/.iterm2_shell_integration.zsh || true

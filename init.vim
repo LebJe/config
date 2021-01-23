@@ -53,6 +53,9 @@ Plug 'kkvh/vim-docker-tools'
 " fugitive.vim: A Git wrapper so awesome, it should be illegal.
 Plug 'tpope/vim-fugitive'
 
+" An arctic, north-bluish clean and elegant Vim theme.
+Plug 'arcticicestudio/nord-vim'
+
 " A Vim plugin that always highlights the enclosing html/xml tags.
 Plug 'Valloric/MatchTagAlways'
 
@@ -77,6 +80,10 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 " This should always be last.
 Plug 'ryanoasis/vim-devicons'
 
+" Vim colorscheme on each tabs
+Plug 'ujihisa/tabpagecolorscheme'
+
+" Dark color scheme for Vim and vim-airline, inspired by Dark+ in Visual Studio Code
 Plug 'tomasiser/vim-code-dark'
 call plug#end()
 
@@ -114,6 +121,12 @@ nnoremap spr :!swift package resolve<enter>
 set list
 
 set list lcs=tab:\¦\ 
+
+fun! OpenTerminal()
+	:tabe
+	:Tcolorscheme nord
+	:terminal
+endfun
 
 " Vimspector config
 let g:vimspector_enable_mappings = 'HUMAN'
@@ -357,6 +370,7 @@ fun! EnableSemanticHighlight()
 
 endfun
 
+
 autocmd BufRead * call EnableSemanticHighlight()
 
 " Semshi config
@@ -370,4 +384,4 @@ hi! link CocSem_function Function
 hi! link CocSem_type Type
 hi! link CocSem_variable Identifier
 hi! link CocSem_parameter Label
-hi! link CocSem_semicolon Variable
+hi! link CocSem_property Identifier
