@@ -10,6 +10,9 @@ endif
 
 " Install Plugins.
 call plug#begin()
+" 📡 Blazing fast minimap for vim, powered by code-minimap written in Rust.
+Plug 'wfxr/minimap.vim'
+
 " lean & mean status/tabline for vim that's light as air.
 Plug 'vim-airline/vim-airline'
 
@@ -371,6 +374,15 @@ nmap <space>ef :CocCommand explorer --preset floating<CR>
 " List all presets
 nmap <space>el :CocList explPresets
 
+hi! link CocSem_enum Structure
+hi! link CocSem_struct Structure
+hi! link CocSem_keyword Keyword
+hi! link CocSem_function Function
+hi! link CocSem_type Type
+hi! link CocSem_variable Identifier
+hi! link CocSem_parameter Label
+hi! link CocSem_property Identifier
+
 " coc-explorer config
 let g:indent_guides_exclude_filetypes = ['coc-explorer']
 
@@ -380,11 +392,9 @@ set termguicolors
 let g:semshi#error_sign=v:false
 let g:semshi#mark_selected_nodes=0
 
-hi! link CocSem_enum Structure
-hi! link CocSem_struct Structure
-hi! link CocSem_keyword Keyword
-hi! link CocSem_function Function
-hi! link CocSem_type Type
-hi! link CocSem_variable Identifier
-hi! link CocSem_parameter Label
-hi! link CocSem_property Identifier
+" minimap.vim config
+let g:minimap_width = 20
+hi MinimapCurrentLine ctermfg=Green guifg=#50FA7B guibg=#32302f
+let g:minimap_highlight = 'MinimapCurrentLine'
+
+let g:minimap_auto_start = 1
