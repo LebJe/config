@@ -128,6 +128,8 @@ fun! OpenTerminal()
 	:terminal
 endfun
 
+:map <c-t> :call OpenTerminal()<enter>
+
 " Vimspector config
 let g:vimspector_enable_mappings = 'HUMAN'
 
