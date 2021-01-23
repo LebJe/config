@@ -13,12 +13,11 @@ call plug#begin()
 " lean & mean status/tabline for vim that's light as air.
 Plug 'vim-airline/vim-airline'
 
+" 🌵 Viewer & Finder for LSP symbols and tag
 Plug 'liuchengxu/vista.vim'
 
+" Simple UI for https://github.com/tpope/vim-dadbod
 Plug 'kristijanhusak/vim-dadbod-ui'
-
-" Semantic Highlighting for Vim.
-Plug 'jaxbot/semantic-highlight.vim'
 
 " 🌈 Semantic Highlighting for Python in Neovim.
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
@@ -74,6 +73,7 @@ Plug 'keith/swift.vim'
 " vimspector - A multi-language debugging system for Vim.
 Plug 'puremourning/vimspector' 
 
+" Vim plugin for C/C++/ObjC semantic highlighting using cquery, ccls, or clangd
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more.
@@ -102,10 +102,6 @@ set background=dark
 colorscheme codedark
 
 tnoremap <Esc> <C-\><C-n>
-
-" Open quick fix window.
-let g:asyncrun_open = 6
-
 " Run current Python file in terminal.
 nnoremap rpy :CocCommand python.execInTerminal<enter>
 
@@ -130,6 +126,7 @@ endfun
 
 :map <c-t> :call OpenTerminal()<enter>
 
+set encoding=utf-8
 " Vimspector config
 let g:vimspector_enable_mappings = 'HUMAN'
 
@@ -143,9 +140,6 @@ hi GitGutterDelete guifg=#ff2222 ctermfg=1
 
 "hi SignColumn ctermbg=0
 
-
-set encoding=utf-8
-
 " vim-airline config
 let g:airline_powerline_fonts = 1
 let g:airline_theme='codedark'
@@ -154,6 +148,11 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_left_sep=''
 
 let g:airline_right_sep=''
+
+" AsyncRun config
+" Open quick fix window.
+let g:asyncrun_open = 6
+
 
 
 " pgsql config
@@ -293,7 +292,29 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>)
 
 
-let g:coc_global_extensions = ["coc-json", "coc-sql", "coc-java", "coc-xml", "coc-yaml", "coc-vimlsp", "coc-tsserver", "coc-html", "coc-css", "coc-python", "coc-solargraph", "coc-go", "coc-emmet", "coc-snippets", "coc-prettier", "coc-marketplace", "coc-sh", "coc-java-debug", "coc-explorer", "coc-docker", "coc-db", "coc-spell-checker", "coc-clangd", "coc-rls"]
+let g:coc_global_extensions = [
+\	"coc-json", 
+\	"coc-sql",
+\	"coc-xml", 
+\	"coc-yaml",
+\	"coc-vimlsp", 
+\	"coc-tsserver", 
+\	"coc-html",
+\	"coc-css",
+\	"coc-python", 
+\	"coc-go",
+\	"coc-emmet", 
+\	"coc-snippets", 
+\	"coc-prettier",
+\	"coc-marketplace", 
+\	"coc-sh",
+\	"coc-explorer", 
+\	"coc-docker", 
+\	"coc-db",
+\	"coc-spell-checker", 
+\	"coc-clangd", 
+\	"coc-rls"
+\]
 
 " Use <Tab> and <S-Tab> to navigate the completion list:
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -354,26 +375,6 @@ nmap <space>el :CocList explPresets
 let g:indent_guides_exclude_filetypes = ['coc-explorer']
 
 set termguicolors
-
-" SemanticHighlight config
-
-"au BufWritePost <buffer> :SemanticHighlight
-
-
-" taken from https://stackoverflow.com/a/6496995/12570844
-fun! EnableSemanticHighlight()
-
-	:echom &ft
-
-    " Don't highlight these filetypes
-    if &ft =~ 'docker\|python\|xml\|.*ignore\|markdown\html\'
-        return
-    endif
-
-endfun
-
-
-autocmd BufRead * call EnableSemanticHighlight()
 
 " Semshi config
 let g:semshi#error_sign=v:false
