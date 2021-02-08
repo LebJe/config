@@ -1,0 +1,53 @@
+AS Timer.app
+Adobe Acrobat DC
+Adobe Acrobat Reader DC.app
+Adobe Creative Cloud
+Affinity Designer.app
+Air Display Host.app
+Autodesk
+Backup and Sync.app
+Cascadea.app
+CleanerOnePro.app
+Dash.app
+DevCleaner.app
+Docker.app
+EndNote X9
+FileMaker Pro 18 Advanced
+Fing.app
+Firefox.app
+GarageBand.app
+GitUp.app
+Install macOS Big Sur Beta.app
+Keynote.app
+Kindle.app
+MacDown.app
+Microsoft Excel.app
+Microsoft OneNote.app
+Microsoft Outlook.app
+Microsoft PowerPoint.app
+Microsoft Remote Desktop.app
+Microsoft Word.app
+Native SQLite Manager.app
+Numbers.app
+OneDrive.app
+Pages.app
+Parallels Desktop.app
+Parallels Toolbox.app
+Postgres.app
+Postico.app
+Python 3.8
+Raspberry Pi Imager.app
+Safari.app
+Sublime Text.app
+TG Pro.app
+Turbo Boost Switcher Pro.app
+Utilities
+VirtualBox.app
+Visual Studio Code.app
+Xcode-beta.app
+Xcode.app
+gfxCardStatus.app
+iMovie.app
+iTerm.app
+solidangle
+zoom.us.app
