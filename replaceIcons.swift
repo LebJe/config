@@ -17,7 +17,9 @@ let iconFileURL = URL(fileURLWithPath: iconFile)
 
 var oldIconName: String = ""
 
-if appFolder.contains("Visual Studio Code") {
+if appFolder.contains("Visual Studio Code - Insiders") {
+	oldIconName = "Code - Insiders"
+} else if appFolder.contains("Visual Studio Code") {
 	oldIconName = "Code"
 } else {
 	oldIconName = try FileManager
