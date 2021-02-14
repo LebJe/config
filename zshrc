@@ -119,16 +119,16 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 #export LDFLAGS="-L/usr/local/opt/ruby/lib"
 #export CPPFLAGS="-I/usr/local/opt/ruby/include"
 
-export C_INCLUDE_PATH="/Users/stanleylebrun/homebrew/include:$C_INCLUDE_PATH"
+#export C_INCLUDE_PATH="/Users/stanleylebrun/homebrew/include:$C_INCLUDE_PATH"
 
 #export C_INCLUDE_PATH=/usr/local/include
-export LIBRARY_PATH="/Users/stanleylebrun/homebrew/lib"
+#export LIBRARY_PATH="/Users/stanleylebrun/homebrew/lib"
 
 fpath=($HOME/.zsh/completion $fpath)
 autoload -U compinit
 compinit
 
-.//usr/local/etc/profile.d/z.sh
+/usr/local/etc/profile.d/z.sh
 export PATH="/usr/local/sbin:$PATH"
 
 alias weather="curl wttr.in"
@@ -166,3 +166,4 @@ export PATH="/Users/stanleylebrun/homebrew/opt/llvm/bin:$PATH"
 export PATH="/usr/local/lib/python3.9/site-packages/:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 test -e /Users/jefflebrun/.iterm2_shell_integration.zsh && source /Users/jefflebrun/.iterm2_shell_integration.zsh || true
+export PATH="/usr/local/opt/binutils/bin:$PATH"

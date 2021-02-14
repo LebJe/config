@@ -13,6 +13,9 @@ call plug#begin()
 " 📡 Blazing fast minimap for vim, powered by code-minimap written in Rust.
 "Plug 'wfxr/minimap.vim'
 
+" Nvim Treesitter configurations and abstraction layer
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 " lean & mean status/tabline for vim that's light as air.
 Plug 'vim-airline/vim-airline'
 
@@ -392,12 +395,17 @@ let g:minimap_block_buftypes = ['nofile', 'nowrite', 'quickfix', 'terminal', 'pr
 let g:minimap_auto_start = 1
 
 
-hi! link CocSem_enum Structure
-hi! link CocSem_struct Structure
+hi! link CocSem_enum Type
+hi! link CocSem_struct Type
 hi! link CocSem_keyword Keyword
 hi! link CocSem_function Function
 hi! link CocSem_type Type
 hi! link CocSem_variable Identifier
 hi! link CocSem_parameter Label
 hi! link CocSem_property Identifier
+hi! link CocSem_namespace Type
+hi! link CocSem_class Type
+hi! link CocSem_method Function
+hi! link CocSem_comment Comment
+hi! link CocSem_enumMember Constant
 
