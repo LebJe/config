@@ -47,7 +47,8 @@ let icons = [
 	),
 	Icon(
 		appResourcesPath: URL(fileURLWithPath: "/Applications/Wireshark.app/Contents/Resources"),
-		iconPath: URL(fileURLWithPath: "~/config/Icons/817bd2667adeb856fbb2d24957dcdcbc_1605425541008_Wireshark.icns")
+		iconPath: URL(fileURLWithPath: "~/config/Icons/817bd2667adeb856fbb2d24957dcdcbc_1605425541008_Wireshark.icns"),
+		oldIconName: "Wireshark"
 	),
 	Icon(
 		appResourcesPath: URL(fileURLWithPath: "/Applications//Turbo Boost Switcher Pro.app/Contents/Resources"),
