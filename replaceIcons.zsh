@@ -1,5 +1,4 @@
 #!/bin/zsh
-
 ./replaceIcons.swift
 
 touch /Applications/Visual\ Studio\ Code.app
