@@ -1,7 +1,7 @@
 {
 	"languageserver": {
 		"sourcekit-lsp": {
-			"command": "/Users/jefflebrun/Programs/sourcekit-lsp/.build/release/sourcekit-lsp",
+			"command": "/Users/lebje/Programs/sourcekit-lsp/.build/release/sourcekit-lsp",
 			"args": [],
 			"filetypes": ["swift", "objc", "objcpp"],
 			"trace.server": "verbose",
