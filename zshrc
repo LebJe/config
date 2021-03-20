@@ -98,7 +98,7 @@ function clearFinderCache() {
 }
 
 fpath=($HOME/.zsh $fpath)
-fpath=(/Users/stanleylebrun/homebrew/share/zsh/site-functions/ $fpath)
+fpath=(/Users/lebje/homebrew/share/zsh/site-functions/ $fpath)
 
 fpath=($HOME/.zsh/completion $fpath)
 
@@ -111,20 +111,19 @@ export EDITOR="nvim"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-#export FZF_DEFAULT_COMMAND="fd"
+export FZF_DEFAULT_COMMAND="fd"
 export PATH="/usr/local/opt/python@3.9/bin:$PATH"
 
 export GPG_TTY=$(tty)
 export PATH="/usr/local/opt/ruby/bin:$PATH"
-#export LDFLAGS="-L/usr/local/opt/ruby/lib"
-#export CPPFLAGS="-I/usr/local/opt/ruby/include"
+export LDFLAGS="-L/usr/local/opt/ruby/lib"
+export CPPFLAGS="-I/usr/local/opt/ruby/include"
 
-#export C_INCLUDE_PATH="/Users/stanleylebrun/homebrew/include:$C_INCLUDE_PATH"
+export C_INCLUDE_PATH="/Users/stanleylebrun/homebrew/include:$C_INCLUDE_PATH"
 
-#export C_INCLUDE_PATH=/usr/local/include
-#export LIBRARY_PATH="/Users/stanleylebrun/homebrew/lib"
+export C_INCLUDE_PATH=/usr/local/include
+export LIBRARY_PATH="/Users/stanleylebrun/homebrew/lib"
 
-fpath=($HOME/.zsh/completion $fpath)
 autoload -U compinit
 compinit
 
@@ -157,14 +156,16 @@ roi() {
 }
 
 iBrew() {
-	roi /Users/stanleylebrun/homebrew/bin/brew $@
+	roi /Users/lebje/homebrew/bin/brew $@
 }
-export PATH="/Users/stanleylebrun/homebrew/bin:$PATH"
-export PATH="/Users/stanleylebrun/homebrew/opt/icu4c/bin:$PATH"
-export PATH="/Users/stanleylebrun/homebrew/opt/icu4c/sbin:$PATH"
-export PATH="/Users/stanleylebrun/homebrew/opt/llvm/bin:$PATH"
+export PATH="/Users/lebje/homebrew/bin:$PATH"
+export PATH="/Users/lebje/homebrew/opt/icu4c/bin:$PATH"
+export PATH="/Users/lebje/homebrew/opt/icu4c/sbin:$PATH"
+export PATH="/Users/lebje/homebrew/opt/llvm/bin:$PATH"
 export PATH="/usr/local/lib/python3.9/site-packages/:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 test -e /Users/jefflebrun/.iterm2_shell_integration.zsh && source /Users/jefflebrun/.iterm2_shell_integration.zsh || true
 export PATH="/usr/local/opt/binutils/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /Users/lebje/homebrew/bin/bit bit
