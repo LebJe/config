@@ -13,6 +13,7 @@
     ~/.prettierrc.json:
     ~/.wgetrc:
     ~/.tmux.conf:
+    ~/.config/starship.toml:
 - shell:
   -
     command: 'bash setupShell.zsh'

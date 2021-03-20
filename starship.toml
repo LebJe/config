@@ -1,15 +1,15 @@
-
 format = """
 $username\
+$hostname\
 $git_branch\
 $git_commit\
 $git_state\
 $git_status\
-$time\
-$memory_usage\
 ${custom.temp}\
-$line_break\
 $battery\
+$memory_usage\
+$time\
+$line_break\
 $directory\
 $character"""
 
@@ -34,11 +34,31 @@ format = "$symbol [${ram}( | ${swap})]($style) "
 
 [directory]
 disabled = false
-truncation_length = -1
-truncation_to_repo = -1
+truncation_length = 4
+truncate_to_repo = false
 
 [username]
 disabled = false
+show_always = true
+format = "[$user]($style) "
+
+[git_branch]
+disabled = false
+
+[git_commit]
+disabled = false
+tag_symbol = "  "
+tag_disabled = false
+
+[git_state]
+disabled = false
+
+[git_status]
+disabled = false
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+staged = '[++\($count\)](green)'
 
 [battery]
 disabled = false
@@ -59,14 +79,12 @@ style = "bold white"
 [time]
 disabled = false
 use_12hr = true
-format = "[ $time]($style) "
+format = "at [ $time]($style) "
 time_format = "%r, %a %b %d"
 
-[docker_context]
-disabled = false
-
 [custom.temp]
-command = "/Users/jefflebrun/config/temp"
-style = "blue"
-when = "0"
-format = "[$output]($style) "
+command = "temp"
+
+style = "bold  #fe8d00"
+when = "echo 0"
+format = "at [ $output]($style) "
