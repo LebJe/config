@@ -113,13 +113,12 @@ export PATH="/usr/local/opt/python@3.9/bin:$PATH"
 
 export GPG_TTY=$(tty)
 export PATH="/usr/local/opt/ruby/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/ruby/lib"
-export CPPFLAGS="-I/usr/local/opt/ruby/include"
+export LDFLAGS="-L/Users/lebje/homebrew/lib"
+export CPPFLAGS="-I/Users/lebje/homebrew/include"
 
-export C_INCLUDE_PATH="/Users/stanleylebrun/homebrew/include:$C_INCLUDE_PATH"
+export C_INCLUDE_PATH="/Users/lebje/homebrew/include:$C_INCLUDE_PATH"
 
-export C_INCLUDE_PATH=/usr/local/include
-export LIBRARY_PATH="/Users/stanleylebrun/homebrew/lib"
+export LIBRARY_PATH="/Users/lebje/homebrew/lib"
 
 autoload -U compinit
 compinit
