@@ -1,0 +1,72 @@
+
+format = """
+$username\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$time\
+$memory_usage\
+${custom.temp}\
+$line_break\
+$battery\
+$directory\
+$character"""
+
+[character]
+success_symbol = "[❯](bold green)"
+
+[package]
+disabled = false
+
+[hostname]
+ssh_only = false
+format =  "on [$hostname](bold red) "
+trim_at = ".hsd1.mi.comcast.net"
+disabled = false
+
+[memory_usage]
+disabled = false
+threshold = -1
+symbol = " "
+style = "bold dimmed green"
+format = "$symbol [${ram}( | ${swap})]($style) "
+
+[directory]
+disabled = false
+truncation_length = -1
+truncation_to_repo = -1
+
+[username]
+disabled = false
+
+[battery]
+disabled = false
+format = "[$symbol $percentage]($style) "
+
+[[battery.display]]
+threshold = 10
+style = "bold red"
+
+[[battery.display]]
+threshold = 30
+style = "bold yellow"
+
+[[battery.display]]
+threshold = 100
+style = "bold white"
+
+[time]
+disabled = false
+use_12hr = true
+format = "[ $time]($style) "
+time_format = "%r, %a %b %d"
+
+[docker_context]
+disabled = false
+
+[custom.temp]
+command = "/Users/jefflebrun/config/temp"
+style = "blue"
+when = "0"
+format = "[$output]($style) "

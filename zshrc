@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -39,7 +39,7 @@ COMPLETION_WAITING_DOTS5="true"
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(git textmate ruby lighthouse)
-plugins=(git ruby zsh-syntax-highlighting)
+plugins=(git zsh-syntax-highlighting)
 
 source "$ZSH/oh-my-zsh.sh"
 
@@ -49,27 +49,24 @@ source "$ZSH/oh-my-zsh.sh"
 
 export LANG=en_US.UTF-8
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-export POWERLEVEL9K_DISABLE_RPROMPT=false
+#export POWERLEVEL9K_DISABLE_RPROMPT=false
 
-export POWERLEVEL9K_TIME_FORMAT="%D{%r, %a %b %d, %Y}"
+#export POWERLEVEL9K_TIME_FORMAT="%D{%r, %a %b %d, %Y}"
 
-export POWERLEVEL9K_MODE='awesome-fontconfig'
+#export POWERLEVEL9K_MODE='awesome-fontconfig'
 
-export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context os_icon dir dir_writable newline load my_cpu_temp ram vcs)
+#export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context os_icon dir dir_writable newline load my_cpu_temp ram vcs)
 
-export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(battery disk_usage newline time)
+#export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(battery disk_usage newline time)
 
-export POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\UE0B4'
+#export POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\UE0B4'
 
-export POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\UE0B6'
+#export POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\UE0B6'
 
 function prompt_my_cpu_temp() {
 	p10k segment -t " $(temp)"
@@ -77,7 +74,7 @@ function prompt_my_cpu_temp() {
 
 export PATH="$HOME/config/:$PATH"
 
-export POWERLEVEL9K_MY_CPU_TEMP_FOREGROUND=208
+#export POWERLEVEL9K_MY_CPU_TEMP_FOREGROUND=208
 
 eval "$(rbenv init -)"
 
@@ -169,3 +166,4 @@ export PATH="/usr/local/opt/binutils/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /Users/lebje/homebrew/bin/bit bit
+eval "$(starship init zsh)"
