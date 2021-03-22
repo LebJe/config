@@ -10,6 +10,7 @@ $git_status\
 ${custom.temp}\
 $battery\
 $memory_usage\
+${custom.cpuUsage}\
 $time\
 $line_break\
 $directory\
@@ -115,7 +116,16 @@ shell       = ["bash", "--noprofile", "--norc"]
 when        = "true"
 
 [custom.temp]
+description = "Show CPU temperature."
 command = "temp"
-style = "bold  #fe8d00"
 when = "true"
+style = "bold  #fe8d00"
 format = "at [ $output]($style) "
+
+
+[custom.cpuUsage]
+description = "Show CPU Usage."
+shell = ["bash", "-c", "top -l 1 | grep -E \"^CPU\" | grep -Eo '[^[:space:]]+%' | head -1 | sed s/\\%/\\/"]
+when = "true"
+style = "bold  green"
+format = "   [$output]($style) "
