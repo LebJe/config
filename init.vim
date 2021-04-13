@@ -14,7 +14,7 @@ call plug#begin()
 "Plug 'wfxr/minimap.vim'
 
 " Nvim Treesitter configurations and abstraction layer
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " lean & mean status/tabline for vim that's light as air.
 Plug 'vim-airline/vim-airline'
@@ -158,7 +158,6 @@ let g:airline_right_sep=''
 " AsyncRun config
 " Open quick fix window.
 let g:asyncrun_open = 6
-
 
 
 " pgsql config
@@ -393,7 +392,6 @@ let g:minimap_block_filetypes = ['coc-explorer']
 let g:minimap_block_buftypes = ['nofile', 'nowrite', 'quickfix', 'terminal', 'prompt', 'coc-explorer']
 
 let g:minimap_auto_start = 1
-
 
 hi! link CocSem_enum Type
 hi! link CocSem_struct Type
