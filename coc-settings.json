@@ -1,7 +1,7 @@
 {
 	"languageserver": {
 		"sourcekit-lsp": {
-			"command": "/Users/lebje/Programs/sourcekit-lsp/.build/release/sourcekit-lsp",
+			"command": "sourcekit-lsp",
 			"args": [],
 			"filetypes": ["swift", "objc", "objcpp"],
 			"trace.server": "verbose",
@@ -13,7 +13,6 @@
 	"coc.preferences.jumpCommand": "tabe", 
 	"coc.preferences.semanticTokensHighlights": true,
 	"diagnostic.refreshOnInsertMode": true,
-
 	"coc.preferences.colorSupport": true,
 
 	"clangd.semanticHighlighting": true,
@@ -22,7 +21,6 @@
 	"python.linting.mypyEnabled": true,
   	"python.linting.enabled": true,
 
-	//"clangd.arguments": ["lcs50"],
 
 	"explorer.icon.enableNerdfont": true,
 	"explorer.datetime.format": "eee, MMM yyyy, h:mm:ss a",
@@ -103,5 +101,5 @@
   "cSpell.userWords": [
     "datetime",
     "lldb"
-  ],
+  ]
 }

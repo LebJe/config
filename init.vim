@@ -138,6 +138,11 @@ let g:vimspector_enable_mappings = 'HUMAN'
 
 let g:vimspector_install_gadgets = ["vscode-python", "vscode-cpptools", "CodeLLDB"]
 
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
+
 " Gitgutter config
 "hi Visual ctermfg=grey ctermbg=black
 hi GitGutterAdd guifg=#009900 ctermfg=2
