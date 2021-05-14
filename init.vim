@@ -11,10 +11,10 @@ endif
 " Install Plugins.
 call plug#begin()
 " 📡 Blazing fast minimap for vim, powered by code-minimap written in Rust.
-"Plug 'wfxr/minimap.vim'
+Plug 'wfxr/minimap.vim'
 
 " Nvim Treesitter configurations and abstraction layer
-"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " lean & mean status/tabline for vim that's light as air.
 Plug 'vim-airline/vim-airline'
@@ -59,7 +59,7 @@ Plug 'kkvh/vim-docker-tools'
 Plug 'tpope/vim-fugitive'
 
 " An arctic, north-bluish clean and elegant Vim theme.
-"Plug 'arcticicestudio/nord-vim'
+Plug 'arcticicestudio/nord-vim'
 
 " A Vim plugin that always highlights the enclosing html/xml tags.
 Plug 'Valloric/MatchTagAlways'
@@ -395,8 +395,21 @@ hi MinimapCurrentLine ctermfg=Green guifg=#50FA7B guibg=#32302f
 let g:minimap_highlight = 'MinimapCurrentLine'
 let g:minimap_block_filetypes = ['coc-explorer']
 let g:minimap_block_buftypes = ['nofile', 'nowrite', 'quickfix', 'terminal', 'prompt', 'coc-explorer']
+let g:minimap_close_filetypes = ['startify', 'netrw', 'vim-plug', 'coc-explorer']
 
 let g:minimap_auto_start = 1
+
+" TreeSitter Config
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = {"c", "javascript", "json", "css", "cpp", "c", "swift", "toml", "yaml", "go", "rust", "typescript"},
+  highlight = {
+    enable = true,
+  },
+}
+EOF
+
+" CoC.nvim Config - Extended
 
 hi! link CocSem_enum Type
 hi! link CocSem_struct Type

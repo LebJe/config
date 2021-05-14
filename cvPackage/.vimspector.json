@@ -1,0 +1,49 @@
+{
+  "$schema" : "https://puremourning.github.io/vimspector/schema/vimspector.schema.json#",
+  "configurations" : {
+    "Run Tests" : {
+      "configuration" : {
+        "request" : "launch",
+        "program" : "${workspaceRoot}/.build/debug/cvPackageTests.xcTest/Contents/MacOS/cvPackageTests",
+        "args" : [
+          "-o",
+          "-",
+          "swift"
+        ]
+      },
+      "default" : false,
+      "adapter" : "CodeLLDB-Swift",
+      "breakpoints" : {
+        "exception" : {
+          "cpp_catch" : "Y",
+          "cpp_throw" : "Y"
+        }
+      },
+      "variables" : {
+        "LibLLDB" : "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB"
+      }
+    },
+    "Target cv - Run Executable" : {
+      "configuration" : {
+        "request" : "launch",
+        "program" : "${workspaceRoot}/.build/debug/cv",
+        "args" : [
+          "-o",
+          "-",
+          "swift"
+        ]
+      },
+      "default" : true,
+      "adapter" : "CodeLLDB-Swift",
+      "breakpoints" : {
+        "exception" : {
+          "cpp_catch" : "Y",
+          "cpp_throw" : "Y"
+        }
+      },
+      "variables" : {
+        "LibLLDB" : "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB"
+      }
+    }
+  }
+}
