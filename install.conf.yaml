@@ -15,6 +15,7 @@
     ~/.tmux.conf:
     ~/.config/starship.toml:
     /usr/local/bin/moped:
+    ~/CodeLLDB-Swift.json:
 - shell:
   -
     command: 'bash setupShell.zsh'

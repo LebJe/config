@@ -2,4 +2,5 @@
 TempPackage/.build/
 TempPackage/.swiftpm/
 temp
-cv
+cvPackage/.build/
+cvPackage/.swiftpm/
