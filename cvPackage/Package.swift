@@ -19,9 +19,6 @@ let package = Package(
             dependencies: [
 				"ShellOut",
 				.product(name: "ArgumentParser", package: "swift-argument-parser"),
-			],
-			swiftSettings: [
-				.unsafeFlags(["-Xfrontend", "-parse-as-library"]),
 			]
 		),
         .testTarget(
