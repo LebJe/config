@@ -402,7 +402,7 @@ let g:minimap_auto_start = 1
 " TreeSitter Config
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"c", "javascript", "json", "css", "cpp", "c", "swift", "toml", "yaml", "go", "rust", "typescript"},
+  ensure_installed = {"dockerfile", "python", "graphql", "html", "bash", "c", "javascript", "json", "css", "cpp", "c", "swift", "toml", "yaml", "go", "rust", "typescript"},
   highlight = {
     enable = true,
   },
