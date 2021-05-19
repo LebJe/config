@@ -149,7 +149,7 @@ Replaces application icons with Big Sur style icons.
 -   Mac
 -   Linux
 
-Runs [setup.sh](#setupomz.sh), creates `$HOME/.config/nvim/`, and runs `install`.
+Runs [setupOMZ.sh](#setupomzsh), creates `$HOME/.config/nvim/`, and runs `install`.
 
 #### `setupCodeLLDB-Swift.sh`
 
