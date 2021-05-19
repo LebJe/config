@@ -38,7 +38,7 @@ My personal configuration (zshrc, vimrc, etc)
             -   [setupTemp.zsh](#setuptempzsh)
                 -   [Platforms](#platforms-11)
 
-<!-- Added by: lebje, at: Wed May 19 12:32:00 EDT 2021 -->
+<!-- Added by: lebje, at: Wed May 19 12:54:50 EDT 2021 -->
 
 <!--te-->
 
