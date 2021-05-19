@@ -16,25 +16,4 @@
     ~/.config/starship.toml:
     /usr/local/bin/moped:
     ~/CodeLLDB-Swift.json:
-- shell:
-  -
-    command: 'bash setupShell.zsh'
-    stdout: true
-    stderr: true
-  -
-    command: 'zsh setupTemp'
-    stderr: true
-    stdout: true
-  -
-    command: 'zsh osx.zsh'
-    stderr: true
-    stdout: true
-  -
-    command: 'zsh installFonts.zsh'
-    stderr: true
-    stdout: true
-  - 
-    command: 'nvim -es -u init.vim -i NONE -c "PlugInstall" -c -c "PlugUpgrade" -c "PlugUpdate" "qa"'
-    stdout: true
-    stderr: true
 

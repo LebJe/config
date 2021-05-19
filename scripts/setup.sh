@@ -1,4 +1,8 @@
+#!/bin/zsh
+
 mkdir -p $HOME/.config/nvim/
 
 ./setupOMZ.sh
-./install
+cd ..
+../install
+cd scripts

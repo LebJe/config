@@ -21,15 +21,7 @@ My personal configuration (zshrc, vimrc, etc)
 
 2. [Nord](https://www.nordtheme.com/ports#search)
 3. [Oh-My-ZSH](https://ohmyz.sh): `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
-4. [Powerlevel10k](https://github.com/romkatv/powerlevel10k#oh-my-zsh)
-<details>
-
-```bash
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-```
   
-</details>
-
 5. [zsh-syntax-highlighing](https://github.com/zsh-users/zsh-syntax-highlighting)
 <details>
   
