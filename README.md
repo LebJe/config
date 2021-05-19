@@ -67,6 +67,8 @@ Set your terminal emulator's font to the Nerd Font you installed; this will ensu
 $ git clone https://github.com/LebJe/config.git && cd config && bash setup.sh
 ```
 
+**Make sure you run the scripts from the `scripts` directory!**
+
 ### Scripts
 
 #### `aptPackages.sh`
@@ -147,12 +149,16 @@ Replaces application icons with Big Sur style icons.
 -   Mac
 -   Linux
 
+Runs [setup.sh](#setupomz.sh), creates `$HOME/.config/nvim/`, and runs `install`.
+
 #### `setupCodeLLDB-Swift.sh`
 
 ##### Platforms
 
 -   Mac
 -   Linux
+
+Copies `CodeLLDB-Swift.json` to `~/.config/nvim/plugged/vimspector/gadgets/macos/.gadgets.d/` or `~/.config/nvim/plugged/vimspector/gadgets/linux/.gadgets.d/` depending on the platform.
 
 #### `setupOMZ.sh`
 
