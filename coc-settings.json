@@ -3,7 +3,7 @@
 		"sourcekit-lsp": {
 			"command": "sourcekit-lsp",
 			"args": [],
-			"filetypes": ["swift", "objc", "objcpp"],
+			"filetypes": ["c", "cpp", "swift", "objc", "objcpp"],
 			"trace.server": "verbose",
 			"initializationOptions": {},
 			"settings": {}
@@ -16,6 +16,7 @@
 	"coc.preferences.colorSupport": true,
 
 	"clangd.semanticHighlighting": true,
+	"clangd.enabled": false,
 
 	"python.linting.pylintEnabled": false,
 	"python.linting.mypyEnabled": true,

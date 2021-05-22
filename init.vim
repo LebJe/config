@@ -10,6 +10,10 @@ endif
 
 " Install Plugins.
 call plug#begin()
+"Plug 'nvim-lua/popup.nvim'
+"Plug 'nvim-lua/plenary.nvim'
+"Plug 'nvim-telescope/telescope.nvim'
+
 " 📡 Blazing fast minimap for vim, powered by code-minimap written in Rust.
 Plug 'wfxr/minimap.vim'
 
@@ -23,10 +27,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'liuchengxu/vista.vim'
 
 " Simple UI for https://github.com/tpope/vim-dadbod
-Plug 'kristijanhusak/vim-dadbod-ui'
+"Plug 'kristijanhusak/vim-dadbod-ui'
 
 " 🌈 Semantic Highlighting for Python in Neovim.
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+"Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
 Plug 'airblade/vim-gitgutter'
@@ -44,10 +48,10 @@ Plug 'cohama/lexima.vim'
 Plug 'Yggdroot/indentLine'
 
 " The best PostgreSQL plugin for Vim!
-Plug 'lifepillar/pgsql.vim'
+"Plug 'lifepillar/pgsql.vim'
 
 " dadbod.vim: Modern database interface for Vim.
-Plug 'tpope/vim-dadbod'
+"Plug 'tpope/vim-dadbod'
 
 " A Filetype plugin for csv files.
 Plug 'chrisbra/csv.vim'
@@ -159,6 +163,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_left_sep=''
 
 let g:airline_right_sep=''
+
+let g:airline_exclude_filetypes = ['minimap', 'coc-explorer']
+let g:airline_exclude_buftypes = ['minimap', 'coc-explorer']
 
 " AsyncRun config
 " Open quick fix window.

@@ -2,8 +2,11 @@
 
 echo "installing packages..."
 
-sudo apt install -y zsh exa neovim python3-neovim python3 nodejs npm bat ripgrep fd-find
+sudo add-apt-repository ppa:neovim-ppa/unstable
 
+sudo apt update -q
+
+sudo apt install -y zsh exa neovim python3-neovim python3 nodejs npm bat ripgrep fd-find
 
 sudo ln -s $(which fdfind) /usr/local/bin/fd
 sudo ln -s $(which batcat) /usr/local/bin/bat
