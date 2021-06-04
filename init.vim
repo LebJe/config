@@ -71,7 +71,7 @@ Plug 'Valloric/MatchTagAlways'
 " 🚀 Run Async Shell Commands in Vim 8.0 / NeoVim and Output to the Quickfix Window!
 Plug 'skywind3000/asyncrun.vim'
 
-" 🚀 Modern Task System for Project Building, Testing and Deployin 
+" 🚀 Modern Task System for Project Building, Testing and Deploying
 Plug 'skywind3000/asyncrun.vim'
 
 " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing. Pathogen-friendly.
@@ -137,6 +137,12 @@ endfun
 :map <c-t> :call OpenTerminal()<enter>
 
 set encoding=utf-8
+
+" Vista.vim config
+
+let g:vista#renderer#enable_icon = 1
+
+
 " Vimspector config
 let g:vimspector_enable_mappings = 'HUMAN'
 
@@ -312,7 +318,6 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>)
 let g:coc_global_extensions = [
 \	"coc-json", 
 \	"coc-sql",
-\	"coc-xml", 
 \	"coc-yaml",
 \	"coc-vimlsp", 
 \	"coc-tsserver", 
@@ -320,7 +325,6 @@ let g:coc_global_extensions = [
 \	"coc-css",
 \	"coc-python", 
 \	"coc-go",
-\	"coc-emmet", 
 \	"coc-snippets", 
 \	"coc-prettier",
 \	"coc-marketplace", 
@@ -330,7 +334,8 @@ let g:coc_global_extensions = [
 \	"coc-db",
 \	"coc-spell-checker", 
 \	"coc-clangd", 
-\	"coc-rls"
+\	"coc-rls",
+\	"coc-git"
 \]
 
 " Use <Tab> and <S-Tab> to navigate the completion list:
@@ -398,6 +403,7 @@ let g:semshi#mark_selected_nodes=0
 
 " minimap.vim config
 let g:minimap_width = 20
+let g:minimap_git_colors = 1
 hi MinimapCurrentLine ctermfg=Green guifg=#50FA7B guibg=#32302f
 let g:minimap_highlight = 'MinimapCurrentLine'
 let g:minimap_block_filetypes = ['coc-explorer']

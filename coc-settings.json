@@ -3,25 +3,37 @@
 		"sourcekit-lsp": {
 			"command": "sourcekit-lsp",
 			"args": [],
-			"filetypes": ["c", "cpp", "swift", "objc", "objcpp"],
+			//"filetypes": ["c", "cpp", "swift", "objc", "objcpp"],
+			"filetypes": [],
 			"trace.server": "verbose",
 			"initializationOptions": {},
 			"settings": {}
 		}
 	},
 
-	"coc.preferences.jumpCommand": "tabe", 
+	"git.addGBlameToVirtualText": true,
+	"git.enableGutters": false,
+	"git.virtualTextPrefix": "  git: ",
+
+	"coc.preferences.jumpCommand": "tabe",
 	"coc.preferences.semanticTokensHighlights": true,
-	"diagnostic.refreshOnInsertMode": true,
 	"coc.preferences.colorSupport": true,
+	
+	"diagnostic.refreshOnInsertMode": true,
+	"diagnostic.virtualText": true,
+	"diagnostic.virtualTextCurrentLineOnly": true,
+
+	"codeLens.enable": true,
+	"codeLens.separator": "‣",
+	"codeLens.subseparator": " | ",
+	"list.indicator": "➤",
 
 	"clangd.semanticHighlighting": true,
-	"clangd.enabled": false,
+	"clangd.enabled": true,
 
 	"python.linting.pylintEnabled": false,
 	"python.linting.mypyEnabled": true,
-  	"python.linting.enabled": true,
-
+	"python.linting.enabled": true,
 
 	"explorer.icon.enableNerdfont": true,
 	"explorer.datetime.format": "eee, MMM yyyy, h:mm:ss a",
@@ -94,13 +106,57 @@
 		"]c": "gitNext",
 		"<<": "gitStage",
 		">>": "gitUnstage"
-  },
-  "python.autoComplete.extraPaths": [
-    "${env:SPARK_HOME}/python",
-    "${env:SPARK_HOME}/python/pyspark"
-  ],
-  "cSpell.userWords": [
-    "datetime",
-    "lldb"
-  ]
+	},
+	"python.autoComplete.extraPaths": [
+		"${env:SPARK_HOME}/python",
+		"${env:SPARK_HOME}/python/pyspark"
+	],
+	"cSpell.userWords": [
+		"CTOML",
+		"Denite",
+		"Nerdfont",
+		"SYMDEF",
+		"Semshi",
+		"Tcolorscheme",
+		"Unstage",
+		"Valloric",
+		"Yggdroot",
+		"ccls",
+		"clangd",
+		"cohama",
+		"cquery",
+		"datetime",
+		"elzr",
+		"expl",
+		"funcobj",
+		"jackguo",
+		"kkvh",
+		"kristijanhusak",
+		"lexima",
+		"liuchengxu",
+		"lldb",
+		"mapkey",
+		"mygroup",
+		"mypy",
+		"neoclide",
+		"nofile",
+		"nord",
+		"numirias",
+		"objc",
+		"objcpp",
+		"pgsql",
+		"pylint",
+		"pyspark",
+		"require'nvim",
+		"sourcekit",
+		"startify",
+		"struct",
+		"subseparator",
+		"tabe",
+		"tomasiser",
+		"tpope",
+		"ujihisa",
+		"vsplit",
+		"wfxr"
+	]
 }

@@ -170,4 +170,4 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /Users/lebje/homebrew/bin/bit bit
 eval "$(starship init zsh)"
 
-eval $(qpdf --completion-zsh)
+alias bat="bat --pager=\"less -FRS\""
