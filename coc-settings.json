@@ -3,8 +3,7 @@
 		"sourcekit-lsp": {
 			"command": "sourcekit-lsp",
 			"args": [],
-			//"filetypes": ["c", "cpp", "swift", "objc", "objcpp"],
-			"filetypes": [],
+			"filetypes": ["c", "cpp", "swift", "objc", "objcpp"],
 			"trace.server": "verbose",
 			"initializationOptions": {},
 			"settings": {}

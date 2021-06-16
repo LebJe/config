@@ -14,6 +14,8 @@ call plug#begin()
 "Plug 'nvim-lua/plenary.nvim'
 "Plug 'nvim-telescope/telescope.nvim'
 
+Plug 'lukas-reineke/indent-blankline.nvim'
+
 " 📡 Blazing fast minimap for vim, powered by code-minimap written in Rust.
 Plug 'wfxr/minimap.vim'
 
@@ -39,7 +41,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline-themes'
 
 " Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode.
-Plug 'neoclide/coc.nvim', {'branch': 'feat/lsp-316', 'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
 " Auto close parentheses and repeat by dot dot dot...
 Plug 'cohama/lexima.vim'
@@ -126,7 +128,7 @@ nnoremap spr :!swift package resolve<enter>
 
 set list
 
-set list lcs=tab:\¦\ 
+set list lcs=tab:\|\ 
 
 fun! OpenTerminal()
 	:tabe
