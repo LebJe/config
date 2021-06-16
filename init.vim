@@ -1,5 +1,5 @@
 " Vim-Plug plugins.
-set nocompatible 
+set nocompatible
 
 " Install Vim-Plug
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -10,11 +10,12 @@ endif
 
 " Install Plugins.
 call plug#begin()
-"Plug 'nvim-lua/popup.nvim'
-"Plug 'nvim-lua/plenary.nvim'
-"Plug 'nvim-telescope/telescope.nvim'
+" plenary: full; complete; entire; absolute; unqualified. All the lua
+" functions I don't want to write twice.
+Plug 'nvim-lua/plenary.nvim'
 
-Plug 'lukas-reineke/indent-blankline.nvim'
+" Git signs written in pure lua
+Plug 'lewis6991/gitsigns.nvim'
 
 " 📡 Blazing fast minimap for vim, powered by code-minimap written in Rust.
 Plug 'wfxr/minimap.vim'
@@ -28,15 +29,6 @@ Plug 'vim-airline/vim-airline'
 " 🌵 Viewer & Finder for LSP symbols and tag
 Plug 'liuchengxu/vista.vim'
 
-" Simple UI for https://github.com/tpope/vim-dadbod
-"Plug 'kristijanhusak/vim-dadbod-ui'
-
-" 🌈 Semantic Highlighting for Python in Neovim.
-"Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-
-" A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
-Plug 'airblade/vim-gitgutter'
-
 " A collection of themes for vim-airline.
 Plug 'vim-airline/vim-airline-themes'
 
@@ -45,15 +37,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lock
 
 " Auto close parentheses and repeat by dot dot dot...
 Plug 'cohama/lexima.vim'
-
-" A vim plugin to display the indention levels with thin vertical lines.
-Plug 'Yggdroot/indentLine'
-
-" The best PostgreSQL plugin for Vim!
-"Plug 'lifepillar/pgsql.vim'
-
-" dadbod.vim: Modern database interface for Vim.
-"Plug 'tpope/vim-dadbod'
 
 " A Filetype plugin for csv files.
 Plug 'chrisbra/csv.vim'
@@ -83,20 +66,18 @@ Plug 'elzr/vim-json'
 Plug 'keith/swift.vim'
 
 " vimspector - A multi-language debugging system for Vim.
-Plug 'puremourning/vimspector' 
-
-" Vim plugin for C/C++/ObjC semantic highlighting using cquery, ccls, or clangd
-Plug 'jackguo380/vim-lsp-cxx-highlight'
-
-" Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more.
-" This should always be last.
-Plug 'ryanoasis/vim-devicons'
+Plug 'puremourning/vimspector'
 
 " Vim colorscheme on each tabs
 Plug 'ujihisa/tabpagecolorscheme'
 
 " Dark color scheme for Vim and vim-airline, inspired by Dark+ in Visual Studio Code
 Plug 'tomasiser/vim-code-dark'
+
+" Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more.
+" This should always be last.
+Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
 
 " Personal config
@@ -113,6 +94,7 @@ set background=dark
 
 colorscheme codedark
 
+" Mappings
 tnoremap <Esc> <C-\><C-n>
 " Run current Python file in terminal.
 nnoremap rpy :CocCommand python.execInTerminal<enter>
@@ -126,9 +108,15 @@ nnoremap bsw :!swift build<enter>
 " Resolve all packages for the current Swift project.
 nnoremap spr :!swift package resolve<enter>
 
-set list
+:map <c-t> :call OpenTerminal()<enter>
+:map <leader>v :call OpenVista()<enter>
+:map <leader>vw :Vista!!<enter>
 
-set list lcs=tab:\|\ 
+" Settings
+set encoding=utf-8
+set termguicolors
+
+set list lcs=tab:\▏\ 
 
 fun! OpenTerminal()
 	:tabe
@@ -136,14 +124,36 @@ fun! OpenTerminal()
 	:terminal
 endfun
 
-:map <c-t> :call OpenTerminal()<enter>
-
-set encoding=utf-8
+" gitsigns Config
+hi GitSignsAdd guifg=#009900 ctermfg=2
+hi GitSignsChange guifg=#bbbb00 ctermfg=3
+hi GitSignsDelete guifg=#ff2222 ctermfg=1
 
 " Vista.vim config
 
 let g:vista#renderer#enable_icon = 1
+let g:vista_default_executive = 'coc'
+let g:vista_sidebar_width = 50
+"let g:vista_update_on_text_changed = 1
+let g:vista_update_on_text_changed_delay = 100
 
+let g:vista_executive_for = {
+  \ 'vimwiki': 'markdown',
+  \ 'markdown': 'toc',
+\ }
+
+fun! OpenVista()
+    if &ft =~ 'markdown\|markdown'
+    	:Vista toc
+		return
+    endif
+
+	:Vista coc
+endfun
+
+"autocmd VimEnter * call OpenVista()
+
+autocmd BufWinLeave * :Vista!
 
 " Vimspector config
 let g:vimspector_enable_mappings = 'HUMAN'
@@ -154,14 +164,6 @@ let g:vimspector_install_gadgets = ["vscode-python", "vscode-cpptools", "CodeLLD
 nmap <Leader>di <Plug>VimspectorBalloonEval
 " for visual mode, the visually selected text
 xmap <Leader>di <Plug>VimspectorBalloonEval
-
-" Gitgutter config
-"hi Visual ctermfg=grey ctermbg=black
-hi GitGutterAdd guifg=#009900 ctermfg=2
-hi GitGutterChange guifg=#bbbb00 ctermfg=3
-hi GitGutterDelete guifg=#ff2222 ctermfg=1
-
-"hi SignColumn ctermbg=0
 
 " vim-airline config
 let g:airline_powerline_fonts = 1
@@ -179,14 +181,11 @@ let g:airline_exclude_buftypes = ['minimap', 'coc-explorer']
 " Open quick fix window.
 let g:asyncrun_open = 6
 
-
-" pgsql config
-let g:sql_type_default = 'pgsql'
-
 " csv.vim config
 let b:csv_arrange_align = 'l*'
 
 " Coc.nvim config
+
 " Give more space for displaying messages.
 set cmdheight=2
 
@@ -233,11 +232,11 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
@@ -318,26 +317,23 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>)
 
 
 let g:coc_global_extensions = [
-\	"coc-json", 
+\	"coc-json",
 \	"coc-sql",
 \	"coc-yaml",
-\	"coc-vimlsp", 
-\	"coc-tsserver", 
+\	"coc-vimlsp",
+\	"coc-tsserver",
 \	"coc-html",
 \	"coc-css",
-\	"coc-python", 
+\	"coc-python",
 \	"coc-go",
-\	"coc-snippets", 
+\	"coc-snippets",
 \	"coc-prettier",
-\	"coc-marketplace", 
+\	"coc-marketplace",
 \	"coc-sh",
-\	"coc-explorer", 
-\	"coc-docker", 
-\	"coc-db",
-\	"coc-spell-checker", 
-\	"coc-clangd", 
-\	"coc-rls",
-\	"coc-git"
+\	"coc-explorer",
+\	"coc-spell-checker",
+\	"coc-clangd",
+\	"coc-rls"
 \]
 
 " Use <Tab> and <S-Tab> to navigate the completion list:
@@ -394,14 +390,6 @@ nmap <space>ef :CocCommand explorer --preset floating<CR>
 
 " List all presets
 nmap <space>el :CocList explPresets
-" coc-explorer config
-let g:indent_guides_exclude_filetypes = ['coc-explorer']
-
-set termguicolors
-
-" Semshi config
-let g:semshi#error_sign=v:false
-let g:semshi#mark_selected_nodes=0
 
 " minimap.vim config
 let g:minimap_width = 20
@@ -412,7 +400,7 @@ let g:minimap_block_filetypes = ['coc-explorer']
 let g:minimap_block_buftypes = ['nofile', 'nowrite', 'quickfix', 'terminal', 'prompt', 'coc-explorer']
 let g:minimap_close_filetypes = ['startify', 'netrw', 'vim-plug', 'coc-explorer']
 
-let g:minimap_auto_start = 1
+let g:minimap_auto_start = 0
 
 " TreeSitter Config
 lua <<EOF
@@ -421,6 +409,23 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
   },
+}
+EOF
+
+" gitsigns Config
+
+lua <<EOF
+require('gitsigns').setup {
+	current_line_blame_delay = 100,
+	current_line_blame = true,
+	sign_priority = 6,
+	signs = {
+    	add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+    	change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    	delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    	topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    	changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+  }
 }
 EOF
 

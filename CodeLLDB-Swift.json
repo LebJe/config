@@ -1,25 +1,26 @@
 {
-  "$schema": "https://puremourning.github.io/vimspector/schema/gadgets.schema.json#",
-  "adapters": {
-    "CodeLLDB-Swift": {
-      "command": [
-        "${gadgetDir}/CodeLLDB/adapter/codelldb",
-        "--port",
-        "${unusedLocalPort}",
-        "--liblldb ${LibLLDB}"
-      ],
-      "configuration": {
-        "args": [],
-        "cargo": {},
-        "cwd": "${workspaceRoot}",
-        "env": {},
-        "name": "lldb",
-        "terminal": "integrated",
-        "type": "lldb"
-      },
-      "name": "CodeLLDB",
-      "port": "${unusedLocalPort}",
-      "type": "CodeLLDB"
-    }
-  }
+	"$schema": "https://puremourning.github.io/vimspector/schema/gadgets.schema.json#",
+	"adapters": {
+		"CodeLLDB-Swift": {
+			"command": [
+				"${gadgetDir}/CodeLLDB/adapter/codelldb",
+				"--port",
+				"${unusedLocalPort}",
+				"--liblldb ${LibLLDB}"
+			],
+			"configuration": {
+				"args": [],
+				"cargo": {},
+				"cwd": "${workspaceRoot}",
+				"env": {},
+				"name": "lldb",
+				"terminal": "integrated",
+				"type": "lldb"
+			},
+			"name": "CodeLLDB",
+			"port": "${unusedLocalPort}",
+			"type": "CodeLLDB"
+		}
+	}
 }
+
