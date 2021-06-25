@@ -170,4 +170,4 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /Users/lebje/homebrew/bin/bit bit
 eval "$(starship init zsh)"
 
-alias bat="bat --pager=\"less -FRS\""
+alias bat="bat --pager=\"less -FRS\" --theme \"Visual Studio Dark+\""

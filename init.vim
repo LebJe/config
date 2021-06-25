@@ -15,7 +15,7 @@ call plug#begin()
 Plug 'nvim-lua/plenary.nvim'
 
 " Git signs written in pure lua
-Plug 'lewis6991/gitsigns.nvim'
+Plug 'lewis6991/gitsigns.nvim', { 'tag': '*' }
 
 " 📡 Blazing fast minimap for vim, powered by code-minimap written in Rust.
 Plug 'wfxr/minimap.vim'
@@ -169,9 +169,9 @@ xmap <Leader>di <Plug>VimspectorBalloonEval
 let g:airline_powerline_fonts = 1
 let g:airline_theme='codedark'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#whitespace#enabled = 0
 
 let g:airline_left_sep=''
-
 let g:airline_right_sep=''
 
 let g:airline_exclude_filetypes = ['minimap', 'coc-explorer']
@@ -295,7 +295,8 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+let g:airline#extensions#coc#enabled = 1
 
 " Mappings for CoCList
 " Show all diagnostics.
@@ -444,4 +445,3 @@ hi! link CocSem_class Type
 hi! link CocSem_method Function
 hi! link CocSem_comment Comment
 hi! link CocSem_enumMember Constant
-
