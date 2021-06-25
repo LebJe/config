@@ -10,7 +10,7 @@
     ~/cronFiles:
     ~/.config/nvim/init.vim:
     ~/.config/nvim/coc-settings.json:
-    ~/.prettierrc.json:
+    ~/.prettierrc.toml:
     ~/.wgetrc:
     ~/.tmux.conf:
     ~/.config/starship.toml:
