@@ -55,19 +55,23 @@ require('nvim-web-devicons').setup {
 
 require('bufferline').setup {
     options = {
-    numbers = "ordinal",
-	number_style = "none",
-	show_tab_indicators = true,
-	offsets = {{ filetype = "coc-explorer", text = "CoC File Explorer", text_align = "center" }}
+		buffer_close_icon = "",
+		modified_icon = "",
+    	close_icon = "",
+    	numbers = "ordinal",
+		number_style = "none",
+		show_tab_indicators = true,
+		enforce_regular_tabs = false,
+		offsets = {{ filetype = "coc-explorer", text = "CoC File Explorer", text_align = "center" }}
     }
 }
 
 -- diffview.nvim
 require('diffview').setup {
-	diff_binaries = false, -- Show diffs for binaries
+	diff_binaries = false,
 	file_panel = {
 		width = 35,
-    	use_icons = true -- Requires nvim-web-devicons
+    	use_icons = true
 	},
 }
 
@@ -75,9 +79,56 @@ require('diffview').setup {
 require("neogit").setup {
 	integrations = {
     diffview = true
-}
+	}
 }
 
+require('lualine').setup {
+	options = {
+    	icons_enabled = true,
+    	theme = 'codedark',
+		section_separators = {'', ''},
+		component_separators = {'', ''},
+		
+	},
+	sections = {
+		lualine_a = {
+			{
+				'mode',
+				icon = nil,
+			}
+		},
+		lualine_b = {
+			'branch',
+			{
+				'diff',
+				symbols = { added = ' ', modified = '柳', removed = ' ' },
+				color_added = '#98be65',
+				color_modified = '#FF8800',
+				color_removed = '#ec5f67',
+			}
+		},
+		lualine_c = {
+			{
+				'diagnostics',
+				sources = { 'coc' },
+				sections = { 'error', 'warn', 'info', 'hint' },
+				color_error = '#ec5f67',
+				symbols = {error = ' ', warn = ' ', info = ' '},
+			},
+			'filename',
+			'g:coc_status'
+		},
+		lualine_y = {
+			'hostname',
+			'progress'
+		},
+		lualine_x = {
+			'filetype',
+			'encoding',
+			'fileformat',
+		}
+	}
+}
 
 -- Vista
 g['vista#renderer#enable_icon'] = true

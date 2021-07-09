@@ -4,7 +4,7 @@ local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-	fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+	fn.system({ 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path })
 	execute 'packadd packer.nvim'
 end
 
@@ -15,10 +15,16 @@ return require('packer').startup(function(use)
 	-- magit for neovim
 	use {
 		'TimUntersberger/neogit',
-		requires = { 
+		requires = {
 			'nvim-lua/plenary.nvim',
 			'sindrets/diffview.nvim'
 		}
+	}
+
+	-- A blazing fast and easy to configure neovim statusline plugin written in pure lua.
+	use {
+		'hoob3rt/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
 	}
 
 	-- Git signs written in pure lua
@@ -31,19 +37,13 @@ return require('packer').startup(function(use)
 	use { 'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons' }
 
 	-- " 📡 Blazing fast minimap for vim, powered by code-minimap written in Rust.
-	use 'wfxr/minimap.vim'
+	--use 'wfxr/minimap.vim'
 
 	-- Nvim Treesitter configurations and abstraction layer
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
-	-- lean & mean status/tabline for vim that's light as air.
-	use 'vim-airline/vim-airline'
-
 	-- 🌵 Viewer & Finder for LSP symbols and tag
 	use 'liuchengxu/vista.vim'
-
-	-- A collection of themes for vim-airline.
-	use 'vim-airline/vim-airline-themes'
 
 	-- Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode.
 	use { 'neoclide/coc.nvim', branch = 'master', run = 'yarn install --frozen-lockfile' }
@@ -53,9 +53,6 @@ return require('packer').startup(function(use)
 
 	-- A Filetype plugin for csv files.
 	use 'chrisbra/csv.vim'
-
-	-- fugitive.vim: A Git wrapper so awesome, it should be illegal.
-	use 'tpope/vim-fugitive'
 
 	-- An arctic, north-bluish clean and elegant Vim theme.
 	use 'arcticicestudio/nord-vim'
@@ -80,5 +77,5 @@ return require('packer').startup(function(use)
 
 	-- Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more.
 	-- This should always be last.
-	use 'ryanoasis/vim-devicons'
+	--use 'ryanoasis/vim-devicons'
 end)
