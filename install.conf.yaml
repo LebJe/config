@@ -9,6 +9,7 @@
     ~/.zshrc:
     ~/cronFiles:
     ~/.config/nvim/init.vim:
+    ~/.config/nvim/lua: lua
     ~/.config/nvim/coc-settings.json:
     ~/.prettierrc.toml:
     ~/.wgetrc:

@@ -1,7 +1,7 @@
 {
 	"languageserver": {
 		"sourcekit-lsp": {
-			"command": "sourcekit-lsp",
+			"command": "/Users/lebje/Programs/sourcekit-lsp/.build/release/sourcekit-lsp",
 			"args": [],
 			"filetypes": ["c", "cpp", "swift", "objc", "objcpp"],
 			"trace.server": "verbose",
@@ -154,6 +154,7 @@
     "cohama",
     "cquery",
     "datetime",
+    "eigen",
     "elzr",
     "expl",
     "funcobj",
@@ -175,6 +176,7 @@
     "numirias",
     "objc",
     "objcpp",
+    "osnum",
     "pgsql",
     "pylint",
     "pyspark",

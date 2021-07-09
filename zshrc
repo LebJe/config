@@ -54,32 +54,14 @@ export LANG=en_US.UTF-8
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-#export POWERLEVEL9K_DISABLE_RPROMPT=false
-
-#export POWERLEVEL9K_TIME_FORMAT="%D{%r, %a %b %d, %Y}"
-
-#export POWERLEVEL9K_MODE='awesome-fontconfig'
-
-#export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context os_icon dir dir_writable newline load my_cpu_temp ram vcs)
-
-#export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(battery disk_usage newline time)
-
-#export POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\UE0B4'
-
-#export POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\UE0B6'
-
-function prompt_my_cpu_temp() {
-	p10k segment -t " $(temp)"
-}
-
 export PATH="$HOME/config/:$PATH"
-
-#export POWERLEVEL9K_MY_CPU_TEMP_FOREGROUND=208
 
 eval "$(rbenv init -)"
 
-alias list="exa -lah --git --icons"
+alias list="exa -mUlah --git --icons"
 alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
+alias nvim-config="nvim ~/.config/nvim/init.vim"
+alias nvim-plugins="nvim ~/.config/nvim/lua/plugins.lua"
 
 function dockerDeleteAll() {
 	docker rm "$(docker ps --filter=status=exited --filter=status=created -q)"
@@ -102,7 +84,6 @@ fpath=($HOME/.zsh/completion $fpath)
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 #export LDFLAGS="-L/usr/local/opt/llvm/lib"
 #export CPPFLAGS="-I/usr/local/opt/llvm/include"
-alias nvim-config="nvim ~/.config/nvim/init.vim"
 
 export EDITOR="nvim"
 
