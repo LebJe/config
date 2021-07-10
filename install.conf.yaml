@@ -8,9 +8,7 @@
     ~/config: ''
     ~/.zshrc:
     ~/cronFiles:
-    ~/.config/nvim/init.lua:
-    ~/.config/nvim/lua: lua
-    ~/.config/nvim/coc-settings.json:
+    ~/.config/nvim: nvim
     ~/.prettierrc.toml:
     ~/.wgetrc:
     ~/.tmux.conf:

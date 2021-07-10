@@ -22,8 +22,8 @@ U.map('n', '[g', '<Plug>(coc-diagnostic-prev)', { silent = true })
 U.map('n', ']g', '<Plug>(coc-diagnostic-next)', { silent = true })
 
 -- GoTo code navigation.
-U.map('n', 'gd', '<Plug>(coc-type-definition)', { silent = true })
-U.map('n', 'gy', '<Plug>(coc-definition)', { silent = true })
+U.map('n', 'gy', '<Plug>(coc-type-definition)', { silent = true })
+U.map('n', 'gd', '<Plug>(coc-definition)', { silent = true })
 U.map('n', 'gi', '<Plug>(coc-implementation)', { silent = true })
 U.map('n', 'gr', '<Plug>(coc-references)', { silent = true })
 
@@ -144,7 +144,7 @@ g.coc_global_extensions = {
 	"coc-prettier",
 	"coc-marketplace",
 	"coc-sh",
-	"coc-explorer",
+--	"coc-explorer",
 	"coc-spell-checker",
 	"coc-rls",
 	"coc-lua"
@@ -176,7 +176,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 ]]
 
 -- Mapping to open Coc Explorer
-U.map('n', '<C-n>', ':CocCommand explorer<CR>', { noremap = true })
+--U.map('n', '<C-n>', ':CocCommand explorer<CR>', { noremap = true })
 
 -- Use <Tab> for jump to next placeholder, it's default of coc.nvim
 g.coc_snippet_next = '<Tab>'

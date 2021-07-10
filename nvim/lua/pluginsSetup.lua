@@ -130,6 +130,34 @@ require('lualine').setup {
 	}
 }
 
+-- nvim-tree.lua
+g.nvim_tree_ignore = { '.git', 'node_modules', '.cache'  }
+g.nvim_tree_gitignore = 1
+g.nvim_tree_auto_open = 1
+g.nvim_tree_auto_close = 1
+g.nvim_tree_indent_markers = 1
+g.nvim_tree_git_hl = 1
+g.nvim_tree_highlight_opened_files = 1
+g.nvim_tree_lsp_diagnostics = 1
+
+g.nvim_tree_special_files = {
+	['README.md'] = 1,
+	['Package.swift'] = 1,
+	['Cargo.toml'] = 1,
+	['Makefile'] = 1,
+	['MAKEFILE'] = 1
+}
+
+g.nvim_tree_show_icons = {
+	['git'] = 1,
+	['folders'] = 1,
+	['files'] = 1,
+	['folder_arrows'] = 1
+}
+
+-- Open file tree with <C-n>.
+U.map('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true })
+
 -- Vista
 g['vista#renderer#enable_icon'] = true
 g.vista_default_executive = 'coc'

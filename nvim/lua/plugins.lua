@@ -33,6 +33,9 @@ return require('packer').startup(function(use)
 	-- No description
 	use { 'norcalli/nvim_utils' }
 
+	-- A file explorer tree for neovim written in lua
+	use 'kyazdani42/nvim-tree.lua'
+
 	-- A snazzy bufferline for Neovim
 	use { 'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons' }
 

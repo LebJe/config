@@ -59,9 +59,11 @@ export PATH="$HOME/config/:$PATH"
 eval "$(rbenv init -)"
 
 alias list="exa -mUlah --git --icons"
+alias weather="curl wttr.in"
 alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
-alias nvim-config="nvim ~/.config/nvim/init.vim"
+alias nvim-config="nvim ~/.config/nvim/lua/settings.lua"
 alias nvim-plugins="nvim ~/.config/nvim/lua/plugins.lua"
+alias nvim-pluginsS="nvim ~/.config/nvim/lua/pluginsSetup.lua"
 
 function dockerDeleteAll() {
 	docker rm "$(docker ps --filter=status=exited --filter=status=created -q)"
@@ -109,7 +111,6 @@ compinit
 /usr/local/etc/profile.d/z.sh
 export PATH="/usr/local/sbin:$PATH"
 
-alias weather="curl wttr.in"
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
 HISTFILE="$HOME/.zsh_history"

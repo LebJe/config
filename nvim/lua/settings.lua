@@ -6,9 +6,11 @@ local cmd = vim.cmd
 
 function Settings.setOptions()
 	local o = vim.o
-	
 
 	o.termguicolors = true
+	o.splitbelow = true
+	o.splitright = true
+	o.hidden = true
 	o.tabstop = 4
 	o.shiftwidth = 4
 	o.backspace = 'indent,eol,start'
@@ -34,16 +36,25 @@ end
 
 function Settings.setKeymaps()
 	cmd[[
-	fun! OpenTerminal()
-		:tabe
-		:Tcolorscheme nord
+	fun! SetupTerminal()
 		:terminal
 	endfun
 	]]
 
+	-- Choose a buffer using nvim-bufferline.nvim
 	U.map('n', 'gb', ':BufferLinePick<CR>', { noremap = true, silent = true })
-	U.map('', '<c-t>', ':call OpenTerminal()<enter>', {})
+	
+	-- Open a terminal in the current buffer.
+	U.map('', '<c-t>', ':terminal<enter>', {})
+
+	-- Close the current terminal with <Esc>.
 	U.map('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
+
+	-- Split navigation.
+	U.map('n', '<C-J>', '<C-W><C-J>', { noremap = true })
+	U.map('n', '<C-K>', '<C-W><C-K>', { noremap = true })
+	U.map('n', '<C-L>', '<C-W><C-L>', { noremap = true })
+	U.map('n', '<C-H>', '<C-W><C-H>', { noremap = true })
 end
 
 function Settings.setHighlights()
