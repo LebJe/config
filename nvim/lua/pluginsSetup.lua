@@ -144,6 +144,7 @@ g.nvim_tree_special_files = {
 	['README.md'] = 1,
 	['Package.swift'] = 1,
 	['Cargo.toml'] = 1,
+	['package.json'] = 1,
 	['Makefile'] = 1,
 	['MAKEFILE'] = 1
 }

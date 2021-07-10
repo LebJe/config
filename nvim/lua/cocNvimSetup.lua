@@ -50,7 +50,7 @@ U.map('x', '<leader>f', '<Plug>(coc-format-selected)', {})
 U.map('n', '<leader>f', '<Plug>(coc-format-selected)', {})
 
 local cocNvimGroup = {
-	todo = {
+	cocNvimGroup = {
 		-- Setup formatexpr specified filetype(s).
 		{"FileType", "typescript,json", "setl formatexpr=CocAction('formatSelected')"};
 

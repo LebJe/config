@@ -1,4 +1,5 @@
 local U = require('utilities')
+require('nvim_utils')
 
 local Settings = {}
 
@@ -20,7 +21,7 @@ function Settings.setOptions()
 	o.background = 'dark'
 	o.encoding = 'utf8'
 	o.cmdheight = 2
-	
+
 	cmd[[colorscheme codedark]]
 	cmd[[set list lcs=tab:\▏\ ]]
 	cmd[[
@@ -35,18 +36,15 @@ function Settings.setOptions()
 end
 
 function Settings.setKeymaps()
-	cmd[[
-	fun! SetupTerminal()
-		:terminal
-	endfun
-	]]
+	-- Open a terminal in the current buffer.
+	vim.cmd[[cabbrev t terminal]]
+	
+	-- Shortcut for opening new tab.
+	vim.cmd[[cabbrev tt tabe]]
 
 	-- Choose a buffer using nvim-bufferline.nvim
 	U.map('n', 'gb', ':BufferLinePick<CR>', { noremap = true, silent = true })
 	
-	-- Open a terminal in the current buffer.
-	U.map('', '<c-t>', ':terminal<enter>', {})
-
 	-- Close the current terminal with <Esc>.
 	U.map('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
 
@@ -58,9 +56,16 @@ function Settings.setKeymaps()
 end
 
 function Settings.setHighlights()
-	cmd[[au VimEnter * hi GitSignsAdd guifg=#009900 ctermfg=2]]
-	cmd[[au VimEnter * hi GitSignsChange guifg=#bbbb00 ctermfg=3]]
-	cmd[[au VimEnter * hi GitSignsDelete guifg=#ff2222 ctermfg=1]]
+	-- Add highlights for gitsigns.nvim.
+	local gitHighlightAutoCommands = {
+		gitHighlightAutoCommands = {
+			{"VimEnter", "*", "hi GitSignsAdd guifg=#009900 ctermfg=2"};
+			{"VimEnter", "*", "hi GitSignsChange guifg=#bbbb00 ctermfg=3"};
+			{"VimEnter", "*", "hi GitSignsDelete guifg=#ff2222 ctermfg=1"};
+		};
+	}
+
+	nvim_create_augroups(gitHighlightAutoCommands)
 end
 
 Settings.setOptions()
