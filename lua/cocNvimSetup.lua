@@ -146,7 +146,8 @@ g.coc_global_extensions = {
 	"coc-sh",
 	"coc-explorer",
 	"coc-spell-checker",
-	"coc-rls"
+	"coc-rls",
+	"coc-lua"
 }
 
 function MakeSymbol(isNext)
@@ -165,10 +166,10 @@ function MakeSymbol(isNext)
 	end
 end
 
--- Use <Tab> and <S-Tab> to navigate the completion list:
 --U.map('i', '<Tab>', MakeSymbol(true), { noremap = true, expr = true })
 --U.map('i', '<S-Tab>', MakeSymbol(false), { noremap = true, expr = true })
 
+-- Use <Tab> and <S-Tab> to navigate the completion list:
 vim.cmd[[
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -186,35 +187,4 @@ g.coc_snippet_prev = '<S-Tab>'
 -- Format current buffer using :Prettier.
 vim.cmd[[command! -nargs=0 Prettier :CocCommand prettier.formatFile]]
 
-g.coc_explorer_global_presets = {
-	['.vim'] = { ['root-uri'] = '~/.vim' },
-	floating = {
-		position = 'floating',
-		['open-action-strategy'] = 'sourceWindow'
-	},
-	floatingTop = {
-		position = 'floating',
-		['floatingPosition'] = 'center-top',
-		['open-action-strategy'] = 'sourceWindow'
-	},
-	floatingLeftside = {
-		position = 'floating',
-		['floatingPosition'] = 'left-center',
-		['floating-width'] = 50,
-		['open-action-strategy'] = 'sourceWindow'
-	},
-	floatingRightside = {
-		position = 'floating',
-		['floatingPosition'] = 'left-center',
-		['floating-width'] = 50,
-		['open-action-strategy'] = 'sourceWindow'
-	},
-	simplify = {
-		['file-child-template'] = '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
-	}
-}
-
 g.vim_json_syntax_conceal = 0
-
--- List all presets
-U.map('n', '<space>el', ':CocList explPresets', {})
