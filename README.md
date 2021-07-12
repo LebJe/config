@@ -1,6 +1,11 @@
 # Config
 
-My personal configuration (zshrc, vimrc, etc)
+My configuration for:
+
+-   [iTerm](https://iterm2.com)
+-   [NeoVim](https://neovim.io)
+-   [ZSH](https://github.com/zsh-users/zsh)
+-   [Starship](https://starship.rs)
 
 ## Table Of Contents
 
@@ -210,3 +215,16 @@ Sets up [Oh My ZSH](https://ohmyz.sh) and [zsh-syntax-highlighting](https://gith
 -   Linux
 
 Compiles the temp executable and moves it to `~/config`.
+
+## Contributing
+
+Before committing, please install [pre-commit](https://pre-commit.com), [swift-format](https://github.com/nicklockwood/SwiftFormat), and [Prettier](https://prettier.io) then install the pre-commit hook:
+
+```bash
+$ brew bundle # install the packages specified in Brewfile
+$ pre-commit install
+
+# Commit your changes.
+```
+
+To install pre-commit on other platforms, refer to the [documentation](https://pre-commit.com/#install).
