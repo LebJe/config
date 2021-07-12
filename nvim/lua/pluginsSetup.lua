@@ -5,6 +5,9 @@ local g = vim.g
 -- CoC.nvim
 require('cocNvimSetup')
 
+-- 
+require('galaxySetup')
+
 -- GitSigns
 require('gitsigns').setup {
 	current_line_blame_delay = 100,
@@ -82,53 +85,57 @@ require("neogit").setup {
 	}
 }
 
-require('lualine').setup {
-	options = {
-    	icons_enabled = true,
-    	theme = 'codedark',
-		section_separators = {'', ''},
-		component_separators = {'', ''},
-		
-	},
-	sections = {
-		lualine_a = {
-			{
-				'mode',
-				icon = nil,
-			}
-		},
-		lualine_b = {
-			'branch',
-			{
-				'diff',
-				symbols = { added = ' ', modified = '柳', removed = ' ' },
-				color_added = '#98be65',
-				color_modified = '#FF8800',
-				color_removed = '#ec5f67',
-			}
-		},
-		lualine_c = {
-			{
-				'diagnostics',
-				sources = { 'coc' },
-				sections = { 'error', 'warn', 'info', 'hint' },
-				color_error = '#ec5f67',
-				symbols = {error = ' ', warn = ' ', info = ' '},
-			},
-			'filename',
-			'g:coc_status'
-		},
-		lualine_y = {
-			'hostname',
-			'progress'
-		},
-		lualine_x = {
-			'filetype',
-			'encoding',
-			'fileformat',
-		}
-	}
-}
+--require('lualine').setup {
+--	options = {
+--    	icons_enabled = true,
+--    	theme = 'codedark',
+--		section_separators = {'', ''},
+--		component_separators = {'', ''},
+--		
+--	},
+--	sections = {
+--		lualine_a = {
+--			{
+--				'mode',
+--				icon = nil,
+--			}
+--		},
+--		lualine_b = {
+--			'branch',
+--			{
+--				'diff',
+--				symbols = { added = ' ', modified = '柳', removed = ' ' },
+--				color_added = '#98be65',
+--				color_modified = '#FF8800',
+--				color_removed = '#ec5f67',
+--			}
+--		},
+--		lualine_c = {
+--			{
+--				'diagnostics',
+--				sources = { 'coc' },
+--				sections = { 'error', 'warn', 'info', 'hint' },
+--				color_error = '#ec5f67',
+--				symbols = {error = ' ', warn = ' ', info = ' '},
+--			},
+--			'filename',
+--			'g:coc_status'
+--		},
+--		lualine_y = {
+--			'hostname',
+--			'progress'
+--		},
+--		lualine_x = {
+--			'filetype',
+--			'encoding',
+--			'fileformat',
+--		}
+--	}
+--}
+
+-- indent_blankline.nvim
+g.indentLine_char = '▏'
+g.indent_blankline_buftype_exclude = {"terminal"}
 
 -- nvim-tree.lua
 g.nvim_tree_ignore = { '.git', 'node_modules', '.cache'  }

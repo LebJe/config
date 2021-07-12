@@ -23,7 +23,7 @@ function Settings.setOptions()
 	o.cmdheight = 2
 
 	cmd[[colorscheme codedark]]
-	cmd[[set list lcs=tab:\▏\ ]]
+	--cmd[[set list lcs=tab:\▏\ ]]
 	cmd[[
 	set shortmess+=nc
 

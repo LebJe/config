@@ -21,17 +21,17 @@ return require('packer').startup(function(use)
 		}
 	}
 
-	-- A blazing fast and easy to configure neovim statusline plugin written in pure lua.
-	use {
-		'hoob3rt/lualine.nvim',
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-	}
-
 	-- Git signs written in pure lua
 	use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
 
 	-- No description
 	use { 'norcalli/nvim_utils' }
+
+	-- neovim statusline plugin written in lua
+	use { 'glepnir/galaxyline.nvim', branch = 'main' }
+
+	-- Indent guides for Neovim
+	use { 'lukas-reineke/indent-blankline.nvim' }
 
 	-- A file explorer tree for neovim written in lua
 	use 'kyazdani42/nvim-tree.lua'
