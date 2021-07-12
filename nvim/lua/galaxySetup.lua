@@ -73,16 +73,16 @@ gls.left[1] = {
  				['no']   = 'O-PENDING',
  				['nov']  = 'O-PENDING',
  				['noV']  = 'O-PENDING',
- 				['no'] = 'O-PENDING',
+ 				['no']   = 'O-PENDING',
  				['niI']  = 'NORMAL',
  				['niR']  = 'NORMAL',
  				['niV']  = 'NORMAL',
  				['v']    = 'VISUAL',
  				['V']    = 'V-LINE',
- 				['']   = 'V-BLOCK',
+ 				['']     = 'V-BLOCK',
  				['s']    = 'SELECT',
  				['S']    = 'S-LINE',
- 				['']   = 'S-BLOCK',
+ 				['']     = 'S-BLOCK',
  				['i']    = 'INSERT',
  				['ic']   = 'INSERT',
  				['ix']   = 'INSERT',
@@ -98,42 +98,46 @@ gls.left[1] = {
  				['r?']   = 'CONFIRM',
  				['!']    = 'SHELL',
  				['t']    = 'TERMINAL',
-			} 
+			}
 
-			local mode_color = {
-				n = colors.green,
-				i = colors.blue,
-				v = colors.magenta,
-				[''] = colors.blue,
-				V = colors.blue,
-				c = colors.red,
-				no = colors.magenta,
-			  	s = colors.orange,
-				S = colors.orange,
-    	    	[''] = colors.orange,
-				ic = colors.yellow,
-				R = colors.purple,
-				Rv = colors.purple,
-    	      	cv = colors.red,
-				ce = colors.red, 
-				r = colors.cyan,
-				rm = colors.cyan, 
-				['r?'] = colors.cyan,
-    	      	['!']  = colors.green,
-				t = colors.green,
-    	    	c = colors.purple,
-    	      	['r?'] = colors.red,
-    	    	['r']  = colors.red,
-    	    	rm = colors.red,
-    	    	R = colors.yellow,
-    	    	Rv = colors.magenta,
-    	  }
+			local modeColor = {
+ 				['n']    = colors.green,
+ 				['no']   = colors.magenta,
+ 				['nov']  = colors.magenta,
+ 				['noV']  = colors.magenta,
+ 				['no']   = colors.magenta,
+ 				['niI']  = colors.green,
+ 				['niR']  = colors.green,
+ 				['niV']  = colors.green,
+ 				['v']    = colors.magenta,
+ 				['V']    = colors.blue,
+ 				['']   	 = colors.purple,
+ 				['s']    = colors.orange,
+ 				['S']    = colors.orange,
+ 				['']     = colors.orange,
+ 				['i']    = colors.blue,
+ 				['ic']   = colors.yellow,
+ 				['ix']   = colors.blue,
+ 				['R']    = colors.yellow,
+ 				['Rc']   = colors.cyan,
+ 				['Rv']   = colors.purple,
+ 				['Rx']   = colors.cyan,
+ 				['c']    = colors.red,
+ 				['cv']   = colors.red,
+ 				['ce']   = colors.red,
+ 				['r']    = colors.cyan,
+ 				['rm']   = colors.cyan,
+ 				['r?']   = colors.cyan,
+ 				['!']    = colors.green,
+ 				['t']    = colors.green,
+			}
+
 			local vim_mode = vim.fn.mode()
-			if (alias[vim_mode] == nil or mode_color[vim_mode] == nil) then
+			if (alias[vim_mode] == nil or modeColor[vim_mode] == nil) then
 				vim.api.nvim_command('hi GalaxyViMode guifg='..colors.red)
       			return '  UNKNOWN    '
 			else
-				vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color[vim_mode])
+				vim.api.nvim_command('hi GalaxyViMode guifg='..modeColor[vim_mode])
 				return '  ' .. alias[vim_mode] .. '    '
 			end
     	end,
