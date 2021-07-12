@@ -5,40 +5,41 @@ My personal configuration (zshrc, vimrc, etc)
 ## Table Of Contents
 
 <!--ts-->
-   * [Config](#config)
-      * [Table Of Contents](#table-of-contents)
-      * [Screenshots](#screenshots)
-         * [NeoVim](#neovim)
-         * [iTerm](#iterm)
-      * [Setup](#setup)
-         * [Install](#install)
-      * [Run](#run)
-         * [Basic Install](#basic-install)
-         * [Scripts](#scripts)
-            * [aptPackages.sh](#aptpackagessh)
-               * [Platforms](#platforms)
-            * [enableTouchID.zsh](#enabletouchidzsh)
-               * [Platforms](#platforms-1)
-            * [installFonts.zsh](#installfontszsh)
-               * [Platforms](#platforms-2)
-            * [installHomebrew.zsh](#installhomebrewzsh)
-               * [Platforms](#platforms-3)
-            * [installStarship.sh](#installstarshipsh)
-               * [Platforms](#platforms-4)
-            * [npmPackages.sh](#npmpackagessh)
-               * [Platforms](#platforms-5)
-            * [osx.sh](#osxsh)
-               * [Platforms](#platforms-6)
-            * [replaceIcons.zsh, replaceIcons.swift](#replaceiconszsh-replaceiconsswift)
-               * [Platforms](#platforms-7)
-            * [setup.sh](#setupsh)
-               * [Platforms](#platforms-8)
-            * [setupCodeLLDB-Swift.sh](#setupcodelldb-swiftsh)
-               * [Platforms](#platforms-9)
-            * [setupOMZ.sh](#setupomzsh)
-               * [Platforms](#platforms-10)
-            * [setupTemp.zsh](#setuptempzsh)
-               * [Platforms](#platforms-11)
+
+-   [Config](#config)
+    -   [Table Of Contents](#table-of-contents)
+    -   [Screenshots](#screenshots)
+        -   [NeoVim](#neovim)
+        -   [iTerm](#iterm)
+    -   [Setup](#setup)
+        -   [Install](#install)
+    -   [Run](#run)
+        -   [Basic Install](#basic-install)
+        -   [Scripts](#scripts)
+            -   [aptPackages.sh](#aptpackagessh)
+                -   [Platforms](#platforms)
+            -   [enableTouchID.zsh](#enabletouchidzsh)
+                -   [Platforms](#platforms-1)
+            -   [installFonts.zsh](#installfontszsh)
+                -   [Platforms](#platforms-2)
+            -   [installHomebrew.zsh](#installhomebrewzsh)
+                -   [Platforms](#platforms-3)
+            -   [installStarship.sh](#installstarshipsh)
+                -   [Platforms](#platforms-4)
+            -   [npmPackages.sh](#npmpackagessh)
+                -   [Platforms](#platforms-5)
+            -   [osx.sh](#osxsh)
+                -   [Platforms](#platforms-6)
+            -   [replaceIcons.zsh, replaceIcons.swift](#replaceiconszsh-replaceiconsswift)
+                -   [Platforms](#platforms-7)
+            -   [setup.sh](#setupsh)
+                -   [Platforms](#platforms-8)
+            -   [setupCodeLLDB-Swift.sh](#setupcodelldb-swiftsh)
+                -   [Platforms](#platforms-9)
+            -   [setupOMZ.sh](#setupomzsh)
+                -   [Platforms](#platforms-10)
+            -   [setupTemp.zsh](#setuptempzsh)
+                -   [Platforms](#platforms-11)
 
 <!-- Added by: lebje, at: Mon Jul 12 09:20:26 EDT 2021 -->
 
@@ -49,6 +50,7 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 ## Screenshots
 
 ### NeoVim
+
 ![NeoVim Screenshot](NeoVimScreenshot.png)
 
 ### iTerm
@@ -91,16 +93,16 @@ cd config && bash setup.sh && ./install
 
 Installs the folowing list of packages using `apt`:
 
-* zsh
-* [exa](https://the.exa.website)
-* [gh](https://cli.github.com)
-* [NeoVim](https://neovim.io)
-* Python 3
-* [Node JS](https://nodejs.org/en/)
-* [NPM](https://www.npmjs.com)
-* [bat](https://github.com/sharkdp/bat)
-* [ripgrep](https://github.com/BurntSushi/ripgrep)
-* [fd](https://github.com/sharkdp/fd)
+-   zsh
+-   [exa](https://the.exa.website)
+-   [gh](https://cli.github.com)
+-   [NeoVim](https://neovim.io)
+-   Python 3
+-   [Node JS](https://nodejs.org/en/)
+-   [NPM](https://www.npmjs.com)
+-   [bat](https://github.com/sharkdp/bat)
+-   [ripgrep](https://github.com/BurntSushi/ripgrep)
+-   [fd](https://github.com/sharkdp/fd)
 
 #### `enableTouchID.zsh`
 
