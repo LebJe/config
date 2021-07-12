@@ -1,18 +1,16 @@
 - defaults:
-    link:
-      relink: true
+      link:
+          relink: true
 
 - clean: ["~", "~/config/"]
 
 - link:
-    ~/config: ''
-    ~/.zshrc:
-    ~/cronFiles:
-    ~/.config/nvim: nvim
-    ~/.prettierrc.toml:
-    ~/.wgetrc:
-    ~/.tmux.conf:
-    ~/.config/starship.toml:
-    /usr/local/bin/moped:
-    ~/CodeLLDB-Swift.json:
-
+      ~/config: ""
+      ~/.zshrc:
+      ~/cronFiles:
+      ~/.config/nvim: nvim
+      ~/.prettierrc.toml:
+      ~/.wgetrc:
+      ~/.tmux.conf:
+      ~/.config/starship.toml:
+      /usr/local/bin/moped:

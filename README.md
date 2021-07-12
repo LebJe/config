@@ -30,18 +30,20 @@ My personal configuration (zshrc, vimrc, etc)
                 -   [Platforms](#platforms-5)
             -   [osx.sh](#osxsh)
                 -   [Platforms](#platforms-6)
-            -   [replaceIcons.zsh, replaceIcons.swift](#replaceiconszsh-replaceiconsswift)
+            -   [setupiTerm.sh](#setupitermsh)
                 -   [Platforms](#platforms-7)
-            -   [setup.sh](#setupsh)
+            -   [replaceIcons.zsh, replaceIcons.swift](#replaceiconszsh-replaceiconsswift)
                 -   [Platforms](#platforms-8)
-            -   [setupCodeLLDB-Swift.sh](#setupcodelldb-swiftsh)
+            -   [setup.sh](#setupsh)
                 -   [Platforms](#platforms-9)
-            -   [setupOMZ.sh](#setupomzsh)
+            -   [setupCodeLLDB-Swift.sh](#setupcodelldb-swiftsh)
                 -   [Platforms](#platforms-10)
-            -   [setupTemp.zsh](#setuptempzsh)
+            -   [setupOMZ.sh](#setupomzsh)
                 -   [Platforms](#platforms-11)
+            -   [setupTemp.zsh](#setuptempzsh)
+                -   [Platforms](#platforms-12)
 
-<!-- Added by: lebje, at: Mon Jul 12 09:20:26 EDT 2021 -->
+<!-- Added by: lebje, at: Mon Jul 12 12:18:59 EDT 2021 -->
 
 <!--te-->
 
@@ -80,8 +82,6 @@ Set your terminal emulator's font to the Nerd Font you installed; this will ensu
 $ git clone https://github.com/LebJe/config.git --recursive && \
 cd config && bash setup.sh && ./install
 ```
-
-**Make sure you run the scripts from the `scripts` directory!**
 
 ### Scripts
 
@@ -158,6 +158,14 @@ Customizes various parts of MacOS, including:
 -   Activity Monitor
 -   Address Book, Dashboard, iCal TextEdit, and Disk Utility
 -   Mac App Store
+
+#### `setupiTerm.sh`
+
+##### Platforms
+
+-   Mac
+
+Tells [iTerm](https://iterm2.com) that the preferences file is stored in this repository.
 
 #### `replaceIcons.zsh, replaceIcons.swift`
 

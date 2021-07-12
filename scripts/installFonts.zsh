@@ -1,1 +1,1 @@
-cp ../Fonts/Meslo/* ~/Library/Fonts 
+cp Fonts/Meslo/* ~/Library/Fonts 
