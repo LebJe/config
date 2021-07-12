@@ -5,44 +5,55 @@ My personal configuration (zshrc, vimrc, etc)
 ## Table Of Contents
 
 <!--ts-->
+   * [Config](#config)
+      * [Table Of Contents](#table-of-contents)
+      * [Screenshots](#screenshots)
+         * [NeoVim](#neovim)
+         * [iTerm](#iterm)
+      * [Setup](#setup)
+         * [Install](#install)
+      * [Run](#run)
+         * [Basic Install](#basic-install)
+         * [Scripts](#scripts)
+            * [aptPackages.sh](#aptpackagessh)
+               * [Platforms](#platforms)
+            * [enableTouchID.zsh](#enabletouchidzsh)
+               * [Platforms](#platforms-1)
+            * [installFonts.zsh](#installfontszsh)
+               * [Platforms](#platforms-2)
+            * [installHomebrew.zsh](#installhomebrewzsh)
+               * [Platforms](#platforms-3)
+            * [installStarship.sh](#installstarshipsh)
+               * [Platforms](#platforms-4)
+            * [npmPackages.sh](#npmpackagessh)
+               * [Platforms](#platforms-5)
+            * [osx.sh](#osxsh)
+               * [Platforms](#platforms-6)
+            * [replaceIcons.zsh, replaceIcons.swift](#replaceiconszsh-replaceiconsswift)
+               * [Platforms](#platforms-7)
+            * [setup.sh](#setupsh)
+               * [Platforms](#platforms-8)
+            * [setupCodeLLDB-Swift.sh](#setupcodelldb-swiftsh)
+               * [Platforms](#platforms-9)
+            * [setupOMZ.sh](#setupomzsh)
+               * [Platforms](#platforms-10)
+            * [setupTemp.zsh](#setuptempzsh)
+               * [Platforms](#platforms-11)
 
--   [Config](#config)
-    -   [Table Of Contents](#table-of-contents)
-    -   [Setup](#setup)
-        -   [Install](#install)
-    -   [Run](#run)
-        -   [Basic Install](#basic-install)
-        -   [Scripts](#scripts)
-            -   [aptPackages.sh](#aptpackagessh)
-                -   [Platforms](#platforms)
-            -   [enableTouchID.zsh](#enabletouchidzsh)
-                -   [Platforms](#platforms-1)
-            -   [installFonts.zsh](#installfontszsh)
-                -   [Platforms](#platforms-2)
-            -   [installHomebrew.zsh](#installhomebrewzsh)
-                -   [Platforms](#platforms-3)
-            -   [installStarship.sh](#installstarshipsh)
-                -   [Platforms](#platforms-4)
-            -   [npmPackages.sh](#npmpackagessh)
-                -   [Platforms](#platforms-5)
-            -   [osx.sh](#osxsh)
-                -   [Platforms](#platforms-6)
-            -   [replaceIcons.zsh, replaceIcons.swift](#replaceiconszsh-replaceiconsswift)
-                -   [Platforms](#platforms-7)
-            -   [setup.sh](#setupsh)
-                -   [Platforms](#platforms-8)
-            -   [setupCodeLLDB-Swift.sh](#setupcodelldb-swiftsh)
-                -   [Platforms](#platforms-9)
-            -   [setupOMZ.sh](#setupomzsh)
-                -   [Platforms](#platforms-10)
-            -   [setupTemp.zsh](#setuptempzsh)
-                -   [Platforms](#platforms-11)
-
-<!-- Added by: lebje, at: Wed May 19 12:54:50 EDT 2021 -->
+<!-- Added by: lebje, at: Mon Jul 12 09:20:26 EDT 2021 -->
 
 <!--te-->
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
+## Screenshots
+
+### NeoVim
+![NeoVim Screenshot](NeoVimScreenshot.png)
+
+### iTerm
+
+![iTerm Screenshot](iTermScreenshot.png)
 
 ## Setup
 
@@ -64,7 +75,8 @@ Set your terminal emulator's font to the Nerd Font you installed; this will ensu
 ### Basic Install
 
 ```sh
-$ git clone https://github.com/LebJe/config.git && cd config && bash setup.sh
+$ git clone https://github.com/LebJe/config.git --recursive && \
+cd config && bash setup.sh && ./install
 ```
 
 **Make sure you run the scripts from the `scripts` directory!**
@@ -77,7 +89,18 @@ $ git clone https://github.com/LebJe/config.git && cd config && bash setup.sh
 
 -   Linux
 
-Installs packages using `apt`.
+Installs the folowing list of packages using `apt`:
+
+* zsh
+* [exa](https://the.exa.website)
+* [gh](https://cli.github.com)
+* [NeoVim](https://neovim.io)
+* Python 3
+* [Node JS](https://nodejs.org/en/)
+* [NPM](https://www.npmjs.com)
+* [bat](https://github.com/sharkdp/bat)
+* [ripgrep](https://github.com/BurntSushi/ripgrep)
+* [fd](https://github.com/sharkdp/fd)
 
 #### `enableTouchID.zsh`
 
@@ -127,7 +150,7 @@ Installs [NPM](https://www.npmjs.com) packages like [`yarn`](https://yarnpkg.com
 
 -   Mac
 
-Customizes various parts of MacOS, namely:
+Customizes various parts of MacOS, including:
 
 -   Spotlight
 -   Activity Monitor

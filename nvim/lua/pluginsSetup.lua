@@ -5,7 +5,7 @@ local g = vim.g
 -- CoC.nvim
 require('cocNvimSetup')
 
--- 
+-- galaxyline.nvim
 require('galaxySetup')
 
 -- GitSigns
