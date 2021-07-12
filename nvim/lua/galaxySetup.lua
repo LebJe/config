@@ -1,44 +1,23 @@
---local gl = require('galaxyline')
---local gls = gl.section
---local extension = require('galaxyline.provider_extensions')
---
---local colors = {
---	bg = '#202328',
---	line_bg = '#353644',
---	fg = '#bbc2cf',
---	yellow = '#ECBE7B',
---	cyan = '#008080',
---	darkblue = '#081633',
---	green = '#98be65',
---	orange = '#FF8800',
---	violet = '#a9a1e1',
---	magenta = '#c678dd',
---	blue = '#51afef';
---	red = '#ec5f67';
---}
---
-
---  
---  
-
 local gl = require('galaxyline')
 local colors = require('galaxyline.theme').default
 local condition = require('galaxyline.condition')
 local gls = gl.section
-gl.short_line_list = {'NvimTree','vista','dbui','packer'}
+
+gl.short_line_list = { 'NvimTree', 'vista', 'packer' }
 
 colors.bg1 = '#393b39'
 colors.bg2 = '#2d2e2d'
 colors.bg3 = '#232423'
 colors.b4 = '#202120'
 
+-- Returns `true` if coc.nvim is showing warnings, hinnts, errors, or information; otherwise `false`.
 function ShouldShowLSPSeparator()
 	if vim.fn.exists('*coc#rpc#start_server') == 0 then return false end
 
 	local has_info,info = pcall(vim.api.nvim_buf_get_var, 0, 'coc_diagnostic_info')
 
 	if not has_info then return false end
-			
+
 		if info['error'] > 0 then
 			return true
 		end
@@ -57,14 +36,7 @@ function ShouldShowLSPSeparator()
 	return true
 end
 
---gls.left[1] = {
---  RainbowRed = {
---    provider = function() return '▊ ' end,
---    highlight = {colors.blue,colors.bg}
---  },
---}
-
--- auto change color according the vim mode
+-- Change the color of this section according to the (Neo)Vim mode.
 gls.left[1] = {
 	ViMode = {
     	provider = function()
@@ -142,8 +114,6 @@ gls.left[1] = {
 			end
     	end,
 		highlight = { colors.red, colors.bg1, 'bold' },
-  		--separator = '',
-		--separator_highlight = { colors.blue, colors.bg1, 'bold' }
 	},
 }
 
@@ -171,6 +141,8 @@ gls.left[5] = {
 	},
 }
 
+-- Git
+
 gls.left[6] = {
 	GitIcon = {
 		provider = function() return '  ' end,
@@ -178,6 +150,8 @@ gls.left[6] = {
 		highlight = { colors.violet, colors.bg2, 'bold' },
 	}
 }
+
+-- Git - Branch
 
 gls.left[7] = {
 	GitBranch = {
@@ -188,6 +162,8 @@ gls.left[7] = {
 		highlight = { colors.violet, colors.bg2, 'bold' },
 	}
 }
+
+-- Git - Diff Information
 
 gls.left[8] = {
 	DiffAdd = {
@@ -222,6 +198,8 @@ gls.left[11] = {
 		highlight = { colors.bg2, colors.bg3 }
 	},
 }
+
+-- Dianostics
 
 gls.left[12] = {
 	DiagnosticError = {
@@ -278,6 +256,8 @@ gls.mid[1] = {
 	}
 }
 
+-- File Location
+
 gls.right[1] = {
 	LineInfo = {
 		provider = 'LineColumn',
@@ -296,6 +276,7 @@ gls.right[2] = {
 	}
 }
 
+-- File Information
 
 gls.right[3] = {
 	FileSize = {
@@ -341,13 +322,6 @@ gls.right[8] = {
 	}
 }
 
---gls.right[8] = {
---  RainbowBlue = {
---    provider = function() return ' ▊' end,
---    highlight = { colors.blue, colors.bg }
---  },
---}
-
 gls.short_line_left[1] = {
 	BufferType = {
 		provider = 'FileTypeName',
@@ -359,7 +333,7 @@ gls.short_line_left[1] = {
 
 gls.short_line_left[2] = {
 	SFileName = {
-		provider =  'SFileName',
+		provider = 'SFileName',
 		condition = condition.buffer_not_empty,
 		highlight = { colors.fg, colors.bg1, 'bold' }
 	}
@@ -367,7 +341,7 @@ gls.short_line_left[2] = {
 
 gls.short_line_right[1] = {
 	BufferIcon = {
-		provider= 'BufferIcon',
+		provider = 'BufferIcon',
 		highlight = { colors.fg, colors.bg1 }
 	}
 }
