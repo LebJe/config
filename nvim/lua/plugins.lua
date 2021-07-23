@@ -45,6 +45,9 @@ return require('packer').startup(function(use)
 	-- Nvim Treesitter configurations and abstraction layer
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
+	-- Treesitter playground integrated into Neovim
+	use { 'nvim-treesitter/playground' }
+
 	-- 🌵 Viewer & Finder for LSP symbols and tag
 	use 'liuchengxu/vista.vim'
 
@@ -56,9 +59,6 @@ return require('packer').startup(function(use)
 
 	-- A Filetype plugin for csv files.
 	use 'chrisbra/csv.vim'
-
-	-- An arctic, north-bluish clean and elegant Vim theme.
-	use 'arcticicestudio/nord-vim'
 
 	-- A Vim plugin that always highlights the enclosing html/xml tags.
 	use 'Valloric/MatchTagAlways'
@@ -77,8 +77,4 @@ return require('packer').startup(function(use)
 
 	-- Dark color scheme for Vim and vim-airline, inspired by Dark+ in Visual Studio Code
 	use 'tomasiser/vim-code-dark'
-
-	-- Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more.
-	-- This should always be last.
-	--use 'ryanoasis/vim-devicons'
 end)

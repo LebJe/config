@@ -6,7 +6,8 @@
 				"${gadgetDir}/CodeLLDB/adapter/codelldb",
 				"--port",
 				"${unusedLocalPort}",
-				"--liblldb ${LibLLDB}"
+				"--liblldb",
+				"/Applications/Xcode-beta.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB"
 			],
 			"configuration": {
 				"args": [],
@@ -23,4 +24,3 @@
 		}
 	}
 }
-

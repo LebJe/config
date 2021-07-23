@@ -14,3 +14,5 @@
       ~/.tmux.conf:
       ~/.config/starship.toml:
       /usr/local/bin/moped:
+      /usr/local/bin/temp:
+      /usr/local/bin/cv:

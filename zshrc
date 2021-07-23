@@ -84,7 +84,6 @@ fpath=($HOME/.zsh $fpath)
 fpath=(/Users/lebje/homebrew/share/zsh/site-functions/ $fpath)
 fpath=($HOME/.zsh/completion $fpath)
 
-export PATH="$HOME/config/:$PATH"
 export PATH="/usr/local/opt/m4/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"

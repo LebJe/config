@@ -8,6 +8,8 @@ local cmd = vim.cmd
 function Settings.setOptions()
 	local o = vim.o
 
+	vim.cmd[[autocmd BufNewFile,BufRead *.scm set filetype=query]]
+--	vim.cmd[[autocmd BufNewFile,BufRead *.swift set filetype=swift]]
 	o.termguicolors = true
 	o.splitbelow = true
 	o.splitright = true

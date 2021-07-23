@@ -52,10 +52,10 @@ U.map('n', '<leader>f', '<Plug>(coc-format-selected)', {})
 local cocNvimGroup = {
 	cocNvimGroup = {
 		-- Setup formatexpr specified filetype(s).
-		{"FileType", "typescript,json", "setl formatexpr=CocAction('formatSelected')"};
+		{ "FileType", "typescript,json", "setl formatexpr=CocAction('formatSelected')" };
 
 		-- Update signature help on jump placeholder.
-		{"User", "CocJumpPlaceholder", "call CocActionAsync('showSignatureHelp')"};
+		{ "User", "CocJumpPlaceholder", "call CocActionAsync('showSignatureHelp')" };
 	};
 }
 
@@ -97,14 +97,6 @@ vim.cmd[[command! -nargs=? Fold :call CocAction('fold', <f-args>)]]
 --  Add `:OR` command for organize imports of the current buffer.
 vim.cmd[[command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')]]
 
-vim.cmd[[
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-
-let g:airline#extensions#coc#enabled = 1
-]]
-
 -- Mappings for CoCList
 -- Show all diagnostics.
 U.map('n', '<space>a', ':<C-u>CocList diagnostics<cr>', { noremap = true, silent = true, nowait = true })
@@ -144,11 +136,12 @@ g.coc_global_extensions = {
 	"coc-prettier",
 	"coc-marketplace",
 	"coc-sh",
---	"coc-explorer",
 	"coc-spell-checker",
 	"coc-rls",
-	"coc-lua"
+	"coc-lua",
+	"coc-sourcekit"
 }
+g.coc_default_semantic_highlight_groups = true
 
 function MakeSymbol(isNext)
 	if (isNext) then

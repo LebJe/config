@@ -1,15 +1,4 @@
 {
-	"languageserver": {
-		"sourcekit-lsp": {
-			"command": "/Users/lebje/Programs/sourcekit-lsp/.build/release/sourcekit-lsp",
-			"args": [],
-			"filetypes": ["c", "cpp", "swift", "objc", "objcpp"],
-			"trace.server": "verbose",
-			"initializationOptions": {},
-			"settings": {}
-		}
-	},
-
 	"coc.preferences.jumpCommand": "tabe",
 	"coc.preferences.semanticTokensHighlights": true,
 	"coc.preferences.colorSupport": true,
@@ -56,141 +45,81 @@
 	},
 
 	// Plugins
+
+	// Swift
+	"sourcekit.trace.server": "verbose",
+	"sourcekit.commandPath": "/Users/lebje/Programs/sourcekit-lsp/.build/release/sourcekit-lsp",
+
+	"sourcekit.enable": true,
+	//"sourcekit.args": ["--log-level", "info"],
+
+	// Clangd
 	"clangd.semanticHighlighting": true,
 	"clangd.enabled": true,
 
+	// Python
 	"python.linting.pylintEnabled": false,
 	"python.linting.mypyEnabled": true,
 	"python.linting.enabled": true,
 
-	"explorer.icon.enableNerdfont": true,
-	"explorer.datetime.format": "eee, MMM yyyy, h:mm:ss a",
-	"explorer.file.column.indent.indentLine": true,
-
-	"explorer.keyMappings": {
-		"i": false, // cancel default mapkey
-
-		"gk": "expandablePrev",
-		"gj": "expandableNext",
-
-		"*": "toggleSelection",
-		"<tab>": "actionMenu",
-
-		"h": "collapse",
-		"l": ["expandable?", "expand", "open"],
-		"J": ["toggleSelection", "nodeNext"],
-		"K": ["toggleSelection", "nodePrev"],
-		"gl": "expandRecursive",
-		"gh": "collapseRecursive",
-		"<2-LeftMouse>": [
-			"expandable?",
-			["expanded?", "collapse", "expand"],
-			"open"
-		],
-		"o": ["expanded?", "collapse", "expand"],
-		"<cr>": ["expandable?", "cd", "open"],
-		"e": "open",
-		"s": "open:split",
-		"S": "open:split:plain",
-		"E": "open:vsplit",
-		"t": "open:tab",
-		"<bs>": "gotoParent",
-		"gp": "preview:labeling",
-
-		"y": "copyFilepath",
-		"Y": "copyFilename",
-		"c": "copyFile",
-		"x": "cutFile",
-		"p": "pasteFile",
-		"d": "delete",
-		"D": "deleteForever",
-
-		"a": "addFile",
-		"A": "addDirectory",
-		"r": "rename",
-
-		".": "toggleHidden",
-		"R": "refresh",
-
-		"?": "help",
-		"q": "quit",
-		"<esc>": "esc",
-		"X": "systemExecute",
-		"gd": "listDrive",
-
-		"f": "search",
-		"F": "searchRecursive",
-
-		"gf": "gotoSource:file",
-		"gb": "gotoSource:buffer",
-
-		"[[": "sourcePrev",
-		"]]": "sourceNext",
-
-		"[d": "diagnosticPrev",
-		"]d": "diagnosticNext",
-
-		"[c": "gitPrev",
-		"]c": "gitNext",
-		"<<": "gitStage",
-		">>": "gitUnstage"
-	},
 	"python.autoComplete.extraPaths": [
 		"${env:SPARK_HOME}/python",
 		"${env:SPARK_HOME}/python/pyspark"
 	],
+
 	"cSpell.userWords": [
-    "CTOML",
-    "Denite",
-    "Nerdfont",
-    "SYMDEF",
-    "Semshi",
-    "Tcolorscheme",
-    "Unstage",
-    "Valloric",
-    "Yggdroot",
-    "ccls",
-    "clangd",
-    "cohama",
-    "cquery",
-    "datetime",
-    "eigen",
-    "elzr",
-    "expl",
-    "funcobj",
-    "jackguo",
-    "kkvh",
-    "kristijanhusak",
-    "lexima",
-    "linehl",
-    "liuchengxu",
-    "lldb",
-    "lukas",
-    "lzma",
-    "mapkey",
-    "mygroup",
-    "mypy",
-    "neoclide",
-    "nofile",
-    "nord",
-    "numhl",
-    "numirias",
-    "objc",
-    "objcpp",
-    "osnum",
-    "pgsql",
-    "pylint",
-    "pyspark",
-    "require'nvim",
-    "sourcekit",
-    "startify",
-    "struct",
-    "subseparator",
-    "tabe",
-    "tomasiser",
-    "tpope",
-    "ujihisa",
-    "vsplit",
-    "wfxr"
-  ]
+		"CTOML",
+		"Denite",
+		"Nerdfont",
+		"SYMDEF",
+		"Semshi",
+		"Tcolorscheme",
+		"Unstage",
+		"Valloric",
+		"Yggdroot",
+		"ccls",
+		"clangd",
+		"cohama",
+		"cquery",
+		"datetime",
+		"eigen",
+		"elzr",
+		"expl",
+		"funcobj",
+		"jackguo",
+		"kkvh",
+		"kristijanhusak",
+		"lexima",
+		"linehl",
+		"liuchengxu",
+		"lldb",
+		"lukas",
+		"lzma",
+		"mapkey",
+		"mygroup",
+		"mypy",
+		"neoclide",
+		"nofile",
+		"nord",
+		"numhl",
+		"numirias",
+		"objc",
+		"objcpp",
+		"osnum",
+		"pgsql",
+		"pylint",
+		"pyspark",
+		"require'nvim",
+		"sourcekit",
+		"startify",
+		"struct",
+		"subseparator",
+		"swiftinterface",
+		"tabe",
+		"tomasiser",
+		"tpope",
+		"ujihisa",
+		"vsplit",
+		"wfxr"
+	]
 }
