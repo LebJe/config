@@ -48,7 +48,7 @@
 
 	// Swift
 	"sourcekit.trace.server": "verbose",
-	"sourcekit.commandPath": "/Users/lebje/Programs/sourcekit-lsp/.build/release/sourcekit-lsp",
+	"sourcekit.commandPath": "~/Programs/sourcekit-lsp/.build/release/sourcekit-lsp",
 
 	"sourcekit.enable": true,
 	//"sourcekit.args": ["--log-level", "info"],
