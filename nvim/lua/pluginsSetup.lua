@@ -51,13 +51,13 @@ require('nvim-treesitter.configs').setup {
 }
 
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-parser_config.swift_custom = {
-	install_info = {
-		url = "/Users/lebje/Programs/Parsers/tree-sitter-swift",
-		files = { "src/parser.c" }
-	},
-	filetype = "swift"
-}
+--parser_config.swift_custom = {
+--	install_info = {
+--		url = "/Users/lebje/Programs/Parsers/tree-sitter-swift",
+--		files = { "src/parser.c" }
+--	},
+--	filetype = "swift"
+--}
 
 require "nvim-treesitter.configs".setup {
 	playground = {
