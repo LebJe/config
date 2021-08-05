@@ -1,14 +1,13 @@
+// Copyright (c) 2021 Jeff Lebrun
 //
-//  File.swift
-//  
+//  Licensed under the MIT License.
 //
-//  Created by Jeff Lebrun on 5/12/21.
-//
+//  The full text of the license can be found in the file named LICENSE.
 
 import ArgumentParser
 
 struct ConfigCommand: ParsableCommand {
-	static var configuration: CommandConfiguration = CommandConfiguration(
+	static var configuration = CommandConfiguration(
 		commandName: "config",
 		abstract: "Manages cv configuration.",
 		subcommands: [SetCommand.self, ReadCommand.self]

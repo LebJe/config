@@ -124,13 +124,11 @@ U.map('n', '<space>p', ':<C-u>CocListResume<CR>', { noremap = true, silent = tru
 
 g.coc_global_extensions = {
 	"coc-json",
-	"coc-sql",
 	"coc-yaml",
-	"coc-vimlsp",
 	"coc-tsserver",
 	"coc-html",
 	"coc-css",
-	"coc-python",
+	"coc-pyright",
 	"coc-go",
 	"coc-snippets",
 	"coc-prettier",

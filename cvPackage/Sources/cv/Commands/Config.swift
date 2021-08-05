@@ -1,9 +1,8 @@
+// Copyright (c) 2021 Jeff Lebrun
 //
-//  File.swift
-//  
+//  Licensed under the MIT License.
 //
-//  Created by Jeff Lebrun on 5/12/21.
-//
+//  The full text of the license can be found in the file named LICENSE.
 
 import Foundation
 
@@ -21,7 +20,6 @@ func createDefaultConfig() {
 func readConfig() throws -> Config {
 	try JSONDecoder().decode(Config.self, from: FileManager.default.contents(atPath: configFileName)!)
 }
-
 
 func write(config: Config) throws {
 	let encoder = JSONEncoder()

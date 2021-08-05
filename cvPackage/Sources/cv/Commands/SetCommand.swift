@@ -1,16 +1,15 @@
+// Copyright (c) 2021 Jeff Lebrun
 //
-//  File.swift
-//  
+//  Licensed under the MIT License.
 //
-//  Created by Jeff Lebrun on 5/12/21.
-//
+//  The full text of the license can be found in the file named LICENSE.
 
 import ArgumentParser
 import Foundation
 
 struct SetCommand: ParsableCommand {
-	static var configuration: CommandConfiguration = CommandConfiguration(commandName: "set", abstract: "Writess configuration values.")
-	
+	static var configuration = CommandConfiguration(commandName: "set", abstract: "Writess configuration values.")
+
 	@Argument(help: " The value of `key` should be one of: \(ConfigKey.allCases.map(\.rawValue).joined(separator: ", "))")
 	var key: ConfigKey
 
@@ -23,9 +22,9 @@ struct SetCommand: ParsableCommand {
 		do {
 			var config = try readConfig()
 
-			switch key {
+			switch self.key {
 				case .libLLDB:
-					config.libLLDB = value
+					config.libLLDB = self.value
 			}
 
 			try write(config: config)

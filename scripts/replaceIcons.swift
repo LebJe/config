@@ -1,14 +1,20 @@
 #!/usr/bin/env swift
 
+// Copyright (c) 2021 Jeff Lebrun
+//
+//  Licensed under the MIT License.
+//
+//  The full text of the license can be found in the file named LICENSE.
+
 import Foundation
 
 /// Replaces the icon at `<appResourceFolder>/<iconName>` with the icon at `iconFileURL`.
 func replaceIcon(at appResourceFolder: URL, with iconFileURL: URL, oldIconName: String? = nil) throws {
 	let oldIconName = oldIconName == nil ? try FileManager
-			.default
-			.contentsOfDirectory(atPath: appResourceFolder.path)
-			.filter({ $0.contains(".icns") })[0]
-			.replacingOccurrences(of: ".icns", with: "") : oldIconName!
+		.default
+		.contentsOfDirectory(atPath: appResourceFolder.path)
+		.filter({ $0.contains(".icns") })[0]
+		.replacingOccurrences(of: ".icns", with: "") : oldIconName!
 
 	let appIconData = try Data(contentsOf: iconFileURL)
 
@@ -74,7 +80,7 @@ let icons = [
 	Icon(
 		appResourcesPath: URL(fileURLWithPath: "/System/Applications/Utilities/Disk Utility.app/Contents/Resources"),
 		iconPath: URL(fileURLWithPath: ("~/config/Icons/84c64b26707e8e751baf9ee2a6ed9257_Disk_Utility_Alt.icns" as NSString).expandingTildeInPath)
-	)
+	),
 ]
 
 for icon in icons {

@@ -1,4 +1,22 @@
 {
+	// Plugins
+
+	// Swift
+	"sourcekit.trace.server": "verbose",
+	"sourcekit.commandPath": "~/Programs/sourcekit-lsp/.build/release/sourcekit-lsp",
+
+	"sourcekit.enable": true,
+	"sourcekit.args": ["--log-level", "info"],
+
+	// Clangd
+	"clangd.semanticHighlighting": true,
+	"clangd.enabled": true,
+
+	// Python
+	"python.linting.pylintEnabled": false,
+	"python.linting.mypyEnabled": true,
+	"python.linting.enabled": true,
+
 	"coc.preferences.jumpCommand": "tabe",
 	"coc.preferences.semanticTokensHighlights": true,
 	"coc.preferences.colorSupport": true,
@@ -44,24 +62,6 @@
 		"default": "\uf29c"
 	},
 
-	// Plugins
-
-	// Swift
-	"sourcekit.trace.server": "verbose",
-	"sourcekit.commandPath": "~/Programs/sourcekit-lsp/.build/release/sourcekit-lsp",
-
-	"sourcekit.enable": true,
-	//"sourcekit.args": ["--log-level", "info"],
-
-	// Clangd
-	"clangd.semanticHighlighting": true,
-	"clangd.enabled": true,
-
-	// Python
-	"python.linting.pylintEnabled": false,
-	"python.linting.mypyEnabled": true,
-	"python.linting.enabled": true,
-
 	"python.autoComplete.extraPaths": [
 		"${env:SPARK_HOME}/python",
 		"${env:SPARK_HOME}/python/pyspark"
@@ -77,6 +77,7 @@
 		"Unstage",
 		"Valloric",
 		"Yggdroot",
+		"arcgis",
 		"ccls",
 		"clangd",
 		"cohama",

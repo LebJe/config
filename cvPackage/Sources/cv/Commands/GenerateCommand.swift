@@ -1,3 +1,9 @@
+// Copyright (c) 2021 Jeff Lebrun
+//
+//  Licensed under the MIT License.
+//
+//  The full text of the license can be found in the file named LICENSE.
+
 import ArgumentParser
 import Foundation
 import ShellOut
@@ -15,9 +21,9 @@ enum Type: String, CaseIterable, ExpressibleByArgument {
 }
 
 struct GenerateCommand: ParsableCommand {
-	static var configuration: CommandConfiguration = CommandConfiguration(commandName: "generate", abstract: "Generates configuration files for Vimspector.")
+	static var configuration = CommandConfiguration(commandName: "generate", abstract: "Generates configuration files for Vimspector.")
 
-	@Option(name: [.long, .short], help: "Where you want the generated .vimspector.json to go. Use \"-\" to send it to standard output.")
+	@Option(name: [.long, .short], help: "Where you want to send the generated .vimspector.json. Use \"-\" to send it to standard output.")
 	var output: String = ".vimspector.json"
 
 	@Option(name: [.long], parsing: .remaining, help: "The arguments to pass to the executable.")
@@ -32,26 +38,24 @@ struct GenerateCommand: ParsableCommand {
 	var cExecutablePath: String?
 
 	func run() throws {
-		switch type {
+		switch self.type {
 			case .c:
 				if let path = cExecutablePath {
-					generateCConfig(path: path)
+					self.generateCConfig(path: path)
 				} else {
 					fputs("Please provide a value for `c-executable-path`.", stderr)
 					Foundation.exit(1)
 				}
 			case .swift:
-				generateSwiftConfig()
+				self.generateSwiftConfig()
 		}
 	}
 
 	func generateCConfig(path: String) {
 		let vConfig = VimspectorConfig(
-			schema: URL(string: "https://puremourning.github.io/vimspector/schema/vimspector.schema.json#")!,
 			configurations: [
-				"\(path) - Run": ConfigurationOuter(
+				"\(path) - Run Executable": ConfigurationOuter(
 					adapter: defaultAdapterC,
-					variables: [:],
 					default: true,
 					breakpoints: defaultBreakpoints,
 					configuration: ConfigurationInner(
@@ -59,22 +63,21 @@ struct GenerateCommand: ParsableCommand {
 						program: "\(path)",
 						args: args
 					)
-				)
+				),
 			]
 		)
 
 		let encoder = JSONEncoder()
 		encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes]
 
-		if output == "-" {
+		if self.output == "-" {
 			print(String(data: try! encoder.encode(vConfig), encoding: .utf8)!)
 		} else {
-			try! encoder.encode(vConfig).write(to: URL(fileURLWithPath: output))
+			try! encoder.encode(vConfig).write(to: URL(fileURLWithPath: self.output))
 		}
 	}
 
 	func generateSwiftConfig() {
-		let schema = URL(string: "https://puremourning.github.io/vimspector/schema/vimspector.schema.json#")!
 		var res: String = ""
 		do {
 			res = try shellOut(to: "swift", arguments: ["package", "describe", "--type", "json"])
@@ -90,13 +93,11 @@ struct GenerateCommand: ParsableCommand {
 					case .executable:
 						configs["Target \(t.name) - Run Executable"] = .init(
 							adapter: defaultAdapterSwift,
-							variables: try defaultVariables(),
-							default: true,
 							breakpoints: defaultBreakpoints,
 							configuration: .init(
 								request: "launch",
 								program: "${workspaceRoot}/.build/debug/\(t.name)",
-								args: args
+								args: self.args
 							)
 						)
 					case .test:
@@ -104,31 +105,26 @@ struct GenerateCommand: ParsableCommand {
 							alreadyParsedTest = true
 							configs["Run Tests"] = .init(
 								adapter: defaultAdapterSwift,
-								variables: try defaultVariables(),
-								default: false,
 								breakpoints: defaultBreakpoints,
 								configuration: .init(
 									request: "launch",
-									program: "${workspaceRoot}/.build/debug/\(packageD.name + "PackageTests").xcTest\(xcTestIsExecutable() ? "" : "/Contents/MacOS/\(packageD.name + "PackageTests")")",
-									args: args
+									program: "${workspaceRoot}/.build/debug/\(packageD.name + "PackageTests").xcTest\(self.xcTestIsExecutable ? "" : "/Contents/MacOS/\(packageD.name + "PackageTests")")",
+									args: self.args
 								)
 							)
 						}
 				}
 			}
 
-			let vConfig = VimspectorConfig(
-				schema: schema,
-				configurations: configs
-			)
+			let vConfig = VimspectorConfig(configurations: configs)
 
 			let encoder = JSONEncoder()
 			encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes]
 
-			if output == "-" {
+			if self.output == "-" {
 				print(String(data: try encoder.encode(vConfig), encoding: .utf8)!)
 			} else {
-				try encoder.encode(vConfig).write(to: URL(fileURLWithPath: output))
+				try encoder.encode(vConfig).write(to: URL(fileURLWithPath: self.output))
 			}
 		} catch is ShellOutError {
 			fputs("Unable to execute \"swift\" with arguments \"package describe --type json\".", stderr)
@@ -139,7 +135,7 @@ struct GenerateCommand: ParsableCommand {
 		}
 	}
 
-	func xcTestIsExecutable() -> Bool {
+	var xcTestIsExecutable: Bool {
 		#if os(macOS)
 			false
 		#else

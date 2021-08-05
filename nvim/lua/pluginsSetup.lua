@@ -25,32 +25,30 @@ require('gitsigns').setup {
 -- TeeSitter
 require('nvim-treesitter.configs').setup {
 	ensure_installed = {
-		"dockerfile",
-		"python",
-		"graphql",
-		"html",
 		"bash",
 		"c",
+		"cpp",
+		"css",
+		"dockerfile",
+		"go",
+		"graphql",
+		"html",
 		"javascript",
 		"json",
-		"css",
-		"cpp",
-		"c",
-		"swift_custom",
-		"toml",
-		"yaml",
-		"go",
+		"lua",
+		"python",
 		"rust",
+		"toml",
 		"typescript",
-		"lua", 
-		"query"
+		"swift",
+		"yaml",
 	},
 	highlight = {
 		enable = true,
 	},
 }
 
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+--local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 --parser_config.swift_custom = {
 --	install_info = {
 --		url = "/Users/lebje/Programs/Parsers/tree-sitter-swift",
@@ -126,7 +124,7 @@ require("neogit").setup {
 --    	theme = 'codedark',
 --		section_separators = {'', ''},
 --		component_separators = {'', ''},
---		
+--
 --	},
 --	sections = {
 --		lualine_a = {

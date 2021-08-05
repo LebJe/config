@@ -1,15 +1,14 @@
+// Copyright (c) 2021 Jeff Lebrun
 //
-//  File.swift
-//  
+//  Licensed under the MIT License.
 //
-//  Created by Jeff Lebrun on 5/12/21.
-//
+//  The full text of the license can be found in the file named LICENSE.
 
 import ArgumentParser
 import Foundation
 
 struct ReadCommand: ParsableCommand {
-	static var configuration: CommandConfiguration = CommandConfiguration(commandName: "read", abstract: "Reads configuration values.")
+	static var configuration = CommandConfiguration(commandName: "read", abstract: "Reads configuration values.")
 
 	@Argument(help: " The value of `key` should be one of: \(ConfigKey.allCases.map(\.rawValue).joined(separator: ", "))")
 	var key: ConfigKey
@@ -20,8 +19,8 @@ struct ReadCommand: ParsableCommand {
 
 			let config = try readConfig()
 
-			switch key {
-				case .libLLDB: print("\(key.rawValue): \(config.libLLDB)")
+			switch self.key {
+				case .libLLDB: print("\(self.key.rawValue): \(config.libLLDB)")
 			}
 
 		} catch let error as DecodingError {

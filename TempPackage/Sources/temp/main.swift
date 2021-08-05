@@ -1,7 +1,13 @@
-import Foundation
+// Copyright (c) 2021 Jeff Lebrun
+//
+//  Licensed under the MIT License.
+//
+//  The full text of the license can be found in the file named LICENSE.
+
 import ArgumentParser
+import Foundation
 #if canImport(OSXCPUTemp)
-import OSXCPUTemp
+	import OSXCPUTemp
 #endif
 
 enum TempFormat: String, CaseIterable, ExpressibleByArgument {
@@ -13,7 +19,6 @@ extension Double {
 }
 
 struct TempCommand: ParsableCommand {
-
 	static let configuration = CommandConfiguration(
 		commandName: "temp",
 		abstract: "Calculates CPU temperature on Mac and Linux.",
@@ -29,9 +34,9 @@ struct TempCommand: ParsableCommand {
 			Foundation.exit(1)
 		}
 
-		let temp = Double((Int(strTemp.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0)) / 1000.0
+		let temp = Double(Int(strTemp.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0) / 1000.0
 
-		print(String(format: "%.2f °\(format == .fahrenheit ? "F" : "C")", tempFormat == .fahrenheit ? temp.fahrenheit : temp))
+		print(String(format: "%.2f °\(self.format == .fahrenheit ? "F" : "C")", tempFormat == .fahrenheit ? temp.fahrenheit : temp))
 	}
 
 	func getCPUTemp() {
@@ -39,16 +44,16 @@ struct TempCommand: ParsableCommand {
 			SMCOpen()
 
 			let temp = SMC_KEY_CPU_TEMP.withCString({ SMCGetTemperature(UnsafeMutablePointer(mutating: $0)) })
-			print(String(format: "%.2f °\(format == .fahrenheit ? "F" : "C")", format == .fahrenheit ? temp.fahrenheit : temp))
+			print(String(format: "%.2f °\(self.format == .fahrenheit ? "F" : "C")", self.format == .fahrenheit ? temp.fahrenheit : temp))
 
 			SMCClose()
 		#else
-			getLinuxCPUTemp()
+			self.getLinuxCPUTemp()
 		#endif
 	}
 
 	func run() throws {
-		getCPUTemp()
+		self.getCPUTemp()
 	}
 }
 

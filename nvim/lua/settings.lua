@@ -40,7 +40,10 @@ end
 function Settings.setKeymaps()
 	-- Open a terminal in the current buffer.
 	vim.cmd[[cabbrev t terminal]]
-	
+
+	vim.cmd[[cabbrev re resize]]
+	vim.cmd[[cabbrev vre vertical resize]]
+
 	-- Shortcut for opening new tab.
 	vim.cmd[[cabbrev tt tabe]]
 
