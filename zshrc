@@ -70,13 +70,14 @@ iBrew() {
 }
 
 # Aliases
-alias list="exa -mUlah --git --icons"
+alias ls="exa -mUlahgU --git --icons --octal-permissions"
 alias weather="curl wttr.in"
 alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
 alias nvim-config="nvim ~/.config/nvim/lua/settings.lua"
 alias nvim-plugins="nvim ~/.config/nvim/lua/plugins.lua"
 alias nvim-pluginsS="nvim ~/.config/nvim/lua/pluginsSetup.lua"
 alias bat="bat --pager=\"less -FRS\" --theme \"Visual Studio Dark+\""
+alias ts="tree-sitter"
 
 # fpath
 
@@ -95,10 +96,10 @@ export PATH="/Users/lebje/homebrew/opt/icu4c/sbin:$PATH"
 export PATH="/Users/lebje/homebrew/opt/llvm/bin:$PATH"
 export PATH="/usr/local/lib/python3.9/site-packages/:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
-
 export PATH="/usr/local/opt/binutils/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/Users/lebje/Programs/sourcekit-lsp/.build/release/sourcekit-lsp:$PATH"
+export PATH="/Users/lebje/tree-sitter/target/release/:$PATH"
 
 #export LDFLAGS="-L/usr/local/opt/llvm/lib"
 #export CPPFLAGS="-I/usr/local/opt/llvm/include"
