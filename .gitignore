@@ -4,3 +4,4 @@ TempPackage/.swiftpm/
 temp
 cvPackage/.build/
 cvPackage/.swiftpm/
+nvim/plugin/packer_compiled.lua

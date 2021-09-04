@@ -41,6 +41,19 @@
 	"suggest.removeDuplicateItems": true,
 	"suggest.detailField": "preview",
 	"suggest.detailMaxLength": 100,
+
+	"suggest.floatConfig": {
+		"border": true
+	},
+
+	"diagnostic.floatConfig": {
+		"border": true
+	},
+
+	"hover.floatConfig": {
+		"border": true
+	},
+
 	"suggest.completionItemKindLabels": {
 		"keyword": "\uf1de",
 		"variable": "\uf169",

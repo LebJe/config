@@ -128,7 +128,7 @@ return require("packer").startup(function(use)
     use { "Valloric/MatchTagAlways" }
 
     -- Neovim/Vim color scheme inspired by Dark+ and Light+ theme in Visual Studio Code
-    use { "Mofiqul/vscode.nvim" }
+    use { "navarasu/onedark.nvim", config = function() require('onedark').setup() end }
 
 	-- No description
     use { "norcalli/nvim_utils" }

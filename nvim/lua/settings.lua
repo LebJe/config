@@ -23,8 +23,8 @@ function Settings.setOptions()
     --o.background = "dark"
     o.encoding = "utf8"
     o.cmdheight = 2
-    vim.g.vscode_style = "dark"
-    cmd [[colorscheme vscode]]
+    vim.g.onedark_style = 'darker'
+    cmd [[colorscheme onedark]]
     
 	cmd [[
 	set shortmess+=nc
