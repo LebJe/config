@@ -70,7 +70,8 @@ iBrew() {
 }
 
 # Aliases
-alias ls="exa -mUlahgU --git --icons --octal-permissions"
+alias ls="exa -lah --git --icons"
+alias lsl="ls -mugU --octal-permissions"
 alias weather="curl wttr.in"
 alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
 alias nvim-config="nvim ~/.config/nvim/lua/settings.lua"
