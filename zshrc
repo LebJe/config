@@ -74,11 +74,14 @@ alias ls="exa -lah --git --icons"
 alias lsl="ls -mugU --octal-permissions"
 alias weather="curl wttr.in"
 alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
+alias nvim-init="nvim ~/config/nvim/init.lua"
 alias nvim-config="nvim ~/.config/nvim/lua/settings.lua"
 alias nvim-plugins="nvim ~/.config/nvim/lua/plugins.lua"
 alias nvim-pluginsS="nvim ~/.config/nvim/lua/pluginsSetup.lua"
 alias bat="bat --pager=\"less -FRS\" --theme \"Visual Studio Dark+\""
 alias ts="tree-sitter"
+alias sba="swift build --arch x86_64 && swift build --arch arm64"
+alias sbdr="swift build -c debug && swift build -c release"
 
 # fpath
 

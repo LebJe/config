@@ -1,0 +1,22 @@
+name: "Format Lua"
+on:
+    "push":
+        branches:
+            - "main"
+
+jobs:
+    "stylua":
+        name: "Run-StyLua"
+        runs-on: "ubuntu-20.04"
+        steps:
+            - uses: "actions/checkout@v2"
+            - uses: "JohnnyMorganz/stylua-action@1.0.0"
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  args: "nvim"
+            - uses: fregante/setup-git-user@v1
+            - name: "Push Changes"
+              run: |
+                  git add .
+                  git commit -m "Format lua with StyLua" || true
+                  git push origin main || true

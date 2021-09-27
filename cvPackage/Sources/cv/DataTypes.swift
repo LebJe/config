@@ -33,9 +33,19 @@ struct Target: Codable {
 	}
 }
 
+struct Product: Codable {
+	let name: String
+	let type: Dictionary<String, String>
+
+	var isExecutable: Bool {
+		self.type["executable"] != nil
+	}
+}
+
 struct PackageDescription: Codable {
 	let name: String
 	let path: String
+	let products: [Product]?
 	let targets: [Target]
 }
 
