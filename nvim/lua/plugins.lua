@@ -29,11 +29,13 @@ return require("packer").startup(function(use)
 	})
 
 	use({
-		"GustavoKatel/sidebar.nvim",
+		"sidebar-nvim/sidebar.nvim",
 		config = function()
 			require("pluginsSetup").sidebarNvimConfig()
 		end,
 	})
+
+	use({ "sidebar-nvim/sections-dap" })
 
 	-- A cheatsheet plugin for neovim with bundled cheatsheets for the editor, multiple vim plugins, nerd-fonts, regex, etc. with a Telescope fuzzy finder interface !
 	use({ "sudormrfbin/cheatsheet.nvim" })
@@ -137,16 +139,7 @@ return require("packer").startup(function(use)
 
 	use({ "jbyuki/one-small-step-for-vimkind" })
 
-	-- vimspector - A multi-language debugging system for Vim.
-	-- use {
-	--    "puremourning/vimspector",
-	--    cmd = {
-	--        "VimspectorBalloonEval", "VimspectorInstall", "VimspectorReset",
-	--        "VimspectorUpdate", "VimspectorAbortInstall", "VimspectorEval"
-	--    },
-	--    keys = { "<F5>", "<F9>", "<F10>" }
-	-- }
-
+	-- Debugger
 	use({
 		-- A UI for nvim-dap
 		"rcarriga/nvim-dap-ui",
@@ -159,7 +152,9 @@ return require("packer").startup(function(use)
 				end,
 			}, -- Adds virtual text support to nvim-dap
 			"theHamsta/nvim-dap-virtual-text",
-			{ "~/DAPInstall.nvim" },
+
+			-- 🦆 A NeoVim plugin for managing several debuggers for Nvim-da
+			{ "LebJe/DAPInstall.nvim", branch = "codelldb" },
 		},
 		config = function()
 			require("pluginsSetup").nvimDapUISetup()
@@ -200,7 +195,7 @@ return require("packer").startup(function(use)
 	use({ "nvim-lua/popup.nvim" })
 
 	-- A strict and fast JSON parser/decoder/encoder written in pure Lua.
-	use_rocks({ "lunajson" })
+	use_rocks({ "rapidjson" })
 
 	-- A fancy, configurable, notification manager for NeoVim
 	use({

@@ -3,9 +3,7 @@
 
 	// Swift
 	"sourcekit.trace.server": "verbose",
-	"sourcekit.enable": false,
-	//	"sourcekit.commandPath": "/Library/Developer/Toolchains/swift-DEVELOPMENT-SNAPSHOT-2021-09-25-a.xctoolchain/usr/bin/sourcekit-lsp",
-
+	"sourcekit.enable": true,
 	"sourcekit.args": [
 		"--log-level",
 		"info",
@@ -24,10 +22,11 @@
 	"python.linting.mypyEnabled": true,
 	"python.linting.enabled": true,
 
+	// Lua
 	"Lua.hint.enable": true,
 	"Lua.telemetry.enable": false,
 	"Lua.completion.callSnippet": "Both",
-	"Lua.color.mode": "Semantic",
+	"Lua.color.mode": "SemanticEnhanced",
 
 	"coc.preferences.jumpCommand": "edit",
 	"coc.preferences.semanticTokensHighlights": true,
@@ -141,5 +140,6 @@
 		"ujihisa",
 		"vsplit",
 		"wfxr"
-	]
+	],
+	"coc.preferences.extensionUpdateCheck": "daily"
 }

@@ -2,11 +2,12 @@ local U = require("utilities")
 local Settings = {}
 
 -- Determine the path to the LLDB library based on:
--- * Envrironment variables (`LIBLLDB`)
--- Operationg system
+-- - Envrironment variables (`LIBLLDB`)
+-- - Operationg system
+-- 	- If on OSX, the LLDB in Xcode-beta.app will be used if it exists.
 local function libLLDBSetup()
 	local succeded, libLLDB = pcall(os.getenv, "LIBLLDB")
-	if succeded then
+	if succeded and libLLDB ~= nil then
 		return libLLDB
 	end
 
@@ -16,12 +17,12 @@ local function libLLDBSetup()
 		local libLLDBPath = "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB"
 		local libLLDBBetaPath = "/Applications/Xcode-beta.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB"
 
-		if vim.loop.fs_access(libLLDBPath) then
+		if vim.fn.filereadable(libLLDBPath) then
 			return libLLDBPath
-		elseif vim.loop.fs_access(libLLDBBetaPath) then
+		elseif vim.fn.filereadable(libLLDBBetaPath) then
 			return libLLDBBetaPath
 		end
-	elseif os == "Linux" then
+	elseif os == "Linux" and vim.fn.filereadable("usr/lib/liblldb.so") then
 		return "/usr/lib/liblldb.so"
 	end
 end

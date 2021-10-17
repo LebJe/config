@@ -1,4 +1,5 @@
 local U = require("utilities")
+local au = require("au")
 
 local g = vim.g
 local M = {}
@@ -19,9 +20,9 @@ function M.dapConfigFromSwiftPackage()
 
 		fh:close()
 
-		local lunajson = require("lunajson")
+		local rapidjson = require("rapidjson")
 
-		local succeded, tbl = pcall(lunajson.decode, data)
+		local succeded, tbl = pcall(rapidjson.decode, data)
 
 		local configArray = {}
 		local libLLDB = require("settings").libLLDB
@@ -30,11 +31,10 @@ function M.dapConfigFromSwiftPackage()
 			for _, value in ipairs(tbl.products) do
 				if value.type.executable ~= nil then
 					table.insert(configArray, {
-						type = "vscode_lldb",
-						adapter = "vscode_lldb",
+						type = "codelldb",
 						request = "launch",
-						name = value.targets[0] .. "- Debug Executable " .. value.name,
-						program = "${workspaceFolder}/.build/debug/value",
+						name = value.targets[1] .. " - Debug Executable " .. value.name,
+						program = "${workspaceFolder}/.build/debug/" .. value.targets[1],
 						liblldb = libLLDB,
 					})
 				end
@@ -49,29 +49,39 @@ function M.dapConfigFromSwiftPackage()
 
 		-- Setup configurations.
 		dap.configurations.swift = configArray
+
+		return configArray
 	end
 end
 
 function M.nvimDapSetup()
 	local dap_install = require("dap-install")
 	local dap = require("dap")
+	dap.set_log_level("TRACE")
 	vim.g.dap_virtual_text = true
 
-	dap.set_log_level("TRACE")
+	au.FileType = {
+		"dap-repl",
+		function()
+			require("dap.ext.autocompl").attach()
+		end,
+	}
 
 	-- Mappings
-	U.map(
-		"n",
-		"<leader>dd",
-		":lua require('dap').disconnect(); require('dap').close(); require('dapui').close()<CR>",
-		{ silent = true, noremap = true }
-	)
 	U.map(
 		"n",
 		"<F5>",
 		":lua require('pluginsSetup').dapConfigFromSwiftPackage(); require('dap').continue()<CR>",
 		{ silent = true, noremap = true }
 	)
+
+	U.map(
+		"n",
+		"<leader>dd",
+		":lua require('dap').disconnect(); require('dap').close(); require('dapui').close()<CR>",
+		{ silent = true, noremap = true }
+	)
+
 	U.map(
 		"n",
 		"<F8>",
@@ -85,24 +95,18 @@ function M.nvimDapSetup()
 
 	-- Debuggers
 
-	dap_install.config("vscode_lldb", {})
+	dap_install.config("codelldb", {})
 
 	dap.configurations.c = {
 		{
-			type = "vscode_lldb",
+			type = "codelldb",
 			request = "launch",
 			name = "Debug Executable - " .. vim.loop.cwd() .. "/main",
 			program = "${workspaceFolder}/main",
-			--cargo = {},
-			--args = {},
-			--terminal = "integrated",
-			env = {
-				A = "A",
-			},
 			cwd = "${workspaceFolder}",
 		},
 		{
-			type = "lldb",
+			type = "codelldb",
 			request = "launch",
 			name = "Debug Executable - Choose",
 			program = function()
@@ -110,10 +114,36 @@ function M.nvimDapSetup()
 			end,
 		},
 	}
+
+	dap.configurations.cpp = dap.configurations.c
 end
 
 function M.nvimDapUISetup()
-	require("dapui").setup()
+	local dapui = require("dapui")
+	local dap = require("dap")
+
+	dapui.setup({
+		sidebar = {
+			elements = {
+				{ id = "scopes", size = 0.25 },
+				{ id = "breakpoints", size = 0.25 },
+				{ id = "stacks", size = 0.25 },
+				--{ id = "watches", size = 0.50 },
+			},
+			size = 50,
+			position = "left",
+		},
+	})
+
+	dap.listeners.after.event_initialized["dapui_config"] = function()
+		dapui.open()
+	end
+	dap.listeners.before.event_terminated["dapui_config"] = function()
+		dapui.close()
+	end
+	dap.listeners.before.event_exited["dapui_config"] = function()
+		dapui.close()
+	end
 end
 
 -- GitSigns
@@ -282,14 +312,11 @@ end
 
 -- nvim-tree.lua
 function M.nvimTreeSetup()
-	g.nvim_tree_ignore = { ".git", "node_modules", ".cache" }
+	g.nvim_tree_ignore = { ".git", "node_modules", ".cache", ".build", ".swiftpm" }
 	g.nvim_tree_gitignore = 1
-	--g.nvim_tree_auto_open = 1
-	--g.nvim_tree_auto_close = 1
 	g.nvim_tree_indent_markers = 1
 	g.nvim_tree_git_hl = 1
 	g.nvim_tree_highlight_opened_files = 1
-	--g.nvim_tree_lsp_diagnostics = 1
 
 	g.nvim_tree_special_files = {
 		["README.md"] = true,
@@ -308,7 +335,9 @@ function M.nvimTreeSetup()
 	}
 
 	require("nvim-tree").setup({
-		lsp_diagnostics = true,
+		diagnostics = {
+			enable = true,
+		},
 		open_on_setup = true,
 		auto_close = true,
 		update_cwd = true,
@@ -323,20 +352,29 @@ function M.nvimTreeSetup()
 end
 
 function M.sidebarNvimConfig()
-	--require("sidebar-nvim").setup({
-	--    disable_default_keybindings = 0,
-	--    bindings = nil,
-	--    open = false,
-	--    side = "right",
-	--    initial_width = 35,
-	--    update_interval = 1000,
-	--    sections = { "datetime", "git-status", "containers" },
-	--	docker = {
-	--        attach_shell = "/bin/sh",
-	--        show_all = true, -- whether to run `docker ps` or `docker ps -a`
-	--    },
-	--    section_separator = "-----"
-	--})
+	local gitSection = require("sidebar-nvim.builtin.git-status")
+	local clockSection = require("sidebar-nvim.builtin.datetime")
+	local breakpointsSection = require("dap-sidebar-nvim.breakpoints")
+
+	clockSection.icon = ""
+	clockSection.title = "Current Date-Time"
+
+	gitSection.icon = ""
+	breakpointsSection.icon = "ﭦ"
+
+	require("sidebar-nvim").setup({
+		disable_default_keybindings = 0,
+		bindings = nil,
+		open = false,
+		side = "right",
+		initial_width = 35,
+		update_interval = 100,
+		sections = { "datetime", "git-status", breakpointsSection },
+		datetime = {
+			format = "%A, %b %d, %H:%M:%S",
+		},
+		section_separator = "-----",
+	})
 end
 
 function M.nvimWebIconsSetup()
@@ -349,8 +387,6 @@ function M.nvimWebIconsSetup()
 			Dockerfile = { icon = "", color = "#2496ED", name = "Dockerfile" },
 		},
 	})
-
-	--require("nvim-web-devicons").set_up_highlights()
 end
 
 -- Vista
@@ -360,13 +396,6 @@ function M.vistaSetup()
 	g.vista_sidebar_width = 50
 	g.vista_executive_for = { vimwiki = "markdown", markdown = "toc" }
 end
-
--- Vimspector
-g.vimspector_enable_mappings = "HUMAN"
-g.vimspector_install_gadgets = { "CodeLLDB" }
-
-U.map("n", "<Leader>di", "<Plug>VimspectorBalloonEval", {})
-U.map("x", "<Leader>di", "<Plug>VimspectorBalloonEval", {})
 
 -- csv.vim
 g.csv_arrange_align = "l*"
