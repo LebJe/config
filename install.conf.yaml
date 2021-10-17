@@ -7,12 +7,9 @@
 - link:
       ~/config: ""
       ~/.zshrc:
-      ~/cronFiles:
       ~/.config/nvim: nvim
       ~/.prettierrc.toml:
       ~/.wgetrc:
       ~/.tmux.conf:
       ~/.config/starship.toml:
-      /usr/local/bin/moped:
       /usr/local/bin/temp:
-      /usr/local/bin/cv:
