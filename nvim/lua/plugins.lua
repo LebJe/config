@@ -154,7 +154,7 @@ return require("packer").startup(function(use)
 			"theHamsta/nvim-dap-virtual-text",
 
 			-- 🦆 A NeoVim plugin for managing several debuggers for Nvim-da
-			{ "LebJe/DAPInstall.nvim", branch = "codelldb" },
+			{ "Pocco81/DAPInstall.nvim" },
 		},
 		config = function()
 			require("pluginsSetup").nvimDapUISetup()

@@ -247,7 +247,7 @@ function M.treeSitterSetup()
 	})
 
 	vim.cmd([[
-	hi clear TSVariable
+		hi clear TSVariable
 		hi link TSVariable Identifier
 	]])
 end
@@ -375,6 +375,8 @@ function M.sidebarNvimConfig()
 		},
 		section_separator = "-----",
 	})
+
+	U.map("n", "<C-j>", ":SidebarNvimToggle<CR>", { noremap = true })
 end
 
 function M.nvimWebIconsSetup()
@@ -395,6 +397,7 @@ function M.vistaSetup()
 	g.vista_default_executive = "coc"
 	g.vista_sidebar_width = 50
 	g.vista_executive_for = { vimwiki = "markdown", markdown = "toc" }
+	U.map("n", "<C-i>", ":Vista<CR>", { noremap = true })
 end
 
 -- csv.vim
