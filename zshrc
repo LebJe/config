@@ -1,3 +1,8 @@
+
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the start of this file.
+[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
+#### END FIG ENV VARIABLES ####
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -78,7 +83,10 @@ alias nvim-init="nvim ~/config/nvim/init.lua"
 alias nvim-config="nvim ~/.config/nvim/lua/settings.lua"
 alias nvim-plugins="nvim ~/.config/nvim/lua/plugins.lua"
 alias nvim-pluginsS="nvim ~/.config/nvim/lua/pluginsSetup.lua"
-alias bat="bat --pager=\"less -FRS\" --theme \"Visual Studio Dark+\""
+alias nvim-cNvimDAP="nvim ~/.config/nvim/lua/nvimDapSetup.lua"
+alias nvim-cCocNvim="nvim ~/.config/nvim/lua/cocNvimSetup.lua"
+
+alias bat="bat --pager=\"less -FRS\" --theme \"TwoDark\""
 alias ts="tree-sitter"
 alias sba="swift build --arch x86_64 && swift build --arch arm64"
 alias sbdr="swift build -c debug && swift build -c release"
@@ -93,11 +101,11 @@ export PATH="/usr/local/opt/m4/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/opt/python@3.9/bin:$PATH"
-export PATH="/usr/local/opt/llvm/bin:$PATH"
+#export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="/Users/lebje/homebrew/bin:$PATH"
 export PATH="/Users/lebje/homebrew/opt/icu4c/bin:$PATH"
 export PATH="/Users/lebje/homebrew/opt/icu4c/sbin:$PATH"
-export PATH="/Users/lebje/homebrew/opt/llvm/bin:$PATH"
+#export PATH="/Users/lebje/homebrew/opt/llvm/bin:$PATH"
 export PATH="/usr/local/lib/python3.9/site-packages/:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 export PATH="/usr/local/opt/binutils/bin:$PATH"
@@ -105,19 +113,17 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/Programs/sourcekit-lsp/.build/release/sourcekit-lsp:$PATH"
 export PATH="$HOME/tree-sitter/target/release/:$PATH"
 
-#export LDFLAGS="-L/usr/local/opt/llvm/lib"
-#export CPPFLAGS="-I/usr/local/opt/llvm/include"
-
 export EDITOR="nvim"
 
 export GPG_TTY=$(tty)
 
 export LDFLAGS="-L/Users/lebje/homebrew/lib"
 export CPPFLAGS="-I/Users/lebje/homebrew/include"
+export CFLAGS="-I/Users/lebje/homebrew/include"
 
-export CPATH=":/usr/local/include:/Users/lebje/homebrew/include"
-export C_INCLUDE_PATH=":/usr/local/include:/Users/lebje/homebrew/include"
-export LIBRARY_PATH=":/usr/local/lib:/Users/lebje/homebrew/lib"
+export CPATH="/usr/local/include:/Users/lebje/homebrew/include"
+export C_INCLUDE_PATH="/usr/local/include:/Users/lebje/homebrew/include"
+export LIBRARY_PATH="/usr/local/lib:/Users/lebje/homebrew/lib"
 
 export FZF_DEFAULT_COMMAND="fd"
 
@@ -126,12 +132,13 @@ compinit
 
 /usr/local/etc/profile.d/z.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-test -e /Users/jefflebrun/.iterm2_shell_integration.zsh && source /Users/jefflebrun/.iterm2_shell_integration.zsh || true
+test -e ~/.iterm2_shell_integration.zsh && source ~/.iterm2_shell_integration.zsh || true
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /Users/lebje/homebrew/bin/bit bit
-eval "$(starship init zsh)"
+complete -o nospace -C ~/homebrew/bin/bit bit
 
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 
 # ZSH Customization
 HISTFILE="$HOME/.zsh_history"
@@ -150,3 +157,10 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 export SAVEHIST=$HISTSIZE
+
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the end of this file.
+[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
+#### END FIG ENV VARIABLES ####
+
+alias luamake=/Users/lebje/luamake/luamake

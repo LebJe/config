@@ -41,6 +41,13 @@ function Settings.setOptions()
 		end,
 	})
 
+	au({ "BufNewFile", "BufRead" }, {
+		"*.geojson",
+		function()
+			vim.bo.filetype = "json"
+		end,
+	})
+
 	o.termguicolors = true
 	o.splitbelow = true
 	o.splitright = true
@@ -53,9 +60,6 @@ function Settings.setOptions()
 	o.cursorline = true
 	o.encoding = "utf8"
 	o.cmdheight = 2
-
-	vim.g.onedark_style = "darker"
-	vim.cmd([[colorscheme onedark]])
 
 	vim.cmd([[
 	set shortmess+=nc
@@ -92,9 +96,6 @@ end
 
 return Settings
 
--- let g:airline_exclude_filetypes = ['minimap', 'coc-explorer']
--- let g:airline_exclude_buftypes = ['minimap', 'coc-explorer']
---
 -- minimap.vim config
 -- let g:minimap_width = 20
 -- let g:minimap_git_colors = 1

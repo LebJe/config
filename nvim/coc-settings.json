@@ -4,17 +4,11 @@
 	// Swift
 	"sourcekit.trace.server": "verbose",
 	"sourcekit.enable": true,
-	"sourcekit.args": [
-		"--log-level",
-		"info",
-		"-Xswiftc",
-		"-Xfrontend",
-		"-Xswiftc",
-		"-validate-tbd-against-ir=none"
-	],
+	"sourcekit.env": { "TOOLCHAINS": "swift" },
+	"sourcekit.commandPath": "/Users/lebje/Programs/sourcekit-lsp/.build/release/sourcekit-lsp",
+	"sourcekit.args": ["--log-level", "info"],
 
 	// Clangd
-	"clangd.semanticHighlighting": true,
 	"clangd.enabled": false,
 
 	// Python
@@ -26,11 +20,16 @@
 	"Lua.hint.enable": true,
 	"Lua.telemetry.enable": false,
 	"Lua.completion.callSnippet": "Both",
-	"Lua.color.mode": "SemanticEnhanced",
+	"Lua.color.mode": "Semantic",
+	"Lua.workspace.library": ["~/.local/share/nvim/site/pack/packer/start/"],
+
+	// TOML
+	"toml.semanticTokens": true,
 
 	"coc.preferences.jumpCommand": "edit",
-	"coc.preferences.semanticTokensHighlights": true,
-	"coc.preferences.colorSupport": true,
+	//"coc.preferences.formatOnSaveFiletypes": ["*"],
+	"coc.preferences.extensionUpdateCheck": "daily",
+	"semanticTokens.filetypes": ["*"],
 
 	"diagnostic.refreshOnInsertMode": true,
 	"diagnostic.virtualText": true,
@@ -39,6 +38,7 @@
 	"codeLens.enable": true,
 	"codeLens.separator": "‣",
 	"codeLens.subseparator": " | ",
+
 	"list.indicator": "➤",
 
 	"suggest.enablePreview": true,
@@ -46,9 +46,10 @@
 	"suggest.detailField": "preview",
 	"suggest.detailMaxLength": 100,
 
-	"suggest.floatConfig": { "border": true },
-	"diagnostic.floatConfig": { "border": true },
-	"hover.floatConfig": { "border": true },
+	"suggest.floatConfig": { "border": true, "shadow": true },
+	"diagnostic.floatConfig": { "border": true, "shadow": true },
+	"hover.floatConfig": { "border": true, "shadow": true },
+	"signature.floatConfig": { "border": true, "shadow": true },
 
 	"suggest.completionItemKindLabels": {
 		"text": "",
@@ -78,16 +79,13 @@
 		"default": ""
 	},
 
-	"python.autoComplete.extraPaths": [
-		"${env:SPARK_HOME}/python",
-		"${env:SPARK_HOME}/python/pyspark"
-	],
-
 	"cSpell.userWords": [
+		"Brewfile",
 		"CTOML",
 		"Denite",
 		"Neovim",
 		"Nerdfont",
+		"Rwkb",
 		"SYMDEF",
 		"Semshi",
 		"Tcolorscheme",
@@ -97,20 +95,24 @@
 		"arcgis",
 		"ccls",
 		"clangd",
+		"cmake",
 		"cohama",
 		"cquery",
 		"datetime",
+		"docc",
 		"eigen",
 		"elzr",
 		"expl",
 		"funcobj",
 		"jackguo",
+		"kaguya",
 		"kkvh",
 		"kristijanhusak",
 		"lexima",
 		"linehl",
 		"liuchengxu",
 		"lldb",
+		"luacfunction",
 		"lukas",
 		"lzma",
 		"mapkey",
@@ -140,6 +142,5 @@
 		"ujihisa",
 		"vsplit",
 		"wfxr"
-	],
-	"coc.preferences.extensionUpdateCheck": "daily"
+	]
 }

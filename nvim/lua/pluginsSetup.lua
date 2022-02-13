@@ -6,116 +6,20 @@ local M = {}
 
 -- nvim-autopairs
 function M.nvimAutoPairsSetup()
-	require("nvim-autopairs").setup()
-
-	U.map("i", "<CR>", "v:lua.CompletionConfirm()", { expr = true, noremap = true })
+	require("nvim-autopairs").setup({
+		map_cr = true,
+	})
 end
 
--- Get information about debuggable executables from `swift package`.
-function M.dapConfigFromSwiftPackage()
-	if vim.loop.fs_access(vim.loop.cwd() .. "/Package.swift", "r") then
-		local dap = require("dap")
-		local fh = io.popen("swift package describe --type json")
-		local data = fh:read("*all")
-
-		fh:close()
-
-		local rapidjson = require("rapidjson")
-
-		local succeded, tbl = pcall(rapidjson.decode, data)
-
-		local configArray = {}
-		local libLLDB = require("settings").libLLDB
-
-		if succeded and tbl ~= nil then
-			for _, value in ipairs(tbl.products) do
-				if value.type.executable ~= nil then
-					table.insert(configArray, {
-						type = "codelldb",
-						request = "launch",
-						name = value.targets[1] .. " - Debug Executable " .. value.name,
-						program = "${workspaceFolder}/.build/debug/" .. value.targets[1],
-						liblldb = libLLDB,
-					})
-				end
-			end
-		else
-			vim.notify(
-				"Error in `swift package describe --json` JSON:\n\n" .. tbl,
-				"error",
-				{ title = "DAP Configuration" }
-			)
-		end
-
-		-- Setup configurations.
-		dap.configurations.swift = configArray
-
-		return configArray
-	end
-end
-
-function M.nvimDapSetup()
-	local dap_install = require("dap-install")
-	local dap = require("dap")
-	dap.set_log_level("TRACE")
-	vim.g.dap_virtual_text = true
-
-	au.FileType = {
-		"dap-repl",
-		function()
-			require("dap.ext.autocompl").attach()
-		end,
-	}
-
-	-- Mappings
-	U.map(
-		"n",
-		"<F5>",
-		":lua require('pluginsSetup').dapConfigFromSwiftPackage(); require('dap').continue()<CR>",
-		{ silent = true, noremap = true }
-	)
-
-	U.map(
-		"n",
-		"<leader>dd",
-		":lua require('dap').disconnect(); require('dap').close(); require('dapui').close()<CR>",
-		{ silent = true, noremap = true }
-	)
-
-	U.map(
-		"n",
-		"<F8>",
-		":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-		{ silent = true, noremap = true }
-	)
-	U.map("n", "<F9>", ":lua require('dap').toggle_breakpoint()<CR>", { silent = true, noremap = true })
-	U.map("n", "<F10>", ":lua require('dap').step_over()<CR>", { silent = true, noremap = true })
-	U.map("n", "<F11>", ":lua require('dap').step_into()<CR>", { silent = true, noremap = true })
-	U.map("n", "<F12>", ":lua require('dap').step_out()<CR>", { silent = true, noremap = true })
-
-	-- Debuggers
-
-	dap_install.config("codelldb", {})
-
-	dap.configurations.c = {
-		{
-			type = "codelldb",
-			request = "launch",
-			name = "Debug Executable - " .. vim.loop.cwd() .. "/main",
-			program = "${workspaceFolder}/main",
-			cwd = "${workspaceFolder}",
-		},
-		{
-			type = "codelldb",
-			request = "launch",
-			name = "Debug Executable - Choose",
-			program = function()
-				return "${workspaceFolder}/" .. vim.fn.input(vim.loop.cwd() .. "/")
-			end,
-		},
-	}
-
-	dap.configurations.cpp = dap.configurations.c
+function M.nvimDapVirtualTextSetup()
+	require("nvim-dap-virtual-text").setup({
+		enabled = true,
+		enabled_commands = true,
+		highlight_changed_variables = true,
+		highlight_new_as_changed = false,
+		show_stop_reason = true,
+		commented = false,
+	})
 end
 
 function M.nvimDapUISetup()
@@ -130,7 +34,7 @@ function M.nvimDapUISetup()
 				{ id = "stacks", size = 0.25 },
 				--{ id = "watches", size = 0.50 },
 			},
-			size = 50,
+			size = 70,
 			position = "left",
 		},
 	})
@@ -204,6 +108,7 @@ function M.treeSitterSetup()
 			"lua",
 			"python",
 			"rust",
+			"swift",
 			"toml",
 			"typescript",
 			"query",
@@ -211,15 +116,6 @@ function M.treeSitterSetup()
 		},
 		highlight = { enable = true },
 	})
-
-	local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-	parser_config.swift = {
-		install_info = {
-			url = "~/Programs/Parsers/tree-sitter-swift",
-			files = { "src/parser.c" },
-		},
-		filetype = "swift",
-	}
 
 	require("nvim-treesitter.configs").setup({
 		playground = {
@@ -287,6 +183,8 @@ function M.nvimBufferlineSetup()
 			},
 		},
 	})
+
+	U.map("n", "<leader>c", ":BufferLinePickClose<CR>", { noremap = true })
 end
 
 -- diffview.nvim
@@ -312,9 +210,7 @@ end
 
 -- nvim-tree.lua
 function M.nvimTreeSetup()
-	g.nvim_tree_ignore = { ".git", "node_modules", ".cache", ".build", ".swiftpm" }
-	g.nvim_tree_gitignore = 1
-	g.nvim_tree_indent_markers = 1
+	g.nvim_tree_indent_markers = 0
 	g.nvim_tree_git_hl = 1
 	g.nvim_tree_highlight_opened_files = 1
 
@@ -346,21 +242,29 @@ function M.nvimTreeSetup()
 			side = "left",
 			auto_resize = true,
 		},
+		filters = {
+			dotfiles = false,
+			custom = {
+				".git",
+				"node_modules",
+				".cache",
+				".build",
+				".swiftpm",
+			},
+		},
+		git = {
+			ignore = true,
+		},
 	})
 	-- Open file tree with <C-n>.
 	U.map("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true })
 end
 
 function M.sidebarNvimConfig()
-	local gitSection = require("sidebar-nvim.builtin.git-status")
 	local clockSection = require("sidebar-nvim.builtin.datetime")
 	local breakpointsSection = require("dap-sidebar-nvim.breakpoints")
 
-	clockSection.icon = ""
 	clockSection.title = "Current Date-Time"
-
-	gitSection.icon = ""
-	breakpointsSection.icon = "ﭦ"
 
 	require("sidebar-nvim").setup({
 		disable_default_keybindings = 0,
@@ -369,11 +273,12 @@ function M.sidebarNvimConfig()
 		side = "right",
 		initial_width = 35,
 		update_interval = 100,
-		sections = { "datetime", "git-status", breakpointsSection },
+		sections = { "datetime", "git", breakpointsSection },
 		datetime = {
 			format = "%A, %b %d, %H:%M:%S",
 		},
 		section_separator = "-----",
+		disable_closing_prompt = true,
 	})
 
 	U.map("n", "<C-j>", ":SidebarNvimToggle<CR>", { noremap = true })

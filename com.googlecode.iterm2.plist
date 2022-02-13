@@ -11,7 +11,7 @@
 	<key>BracketedPasteMode</key>
 	<true/>
 	<key>CheckTestRelease</key>
-	<false/>
+	<true/>
 	<key>ConvertDosNewlines</key>
 	<true/>
 	<key>CopyLastNewline</key>
@@ -1765,7 +1765,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>MesloLGSNerdFontComplete-Regular 14</string>
+			<string>FiraCodeNerdFontComplete-Regular 14</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>

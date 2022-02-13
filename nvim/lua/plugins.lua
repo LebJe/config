@@ -8,15 +8,37 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	execute("packadd packer.nvim")
 end
 
-return require("packer").startup(function(use)
+return require("packer").startup(function(use, use_rocks)
 	-- A use-package inspired plugin manager for Neovim. Uses native packages, supports Luarocks dependencies, written in Lua, allows for expressive config
 	use("wbthomason/packer.nvim")
 
-	-- Neovim/Vim color scheme inspired by Dark+ and Light+ theme in Visual Studio Code
+	-- Rocks
+
+	-- A strict and fast JSON parser/decoder/encoder written in pure Lua.
+	use_rocks({ "rapidjson" })
+
+	use_rocks({ "inspect" })
+
+	-- TOML parser and serializer for Lua. Powered by toml++.
+	use_rocks({ "toml" })
+
+	-- Plugins
+
+	use({ "windwp/nvim-spectre" })
+
+	-- One dark and light colorscheme for neovim >= 0.5.0 written in lua based on Atom's One Dark and Light theme. Additionally, it comes with 5 color variant styles
 	use({
 		"navarasu/onedark.nvim",
 		config = function()
-			require("onedark").setup()
+			require("onedark").setup({
+				style = "darker",
+				term_colors = true,
+				ending_tildes = true,
+				--highlights = {
+				--TSVariable = { fg = "Identifier" }
+				--}
+			})
+			vim.cmd([[ colorscheme onedark ]])
 		end,
 	})
 
@@ -39,6 +61,47 @@ return require("packer").startup(function(use)
 
 	-- A cheatsheet plugin for neovim with bundled cheatsheets for the editor, multiple vim plugins, nerd-fonts, regex, etc. with a Telescope fuzzy finder interface !
 	use({ "sudormrfbin/cheatsheet.nvim" })
+
+	-- UI
+
+	-- UI Component Library for Neovim.
+	use({ "MunifTanjim/nui.nvim" })
+
+	-- Start your search from a more comfortable place, say the upper right corner?
+	use({
+		"VonHeikemen/searchbox.nvim",
+		config = function()
+			vim.api.nvim_set_keymap("n", "<leader>s", ":SearchBoxIncSearch<CR>", { noremap = false })
+		end,
+	})
+
+	-- A more adventurous wildmenu
+	use({
+		"gelguy/wilder.nvim",
+		config = function()
+			vim.fn["wilder#setup"]({ modes = { ":" } })
+
+			-- vim.fn["wilder#set_option"](
+			-- 	"renderer",
+			-- 	vim.fn["wilder#popupmenu_renderer"](
+			-- 		vim.fn["wilder#popupmenu_border_theme"]({
+			-- 			highlights = { border = "Normal" },
+			-- 			border = "rounded"
+			-- 		})
+			-- 	)
+			-- )
+			--
+
+			vim.cmd([[
+				call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_border_theme({
+      			\ 'highlights': {
+      			\   'border': 'Normal',
+      			\ },
+      			\ 'border': 'rounded',
+      			\ })))
+			]])
+		end,
+	})
 
 	-- Git
 
@@ -116,6 +179,19 @@ return require("packer").startup(function(use)
 	-- Treesitter playground integrated into Neovim
 	use({ "nvim-treesitter/playground" })
 
+	use({
+		"p00f/nvim-ts-rainbow",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				rainbow = {
+					enable = true,
+					extended_mode = true,
+					max_file_lines = nil,
+				},
+			})
+		end,
+	})
+
 	-- LSP and DAP Clients
 
 	-- Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode.
@@ -148,10 +224,17 @@ return require("packer").startup(function(use)
 			{
 				"mfussenegger/nvim-dap",
 				config = function()
-					require("pluginsSetup").nvimDapSetup()
+					require("nvimDapSetup").nvimDapSetup()
 				end,
-			}, -- Adds virtual text support to nvim-dap
-			"theHamsta/nvim-dap-virtual-text",
+			},
+
+			-- Adds virtual text support to nvim-dap
+			{
+				"theHamsta/nvim-dap-virtual-text",
+				config = function()
+					require("pluginsSetup").nvimDapVirtualTextSetup()
+				end,
+			},
 
 			-- 🦆 A NeoVim plugin for managing several debuggers for Nvim-da
 			{ "Pocco81/DAPInstall.nvim" },
@@ -193,9 +276,6 @@ return require("packer").startup(function(use)
 
 	-- [WIP] An implementation of the Popup API from vim in Neovim. Hope to upstream when complete
 	use({ "nvim-lua/popup.nvim" })
-
-	-- A strict and fast JSON parser/decoder/encoder written in pure Lua.
-	use_rocks({ "rapidjson" })
 
 	-- A fancy, configurable, notification manager for NeoVim
 	use({
