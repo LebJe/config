@@ -292,7 +292,6 @@ function M.dapConfigFromSwiftPackage()
 		-- TODO: Generate config for tests.
 
 		if succeded and tbl ~= nil then
-
 			-- Check for executables
 			for _, value in pairs(tbl.products) do
 				if value.type.executable ~= nil then
@@ -319,7 +318,7 @@ function M.dapConfigFromSwiftPackage()
 			-- Check for test targets
 			for _, value in pairs(tbl.targets) do
 				if value.type == "test" then
-					local program  = "${workspaceFolder}/.build/debug/" .. value.name .. ".xctest"
+					local program = "${workspaceFolder}/.build/debug/" .. value.name .. ".xctest"
 					local args = {}
 
 					if jit.os == "OSX" then
@@ -336,10 +335,8 @@ function M.dapConfigFromSwiftPackage()
 						cwd = "${workspaceFolder}",
 						liblldb = libLLDB,
 					})
-
 				end
 			end
-
 		else
 			vim.notify(
 				"Error in `swift package describe --json` JSON:\n\n" .. (tbl or "Missing JSON!"),
