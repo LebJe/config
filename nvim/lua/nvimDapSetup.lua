@@ -444,32 +444,24 @@ function M.nvimDapSetup()
 	}
 
 	-- Mappings & Commands
-		
-	vim.api.nvim_add_user_command(
-		"GenConfig",
-		function(opts)
-			for s in opts.args:gmatch("%S+") do 
-				M.genConfig({ s })
-			end
-		end,
-		{
-			nargs = "+",
-			desc = "Generate a debug configuration.",
-			complete = function(ArgLead, CmdLine, CursorPos)
-				return { "swift", "C", "C++", "Rust" }
-			end
-		}
-	)
 
-	vim.api.nvim_add_user_command(
-		"LoadConfig",
-		function(opts)
-			M.loadConfig(false)
+	vim.api.nvim_add_user_command("GenConfig", function(opts)
+		for s in opts.args:gmatch("%S+") do
+			M.genConfig({ s })
+		end
+	end, {
+		nargs = "+",
+		desc = "Generate a debug configuration.",
+		complete = function(ArgLead, CmdLine, CursorPos)
+			return { "swift", "C", "C++", "Rust" }
 		end,
-		{
-			desc = "Load a debug config from a `nvim-dap.toml` file in the current directory."
-		}
-	)
+	})
+
+	vim.api.nvim_add_user_command("LoadConfig", function(opts)
+		M.loadConfig(false)
+	end, {
+		desc = "Load a debug config from a `nvim-dap.toml` file in the current directory.",
+	})
 
 	U.map("n", "<F5>", ":lua require('dap').continue()<CR>", { silent = true, noremap = true })
 
