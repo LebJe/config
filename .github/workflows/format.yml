@@ -1,22 +1,11 @@
-name: "Format Lua"
-on:
-    "push":
-        branches:
-            - "main"
+name: "Run pre-commit"
+on: ["push", "pull_request"]
 
 jobs:
-    "stylua":
-        name: "Run-StyLua"
-        runs-on: "ubuntu-20.04"
+    PreCommit:
+        runs-on: "macos-latest"
         steps:
             - uses: "actions/checkout@v2"
-            - uses: "JohnnyMorganz/stylua-action@1.0.0"
-              with:
-                  token: ${{ secrets.GITHUB_TOKEN }}
-                  args: "nvim"
-            - uses: fregante/setup-git-user@v1
-            - name: "Push Changes"
-              run: |
-                  git add .
-                  git commit -m "Format lua with StyLua" || true
-                  git push origin main || true
+            - name: "Install Dependencies"
+              run: "brew install stylua pre-commit prettier swiftformat"
+            - uses: "LebJe/pre-commit-composite-action@0.0.1"

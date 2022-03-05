@@ -12,3 +12,7 @@ repos:
           - id: "prettier"
             name: "Format Markdown"
             tags: ["md"]
+    - repo: "https://github.com/LebJe/PreCommitStyLua.git"
+      rev: "c7f96e8ba459f1c6c27cb21cc6a9dc05e14745ca"
+      hooks:
+          - id: "stylua"
