@@ -453,7 +453,7 @@ function M.nvimDapSetup()
 		nargs = "+",
 		desc = "Generate a debug configuration.",
 		complete = function(ArgLead, CmdLine, CursorPos)
-			return { "swift", "C", "C++", "Rust" }
+			return { "Swift", "C", "C++", "Rust" }
 		end,
 	})
 
