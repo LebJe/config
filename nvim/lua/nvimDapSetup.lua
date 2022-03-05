@@ -298,8 +298,8 @@ function M.dapConfigFromSwiftPackage()
 					table.insert(configArray, {
 						type = "codelldb",
 						request = "launch",
-						name = value.targets[1] .. " - Debug Executable " .. value.name,
-						program = "${workspaceFolder}/.build/debug/" .. value.targets[1],
+						name = value.name .. " - Debug Executable (in Target " .. value.targets[1] .. ")",
+						program = "${workspaceFolder}/.build/debug/" .. value.name,
 						cwd = "${workspaceFolder}",
 						liblldb = libLLDB,
 					})
@@ -307,8 +307,8 @@ function M.dapConfigFromSwiftPackage()
 					table.insert(configArray, {
 						type = "codelldb",
 						request = "launch",
-						name = value.targets[1] .. " - Debug Executable (Release) " .. value.name,
-						program = "${workspaceFolder}/.build/release/" .. value.targets[1],
+						name = value.name .. " - Debug Executable (Release) (in Target " .. value.targets[1] .. ")",
+						program = "${workspaceFolder}/.build/release/" .. value.name,
 						cwd = "${workspaceFolder}",
 						liblldb = libLLDB,
 					})
@@ -444,8 +444,32 @@ function M.nvimDapSetup()
 	}
 
 	-- Mappings & Commands
-	setUpCommand("GenConfig", [[ lua require("nvimDapSetup").genConfig() ]])
-	setUpCommand("LoadConfig", [[ lua require("nvimDapSetup").loadConfig(true) ]])
+		
+	vim.api.nvim_add_user_command(
+		"GenConfig",
+		function(opts)
+			for s in opts.args:gmatch("%S+") do 
+				M.genConfig({ s })
+			end
+		end,
+		{
+			nargs = "+",
+			desc = "Generate a debug configuration.",
+			complete = function(ArgLead, CmdLine, CursorPos)
+				return { "swift", "C", "C++", "Rust" }
+			end
+		}
+	)
+
+	vim.api.nvim_add_user_command(
+		"LoadConfig",
+		function(opts)
+			M.loadConfig(false)
+		end,
+		{
+			desc = "Load a debug config from a `nvim-dap.toml` file in the current directory."
+		}
+	)
 
 	U.map("n", "<F5>", ":lua require('dap').continue()<CR>", { silent = true, noremap = true })
 
