@@ -39,7 +39,6 @@ function! Show_documentation()
 	endif
 endfunction
 ]])
--- vim.cmd [[autocmd CursorHold * silent call CocActionAsync('highlight')]]
 
 -- Highlight the symbol and its references when holding the cursor.
 au.CursorHold = function()
@@ -105,6 +104,7 @@ vim.cmd([[command! -nargs=? Fold :call CocAction('fold', <f-args>)]])
 vim.cmd([[command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')]])
 
 -- Mappings for CoCList
+--
 -- Show all diagnostics.
 U.map("n", "<space>a", ":<C-u>CocList diagnostics<cr>", { noremap = true, silent = true, nowait = true })
 
@@ -132,6 +132,7 @@ U.map("n", "<space>p", ":<C-u>CocListResume<CR>", { noremap = true, silent = tru
 g.coc_global_extensions = {
 	"coc-json",
 	"coc-yaml",
+	"coc-toml",
 	"coc-tsserver",
 	"coc-html",
 	"coc-css",
@@ -175,9 +176,6 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 ]])
 
--- Mapping to open Coc Explorer
--- U.map('n', '<C-n>', ':CocCommand explorer<CR>', { noremap = true })
-
 -- Use <Tab> for jump to next placeholder, it's default of coc.nvim
 g.coc_snippet_next = "<Tab>"
 
@@ -188,30 +186,3 @@ g.coc_snippet_prev = "<S-Tab>"
 vim.cmd([[command! -nargs=0 Prettier :CocCommand prettier.formatFile]])
 
 g.vim_json_syntax_conceal = 0
---g.coc_default_semantic_highlight_groups = 0
-
--- vim.cmd([[
--- hi default link CocSem_namespace TSNamespace
--- hi default link CocSem_type TSType
--- hi default link CocSem_class TSType
--- hi default link CocSem_enum TSType
--- hi default link CocSem_interface TSType
--- hi default link CocSem_struct TSType
--- hi default link CocSem_typeParameter TSType
--- hi default link CocSem_parameter TSParameter
--- hi default link CocSem_variable Identifier
--- hi default link CocSem_identifier Identifier
--- hi default link CocSem_property TSProperty
--- hi default link CocSem_enumMember TSProperty
--- hi default link CocSem_event TSVariable
--- hi default link CocSem_function TSFunction
--- hi default link CocSem_method TSFunction
--- hi default link CocSem_macro TSFunctionMacro
--- hi default link CocSem_keyword TSKeyword
--- hi default link CocSem_modifier StorageClass
--- hi default link CocSem_comment TSComment
--- hi default link CocSem_string TSString
--- hi default link CocSem_number TSNumber
--- hi default link CocSem_regexp TSStringRegex
--- hi default link CocSem_operator TSOperator
--- ]])

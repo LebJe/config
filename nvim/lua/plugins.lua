@@ -17,6 +17,7 @@ return require("packer").startup(function(use, use_rocks)
 	-- A strict and fast JSON parser/decoder/encoder written in pure Lua.
 	use_rocks({ "rapidjson" })
 
+	-- Human-readable representation of Lua tables
 	use_rocks({ "inspect" })
 
 	-- TOML parser and serializer for Lua. Powered by toml++.
@@ -34,9 +35,6 @@ return require("packer").startup(function(use, use_rocks)
 				style = "darker",
 				term_colors = true,
 				ending_tildes = true,
-				--highlights = {
-				--TSVariable = { fg = "Identifier" }
-				--}
 			})
 			vim.cmd([[ colorscheme onedark ]])
 		end,
@@ -66,6 +64,8 @@ return require("packer").startup(function(use, use_rocks)
 
 	-- UI Component Library for Neovim.
 	use({ "MunifTanjim/nui.nvim" })
+
+	use({ "stevearc/dressing.nvim" })
 
 	-- Start your search from a more comfortable place, say the upper right corner?
 	use({
@@ -126,14 +126,22 @@ return require("packer").startup(function(use, use_rocks)
 
 	-- Statusline and Bufferline
 
-	-- neovim statusline plugin written in lua
+	-- A minimal, stylish and customizable statusline for Neovim written in Lua
 	use({
-		"glepnir/galaxyline.nvim",
-		branch = "main",
+		"feline-nvim/feline.nvim",
 		config = function()
-			require("galaxySetup").configureStatusline()
+			require("felineSetup").configureStatusline()
 		end,
 	})
+
+	-- -- neovim statusline plugin written in lua
+	-- use({
+	-- 	"glepnir/galaxyline.nvim",
+	-- 	branch = "main",
+	-- 	config = function()
+	-- 		require("galaxySetup").configureStatusline()
+	-- 	end,
+	-- })
 
 	-- A snazzy bufferline for Neovim
 	use({
@@ -236,8 +244,11 @@ return require("packer").startup(function(use, use_rocks)
 				end,
 			},
 
-			-- 🦆 A NeoVim plugin for managing several debuggers for Nvim-da
-			{ "Pocco81/DAPInstall.nvim" },
+			-- 🐞 Debug Adapter Protocol manager for Neovi
+			{
+				"Pocco81/dap-buddy.nvim",
+				branch = "dev",
+			},
 		},
 		config = function()
 			require("pluginsSetup").nvimDapUISetup()

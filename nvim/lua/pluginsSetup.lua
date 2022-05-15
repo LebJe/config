@@ -1,5 +1,4 @@
 local U = require("utilities")
-local au = require("au")
 
 local g = vim.g
 local M = {}
@@ -142,10 +141,10 @@ function M.treeSitterSetup()
 		},
 	})
 
-	vim.cmd([[
-		hi clear TSVariable
-		hi link TSVariable Identifier
-	]])
+	--vim.cmd([[
+	--	hi clear TSVariable
+	--	hi link TSVariable Identifier
+	--]])
 end
 
 -- nvim-bufferline.lua
@@ -163,7 +162,7 @@ function M.nvimBufferlineSetup()
 			end,
 			diagnostics = "coc",
 			diagnostics_update_in_insert = true,
-			diagnostics_indicator = function(count, level, diagnostics_dict, context)
+			diagnostics_indicator = function(_, _, diagnostics_dict, _)
 				local s = ""
 
 				for e, n in pairs(diagnostics_dict) do
@@ -210,7 +209,6 @@ end
 
 -- nvim-tree.lua
 function M.nvimTreeSetup()
-	g.nvim_tree_indent_markers = 0
 	g.nvim_tree_git_hl = 1
 	g.nvim_tree_highlight_opened_files = 1
 
@@ -235,8 +233,10 @@ function M.nvimTreeSetup()
 			enable = true,
 		},
 		open_on_setup = true,
-		auto_close = true,
 		update_cwd = true,
+		renderer = {
+			indent_markers = { enable = false },
+		},
 		view = {
 			--width = 30,
 			side = "left",
@@ -258,9 +258,15 @@ function M.nvimTreeSetup()
 	})
 	-- Open file tree with <C-n>.
 	U.map("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true })
+
+	-- Close tab/nvim when NvimTree is the last window open.
+	vim.cmd(
+		[[ autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif ]]
+	)
 end
 
 function M.sidebarNvimConfig()
+	local sidebarNVimDiagnostics = require("sidebarConfig")
 	local clockSection = require("sidebar-nvim.builtin.datetime")
 	local breakpointsSection = require("dap-sidebar-nvim.breakpoints")
 
@@ -268,14 +274,18 @@ function M.sidebarNvimConfig()
 
 	require("sidebar-nvim").setup({
 		disable_default_keybindings = 0,
-		bindings = nil,
+		bindings = {
+			["q"] = function()
+				require("sidebar-nvim").close()
+			end,
+		},
 		open = false,
 		side = "right",
-		initial_width = 35,
-		update_interval = 100,
-		sections = { "datetime", "git", breakpointsSection },
+		initial_width = 55,
+		update_interval = 500,
+		sections = { "datetime", breakpointsSection, sidebarNVimDiagnostics.diagnosticsSection, "git" },
 		datetime = {
-			format = "%A, %b %d, %H:%M:%S",
+			format = "%A, %b %d %Y, %I:%M:%S",
 		},
 		section_separator = "-----",
 		disable_closing_prompt = true,

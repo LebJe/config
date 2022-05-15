@@ -34,18 +34,16 @@ function Settings.setOptions()
 	local o = vim.o
 	local au = require("au")
 
-	au({ "BufNewFile", "BufRead" }, {
-		"*.scm",
-		function()
-			vim.bo.filetype = "query"
-		end,
+	vim.filetype.add({
+		extension = {
+			scm = "query",
+		},
 	})
 
-	au({ "BufNewFile", "BufRead" }, {
-		"*.geojson",
-		function()
-			vim.bo.filetype = "json"
-		end,
+	vim.filetype.add({
+		extension = {
+			geojson = "json",
+		},
 	})
 
 	o.termguicolors = true
@@ -60,6 +58,9 @@ function Settings.setOptions()
 	o.cursorline = true
 	o.encoding = "utf8"
 	o.cmdheight = 2
+
+	vim.g.do_filetype_lua = 1
+	vim.g.did_load_filetypes = 0
 
 	vim.cmd([[
 	set shortmess+=nc

@@ -436,16 +436,16 @@ function M.nvimDapSetup()
 	local dap = require("dap")
 	dap.set_log_level("TRACE")
 
-	au.FileType = {
-		"dap-repl",
-		function()
+	U.autocmd("FileType", {
+		pattern = "dap-repl",
+		callback = function()
 			require("dap.ext.autocompl").attach()
 		end,
-	}
+	})
 
 	-- Mappings & Commands
 
-	vim.api.nvim_add_user_command("GenConfig", function(opts)
+	vim.api.nvim_create_user_command("GenConfig", function(opts)
 		for s in opts.args:gmatch("%S+") do
 			M.genConfig({ s })
 		end
@@ -457,31 +457,43 @@ function M.nvimDapSetup()
 		end,
 	})
 
-	vim.api.nvim_add_user_command("LoadConfig", function(opts)
+	vim.api.nvim_create_user_command("LoadConfig", function(opts)
 		M.loadConfig(false)
 	end, {
 		desc = "Load a debug config from a `nvim-dap.toml` file in the current directory.",
 	})
 
-	U.map("n", "<F5>", ":lua require('dap').continue()<CR>", { silent = true, noremap = true })
+	vim.keymap.set("n", "<F5>", function()
+		dap.continue()
+	end, { silent = true })
 
-	U.map(
-		"n",
-		"<leader>dd",
-		":lua require('dap').disconnect(); require('dap').close(); require('dapui').close()<CR>",
-		{ silent = true, noremap = true }
-	)
+	vim.keymap.set("n", "<leader>dd", function()
+		dap.disconnect()
+		dap.close()
+		require("dapui").close()
+	end, { silent = true })
 
-	U.map(
-		"n",
-		"<F8>",
-		":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-		{ silent = true, noremap = true }
-	)
-	U.map("n", "<F9>", ":lua require('dap').toggle_breakpoint()<CR>", { silent = true, noremap = true })
-	U.map("n", "<F10>", ":lua require('dap').step_over()<CR>", { silent = true, noremap = true })
-	U.map("n", "<F11>", ":lua require('dap').step_into()<CR>", { silent = true, noremap = true })
-	U.map("n", "<F12>", ":lua require('dap').step_out()<CR>", { silent = true, noremap = true })
+	vim.keymap.set("n", "<F8>", function()
+		vim.ui.input({ prompt = "Breakpoint Condition: " }, function(input)
+			dap.set_breakpoint(input)
+		end)
+	end, { silent = true })
+
+	vim.keymap.set("n", "<F9>", function()
+		dap.toggle_breakpoint()
+	end, { silent = true })
+
+	vim.keymap.set("n", "<F10>", function()
+		dap.step_over()
+	end, { silent = true })
+
+	vim.keymap.set("n", "<F11>", function()
+		dap.step_into()
+	end, { silent = true })
+
+	vim.keymap.set("n", "<F12>", function()
+		dap.step_out()
+	end, { silent = true })
 
 	-- Debuggers
 

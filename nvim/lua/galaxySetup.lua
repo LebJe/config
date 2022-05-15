@@ -12,7 +12,7 @@ colors.b4 = "#202120"
 
 local M = {}
 
--- Returns `true` if coc.nvim is showing warnings, hinnts, errors, or information; otherwise `false`.
+-- Returns `true` if coc.nvim is showing warnings, hints, errors, or information; otherwise `false`.
 function ShouldShowLSPSeparator()
 	if vim.fn.exists("*coc#rpc#start_server") == 0 then
 		return false

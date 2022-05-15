@@ -9,7 +9,7 @@
 	"sourcekit.args": ["--log-level", "info"],
 
 	// Clangd
-	"clangd.enabled": false,
+	"clangd.enabled": true,
 
 	// Python
 	"python.linting.pylintEnabled": false,
@@ -26,9 +26,17 @@
 	// TOML
 	"toml.semanticTokens": true,
 
+	// Rust
+
+	"rust-analyzer.inlayHints.enable": true,
+	"rust-analyzer.inlayHints.maxLength": null,
+	"rust-analyzer.inlayHints.renderColons": true,
+	"rust-analyzer.inlayHints.refreshOnInsertMode": true,
+
 	"coc.preferences.jumpCommand": "edit",
 	//"coc.preferences.formatOnSaveFiletypes": ["*"],
 	"coc.preferences.extensionUpdateCheck": "daily",
+	"coc.preferences.enableMessageDialog": true,
 	"semanticTokens.filetypes": ["*"],
 
 	"diagnostic.refreshOnInsertMode": true,

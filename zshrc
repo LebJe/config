@@ -1,8 +1,5 @@
-
-#### FIG ENV VARIABLES ####
-# Please make sure this block is at the start of this file.
-[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
-#### END FIG ENV VARIABLES ####
+# Fig pre block. Keep at the top of this file.
+[ -s $HOME/.fig/shell/zshrc.pre.zsh ] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -130,7 +127,6 @@ export FZF_DEFAULT_COMMAND="fd"
 autoload -U compinit
 compinit
 
-/usr/local/etc/profile.d/z.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 test -e ~/.iterm2_shell_integration.zsh && source ~/.iterm2_shell_integration.zsh || true
 
@@ -158,9 +154,10 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 export SAVEHIST=$HISTSIZE
 
-#### FIG ENV VARIABLES ####
-# Please make sure this block is at the end of this file.
-[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
 
 alias luamake=/Users/lebje/luamake/luamake
+
+eval "$(atuin init zsh)"
+
+# Fig post block. Keep at the bottom of this file.
+[ -s $HOME/.fig/shell/zshrc.post.zsh ] && . "$HOME/.fig/shell/zshrc.post.zsh"

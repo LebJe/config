@@ -7,6 +7,7 @@ local U = {
 	--- Shorter name
 	--- @type function
 	map = vim.api.nvim_set_keymap,
+	autocmd = vim.api.nvim_create_autocmd,
 }
 
 --- Runs `program` syncronously and returns its output.
