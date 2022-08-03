@@ -19,16 +19,14 @@ function U.runProgram(program, args)
 	local res = ""
 	-- TODO: Better error handling.
 
-	Job
-		:new({
-			command = program,
-			args = args,
-			cwd = vim.loop.cwd(),
-			on_stdout = function(_, data)
-				res = res .. data
-			end,
-		})
-		:sync()
+	Job:new({
+		command = program,
+		args = args,
+		cwd = vim.loop.cwd(),
+		on_stdout = function(_, data)
+			res = res .. data
+		end,
+	}):sync()
 
 	return res
 end
@@ -42,17 +40,15 @@ function U.runProgramChunked(program, args)
 	-- TODO: Better error handling.
 	local res = {}
 
-	Job
-		:new({
-			command = program,
-			args = args,
-			cwd = vim.loop.cwd(),
-			on_stdout = function(_, data)
-				--print("Stdout recieved: " .. data)
-				table.insert(res, data)
-			end,
-		})
-		:sync(5000)
+	Job:new({
+		command = program,
+		args = args,
+		cwd = vim.loop.cwd(),
+		on_stdout = function(_, data)
+			--print("Stdout recieved: " .. data)
+			table.insert(res, data)
+		end,
+	}):sync(5000)
 
 	return res
 end
