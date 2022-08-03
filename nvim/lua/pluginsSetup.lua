@@ -209,25 +209,6 @@ end
 
 -- nvim-tree.lua
 function M.nvimTreeSetup()
-	g.nvim_tree_git_hl = 1
-	g.nvim_tree_highlight_opened_files = 1
-
-	g.nvim_tree_special_files = {
-		["README.md"] = true,
-		["Package.swift"] = true,
-		["Cargo.toml"] = true,
-		["package.json"] = true,
-		["Makefile"] = true,
-		["MAKEFILE"] = true,
-	}
-
-	g.nvim_tree_show_icons = {
-		["git"] = 1,
-		["folders"] = 1,
-		["files"] = 1,
-		["folder_arrows"] = 1,
-	}
-
 	require("nvim-tree").setup({
 		diagnostics = {
 			enable = true,
@@ -235,12 +216,23 @@ function M.nvimTreeSetup()
 		open_on_setup = true,
 		update_cwd = true,
 		renderer = {
+			highlight_git = true,
+			highlight_opened_files = "2",
 			indent_markers = { enable = false },
+			special_files = { "README.md", "Package.swift", "Cargo.toml", "package.json", "Makefile", "MAKEFILE" },
+			icons = {
+				show = {
+					file = true,
+					folder = true,
+					folder_arrow = true,
+					git = true,
+				},
+			},
 		},
 		view = {
 			--width = 30,
 			side = "left",
-			auto_resize = true,
+			adaptive_size = true,
 		},
 		filters = {
 			dotfiles = false,

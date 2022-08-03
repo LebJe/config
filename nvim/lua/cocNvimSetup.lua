@@ -3,18 +3,21 @@ local au = require("au")
 local g = vim.g
 
 -- Use <c-space> to trigger completion.
-U.map("i", "<c-space>", "coc#refresh()", { noremap = true, silent = true, expr = true })
 
 vim.cmd([[
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-]])
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+" Insert <tab> when previous text is space, refresh completion if not.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+    ]])
 
 -- Use `[g` and `]g` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -186,3 +189,11 @@ g.coc_snippet_prev = "<S-Tab>"
 vim.cmd([[command! -nargs=0 Prettier :CocCommand prettier.formatFile]])
 
 g.vim_json_syntax_conceal = 0
+
+vim.cmd("hi link CocSemIdentifer TSVariable")
+
+if vim.fn.filereadable(vim.loop.cwd() .. "/Package.swift") then
+	vim.fn["coc#config"]("clangd", { enabled = false })
+else
+	vim.fn["coc#config"]("clangd", { enabled = true })
+end

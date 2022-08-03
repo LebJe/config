@@ -62,7 +62,7 @@ local fileInfo = {
 local gitBranch = {
 	provider = "git_branch",
 	icon = {
-		str = "  ",
+		str = " ",
 		hl = {
 			fg = "blue",
 			bg = "bg",
@@ -303,19 +303,6 @@ local linePercentage = {
 	},
 }
 
-local scrollBar = {
-	provider = "scroll_bar",
-	hl = {
-		bg = "bg_d",
-	},
-	right_sep = {
-		str = "  ",
-		hl = {
-			bg = "bg_d",
-		},
-	},
-}
-
 local fileSize = {
 	provider = "file_size",
 	hl = {
@@ -396,7 +383,6 @@ local component3 = {
 	cursorPosition,
 	lineTotal,
 	linePercentage,
-	scrollBar,
 	fileSize,
 	fileEncoding,
 	fileFormat,
@@ -412,7 +398,8 @@ local components = {
 	active = activeComponents,
 	inactive = {
 		{
-			fileInfo,
+			cursorPosition,
+			lineTotal,
 		},
 	},
 }

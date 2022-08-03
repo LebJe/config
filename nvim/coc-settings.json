@@ -9,7 +9,7 @@
 	"sourcekit.args": ["--log-level", "info"],
 
 	// Clangd
-	"clangd.enabled": true,
+	"clangd.enabled": false,
 
 	// Python
 	"python.linting.pylintEnabled": false,
@@ -37,6 +37,8 @@
 	//"coc.preferences.formatOnSaveFiletypes": ["*"],
 	"coc.preferences.extensionUpdateCheck": "daily",
 	"coc.preferences.enableMessageDialog": true,
+	"coc.preferences.excludeImageLinksInMarkdownDocument": false,
+	"coc.preferences.silentAutoupdate": false,
 	"semanticTokens.filetypes": ["*"],
 
 	"diagnostic.refreshOnInsertMode": true,

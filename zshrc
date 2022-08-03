@@ -1,6 +1,7 @@
 # Fig pre block. Keep at the top of this file.
-[ -s $HOME/.fig/shell/zshrc.pre.zsh ] && . "$HOME/.fig/shell/zshrc.pre.zsh"
-# If you come from bash you might have to change your $PATH.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
+# Fig pre block. Keep at the top of this file.
+[ -s $HOME/.fig/shell/zshrc.pre.zsh ] && # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -82,6 +83,8 @@ alias nvim-plugins="nvim ~/.config/nvim/lua/plugins.lua"
 alias nvim-pluginsS="nvim ~/.config/nvim/lua/pluginsSetup.lua"
 alias nvim-cNvimDAP="nvim ~/.config/nvim/lua/nvimDapSetup.lua"
 alias nvim-cCocNvim="nvim ~/.config/nvim/lua/cocNvimSetup.lua"
+alias nvim-cStatusBar="nvim ~/.config/nvim/lua/felineSetup.lua"
+
 
 alias bat="bat --pager=\"less -FRS\" --theme \"TwoDark\""
 alias ts="tree-sitter"
@@ -160,4 +163,7 @@ alias luamake=/Users/lebje/luamake/luamake
 eval "$(atuin init zsh)"
 
 # Fig post block. Keep at the bottom of this file.
-[ -s $HOME/.fig/shell/zshrc.post.zsh ] && . "$HOME/.fig/shell/zshrc.post.zsh"
+[ -s $HOME/.fig/shell/zshrc.post.zsh ] &&
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"

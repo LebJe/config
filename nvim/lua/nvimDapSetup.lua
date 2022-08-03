@@ -23,20 +23,6 @@ local M = {
 	},
 }
 
---- @param name string
---- @param func string
-local function setUpCommand(name, func)
-	vim.cmd(table.concat({
-		"command!",
-		--'-range',
-		--'-nargs=+',
-		--'-complete=customlist,v:lua.package.loaded.gitsigns._complete',
-		name,
-		func,
-	}, " "))
-end
-
----Check if `table` contains any of the values in `value`.
 ---@param table table
 ---@param value table
 ---@return boolean
