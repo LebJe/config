@@ -93,10 +93,10 @@ M.diagnosticsSection = {
 		local cocDiagChange = vim.api.nvim_create_augroup("SidebarDiagnosticsCocDiagChange", { clear = true })
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "CocDiagnosticChange",
+			group = cocDiagChange,
 			callback = function(_)
 				M.getDiagnostics()
 			end,
-			group = cocDiagChange,
 		})
 	end,
 	update = function(_)

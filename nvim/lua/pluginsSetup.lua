@@ -26,15 +26,17 @@ function M.nvimDapUISetup()
 	local dap = require("dap")
 
 	dapui.setup({
-		sidebar = {
-			elements = {
-				{ id = "scopes", size = 0.25 },
-				{ id = "breakpoints", size = 0.25 },
-				{ id = "stacks", size = 0.25 },
-				--{ id = "watches", size = 0.50 },
+		layout = {
+			{
+				elements = {
+					{ id = "scopes", size = 0.25 },
+					{ id = "breakpoints", size = 0.25 },
+					{ id = "stacks", size = 0.25 },
+					--{ id = "watches", size = 0.50 },
+				},
+				size = 70,
+				position = "left",
 			},
-			size = 70,
-			position = "left",
 		},
 	})
 

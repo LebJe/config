@@ -9,7 +9,7 @@
 	"sourcekit.args": ["--log-level", "info"],
 
 	// Clangd
-	"clangd.enabled": false,
+	//"clangd.enabled": true,
 
 	// Python
 	"python.linting.pylintEnabled": false,
@@ -31,7 +31,6 @@
 	"rust-analyzer.inlayHints.enable": true,
 	"rust-analyzer.inlayHints.maxLength": null,
 	"rust-analyzer.inlayHints.renderColons": true,
-	"rust-analyzer.inlayHints.refreshOnInsertMode": true,
 
 	"coc.preferences.jumpCommand": "edit",
 	//"coc.preferences.formatOnSaveFiletypes": ["*"],
@@ -39,25 +38,32 @@
 	"coc.preferences.enableMessageDialog": true,
 	"coc.preferences.excludeImageLinksInMarkdownDocument": false,
 	"coc.preferences.silentAutoupdate": false,
+
 	"semanticTokens.filetypes": ["*"],
+
+	"list.indicator": "➤",
 
 	"diagnostic.refreshOnInsertMode": true,
 	"diagnostic.virtualText": true,
 	"diagnostic.virtualTextCurrentLineOnly": true,
+	"diagnostic.floatConfig": { "border": true, "shadow": true },
 
 	"codeLens.enable": true,
 	"codeLens.separator": "‣",
 	"codeLens.subseparator": " | ",
 
-	"list.indicator": "➤",
-
-	"suggest.enablePreview": true,
+	"suggest.virtualText": true,
+	"suggest.reversePumAboveCursor": true,
+	"suggest.pumFloatConfig": {
+		"border": true,
+		"shadow": true,
+		"rounded": true
+	},
 	"suggest.removeDuplicateItems": true,
 	"suggest.detailField": "preview",
 	"suggest.detailMaxLength": 100,
+	"suggest.floatConfig": { "rounded": true, "border": true, "shadow": true },
 
-	"suggest.floatConfig": { "border": true, "shadow": true },
-	"diagnostic.floatConfig": { "border": true, "shadow": true },
 	"hover.floatConfig": { "border": true, "shadow": true },
 	"signature.floatConfig": { "border": true, "shadow": true },
 

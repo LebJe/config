@@ -1,23 +1,30 @@
 local U = require("utilities")
-local au = require("au")
 local g = vim.g
 
--- Use <c-space> to trigger completion.
-
 vim.cmd([[
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+function! CheckBackspace() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Insert <tab> when previous text is space, refresh completion if not.
 inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1):
-      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-    ]])
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+	inoremap <silent><expr> <c-space> coc#refresh()
+else
+	inoremap <silent><expr> <c-@> coc#refresh()
+endif
+]])
 
 -- Use `[g` and `]g` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -31,10 +38,10 @@ U.map("n", "gi", "<Plug>(coc-implementation)", { silent = true })
 U.map("n", "gr", "<Plug>(coc-references)", { silent = true })
 
 -- Use K to show documentation in preview window.
-U.map("n", "K", ":call Show_documentation()<CR>", { noremap = true, silent = true })
+U.map("n", "K", ":call ShowDocumentation()<CR>", { noremap = true, silent = true })
 
 vim.cmd([[
-function! Show_documentation()
+function! ShowDocumentation()
 	if (index(['vim','help'], &filetype) >= 0)
 		execute 'h '.expand('<cword>')
 	else
@@ -44,9 +51,16 @@ endfunction
 ]])
 
 -- Highlight the symbol and its references when holding the cursor.
-au.CursorHold = function()
-	vim.fn.CocActionAsync("highlight")
-end
+-- au.CursorHold = function()
+-- 	vim.fn.CocActionAsync("highlight")
+-- end
+
+vim.api.nvim_create_autocmd("CursorHold", {
+	pattern = "*",
+	callback = function(_)
+		vim.fn.CocActionAsync("highlight")
+	end,
+})
 
 -- Symbol renaming.
 U.map("n", "<leader>rn", "<Plug>(coc-rename)", {})
@@ -55,23 +69,44 @@ U.map("n", "<leader>rn", "<Plug>(coc-rename)", {})
 U.map("x", "<leader>f", "<Plug>(coc-format-selected)", {})
 U.map("n", "<leader>f", "<Plug>(coc-format-selected)", {})
 
-au.group("CocOverrides", function(grp)
-	grp.FileType = {
-		"typescript,json",
-		function()
-			vim.api.nvim_buf_set_option(0, "formatexpr", "CocAction('formatSelected')")
-		end,
-	}
-	grp.User = {
-		"CocJumpPlaceholder",
-		function()
-			vim.fn.CocActionAsync("showSignatureHelp")
-		end,
-	}
-end)
+-- au.group("CocOverrides", function(grp)
+-- 	grp.FileType = {
+-- 		"typescript,json",
+-- 		function()
+-- 			vim.api.nvim_buf_set_option(0, "formatexpr", "CocAction('formatSelected')")
+-- 		end,
+-- 	}
+-- 	grp.User = {
+-- 		"CocJumpPlaceholder",
+-- 		function()
+-- 			vim.fn.CocActionAsync("showSignatureHelp")
+-- 		end,
+-- 	}
+-- end)
+
+local cocOverrides = vim.api.nvim_create_augroup("CocOverrides", { clear = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "typescript,json",
+	group = cocOverrides,
+	callback = function(_)
+		vim.api.nvim_buf_set_option(0, "formatexpr", "CocAction('formatSelected')")
+	end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+	pattern = "CocJumpPlaceholder",
+	group = cocOverrides,
+	callback = function(_)
+		vim.fn.CocActionAsync("showSignatureHelp")
+	end,
+})
 
 -- Applying codeAction to the selected region.
-U.map("x", "<leader>a", "<Plug>(coc-codeaction-selected)", {})
+--U.map("x", "<leader>a", "<Plug>(coc-codeaction-selected)", {})
+
+-- Show CodeAction for symbol under cursor.
+U.map("n", "<leader>a", "<Plug>(coc-codeaction-cursor)", {})
 
 -- Example: `<leader>aap` for current paragraph
 U.map("n", "<leader>a", "<Plug>(coc-codeaction-selected)", {})
@@ -154,31 +189,6 @@ g.coc_global_extensions = {
 
 g.coc_default_semantic_highlight_groups = true
 
-function MakeSymbol(isNext)
-	if isNext then
-		if vim.api.nvim_eval("pumvisible()") == 1 then
-			return "<C-n>"
-		else
-			return "<Tab>"
-		end
-	else
-		if vim.api.nvim_eval("pumvisible()") == 1 then
-			return "<C-p>"
-		else
-			return "<S-Tab>"
-		end
-	end
-end
-
--- U.map('i', '<Tab>', MakeSymbol(true), { noremap = true, expr = true })
--- U.map('i', '<S-Tab>', MakeSymbol(false), { noremap = true, expr = true })
-
--- Use <Tab> and <S-Tab> to navigate the completion list:
-vim.cmd([[
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-]])
-
 -- Use <Tab> for jump to next placeholder, it's default of coc.nvim
 g.coc_snippet_next = "<Tab>"
 
@@ -192,6 +202,9 @@ g.vim_json_syntax_conceal = 0
 
 vim.cmd("hi link CocSemIdentifer TSVariable")
 
+vim.cmd("hi CocMenuSel ctermbg=237 guibg=#16537e")
+
+-- Enable clangd if we are not inside a Swift package.
 if vim.fn.filereadable(vim.loop.cwd() .. "/Package.swift") then
 	vim.fn["coc#config"]("clangd", { enabled = false })
 else
