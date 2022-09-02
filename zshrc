@@ -94,7 +94,7 @@ alias sbdr="swift build -c debug && swift build -c release"
 # fpath
 
 fpath=($HOME/.zsh $fpath)
-fpath=(/Users/lebje/homebrew/share/zsh/site-functions/ $fpath)
+fpath=($(brew --prefix)/share/zsh/site-functions/ $fpath)
 fpath=($HOME/.zsh/completion $fpath)
 
 export PATH="/usr/local/opt/m4/bin:$PATH"

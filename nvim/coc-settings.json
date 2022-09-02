@@ -5,11 +5,7 @@
 	"sourcekit.trace.server": "verbose",
 	"sourcekit.enable": true,
 	"sourcekit.env": { "TOOLCHAINS": "swift" },
-	"sourcekit.commandPath": "/Users/lebje/Programs/sourcekit-lsp/.build/release/sourcekit-lsp",
 	"sourcekit.args": ["--log-level", "info"],
-
-	// Clangd
-	//"clangd.enabled": true,
 
 	// Python
 	"python.linting.pylintEnabled": false,

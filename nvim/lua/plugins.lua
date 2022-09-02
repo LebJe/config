@@ -67,11 +67,25 @@ return require("packer").startup(function(use, use_rocks)
 
 	use({ "stevearc/dressing.nvim" })
 
+	-- UI - Search
+
 	-- Start your search from a more comfortable place, say the upper right corner?
 	use({
 		"VonHeikemen/searchbox.nvim",
 		config = function()
 			vim.api.nvim_set_keymap("n", "<leader>s", ":SearchBoxIncSearch<CR>", { noremap = false })
+		end,
+	})
+
+	use({
+		"kevinhwang91/nvim-hlslens",
+		config = function()
+			vim.api.nvim_set_keymap(
+				"n",
+				"n",
+				[[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+				{ noremap = true, silent = true }
+			)
 		end,
 	})
 
@@ -133,15 +147,6 @@ return require("packer").startup(function(use, use_rocks)
 			require("felineSetup").configureStatusline()
 		end,
 	})
-
-	-- -- neovim statusline plugin written in lua
-	-- use({
-	-- 	"glepnir/galaxyline.nvim",
-	-- 	branch = "main",
-	-- 	config = function()
-	-- 		require("galaxySetup").configureStatusline()
-	-- 	end,
-	-- })
 
 	-- A snazzy bufferline for Neovim
 	use({
