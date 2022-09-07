@@ -247,7 +247,7 @@ function M.nvimTreeSetup()
 			},
 		},
 		git = {
-			ignore = true,
+			--ignore = true,
 		},
 	})
 	-- Open file tree with <C-n>.
@@ -300,16 +300,9 @@ function M.nvimWebIconsSetup()
 	})
 end
 
--- Vista
-function M.vistaSetup()
-	g["vista#renderer#enable_icon"] = true
-	g.vista_default_executive = "coc"
-	g.vista_sidebar_width = 50
-	g.vista_executive_for = { vimwiki = "markdown", markdown = "toc" }
-	U.map("n", "<C-i>", ":Vista<CR>", { noremap = true })
-end
-
 -- csv.vim
-g.csv_arrange_align = "l*"
+function M.csvSetup()
+	g.csv_arrange_align = "l*"
+end
 
 return M

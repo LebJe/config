@@ -39,6 +39,11 @@
 
 	"list.indicator": "➤",
 
+	"diagnostic.errorSign": "",
+	"diagnostic.infoSign": "",
+	"diagnostic.hintSign": "",
+	"diagnostic.warningSign": "",
+
 	"diagnostic.refreshOnInsertMode": true,
 	"diagnostic.virtualText": true,
 	"diagnostic.virtualTextCurrentLineOnly": true,
@@ -47,6 +52,13 @@
 	"codeLens.enable": true,
 	"codeLens.separator": "‣",
 	"codeLens.subseparator": " | ",
+
+	"outline.autoWidth": true,
+	"outline.followCursor": true,
+	"outline.autoPreview": true,
+	"outline.showLineNumber": true,
+	"outline.detailAsDescription": true,
+	"outline.previewBorderRounded": true,
 
 	"suggest.virtualText": true,
 	"suggest.reversePumAboveCursor": true,
@@ -142,7 +154,7 @@
 		"pgsql",
 		"pylint",
 		"pyspark",
-		"require'nvim",
+		"require",
 		"sourcekit",
 		"startify",
 		"struct",

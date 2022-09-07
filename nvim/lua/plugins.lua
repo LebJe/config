@@ -217,15 +217,6 @@ return require("packer").startup(function(use, use_rocks)
 		end,
 	})
 
-	-- 🌵 Viewer & Finder for LSP symbols and tag
-	use({
-		"liuchengxu/vista.vim",
-		cnd = "Vista",
-		config = function()
-			require("pluginsSetup").vistaSetup()
-		end,
-	})
-
 	use({ "jbyuki/one-small-step-for-vimkind" })
 
 	-- Debugger
@@ -274,7 +265,13 @@ return require("packer").startup(function(use, use_rocks)
 	use({ "keith/swift.vim" })
 
 	-- A Filetype plugin for csv files.
-	use({ "chrisbra/csv.vim", ft = "csv" })
+	use({
+		"chrisbra/csv.vim",
+		ft = "csv",
+		config = function()
+			require("pluginsSetup").csvSetup()
+		end,
+	})
 
 	-- A Vim plugin that always highlights the enclosing html/xml tags.
 	use({ "Valloric/MatchTagAlways" })

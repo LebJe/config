@@ -196,13 +196,44 @@ g.coc_snippet_next = "<Tab>"
 g.coc_snippet_prev = "<S-Tab>"
 
 -- Format current buffer using :Prettier.
-vim.cmd([[command! -nargs=0 Prettier :CocCommand prettier.formatFile]])
+vim.api.nvim_create_user_command("Prettier", function(_)
+	vim.cmd("CocCommand prettier.formatFile")
+end, {
+	desc = "Format buffer using Prettier.",
+})
+
+-- Open Document Symbol Outline with <C-i>.
+vim.keymap.set("n", "<C-i>", function()
+	local winID = vim.fn["coc#window#find"]("cocViewId", "OUTLINE")
+
+	if winID == -1 then
+		vim.fn.CocActionAsync("showOutline", 1)
+	else
+		vim.fn["coc#window#close"](winID)
+	end
+end, { noremap = true, silent = true })
+
+-- Close document symbol outline if it's the last window.
+-- vim.api.nvim_create_autocmd("BufEnter", {
+-- 	pattern = "*",
+-- 	callback = function(_)
+-- 	vim.cmd([[
+--       if &filetype ==# 'coctree' && winnr('$') == 1
+--         if tabpagenr('$') != 1
+--           close
+--         else
+--           bdelete
+--         endif
+--       endif
+-- 	]])
+-- 	end,
+-- })
 
 g.vim_json_syntax_conceal = 0
 
 vim.cmd("hi link CocSemIdentifer TSVariable")
-
-vim.cmd("hi CocMenuSel ctermbg=237 guibg=#16537e")
+vim.cmd("hi CocMenuSel ctermbg=237 guibg=#042d6e")
+vim.cmd("hi link CocTreeSelected CocMenuSel")
 
 -- Enable clangd if we are not inside a Swift package.
 if vim.fn.filereadable(vim.loop.cwd() .. "/Package.swift") then
