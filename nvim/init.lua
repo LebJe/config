@@ -1,11 +1,10 @@
 require("plugins")
 local settings = require("settings")
+local npairs = require("nvim-autopairs")
 
 function CompletionConfirm()
-	local npairs = require("nvim-autopairs")
-
-	if vim.fn.pumvisible() ~= 0 then
-		return npairs.esc("<cr>")
+	if vim.fn["coc#pum#visible"]() ~= 0 then
+		return vim.fn["coc#pum#confirm"]()
 	else
 		return npairs.autopairs_cr()
 	end

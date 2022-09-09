@@ -32,7 +32,6 @@ Settings.libLLDB = libLLDBSetup()
 
 function Settings.setOptions()
 	local o = vim.o
-	local au = require("au")
 
 	vim.filetype.add({
 		extension = {

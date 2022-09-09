@@ -6,7 +6,7 @@ local M = {}
 -- nvim-autopairs
 function M.nvimAutoPairsSetup()
 	require("nvim-autopairs").setup({
-		map_cr = true,
+		map_cr = false,
 	})
 end
 
@@ -142,11 +142,6 @@ function M.treeSitterSetup()
 			lint_events = { "BufWrite", "CursorHold" },
 		},
 	})
-
-	--vim.cmd([[
-	--	hi clear TSVariable
-	--	hi link TSVariable Identifier
-	--]])
 end
 
 -- nvim-bufferline.lua
@@ -176,6 +171,7 @@ function M.nvimBufferlineSetup()
 			end,
 			show_buffer_icons = true,
 			show_tab_indicators = true,
+			trucate_names = false,
 			enforce_regular_tabs = false,
 			offsets = {
 				{ filetype = "NvimTree", text = "File Explorer", text_align = "center" },

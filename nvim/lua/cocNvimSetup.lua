@@ -51,10 +51,6 @@ endfunction
 ]])
 
 -- Highlight the symbol and its references when holding the cursor.
--- au.CursorHold = function()
--- 	vim.fn.CocActionAsync("highlight")
--- end
-
 vim.api.nvim_create_autocmd("CursorHold", {
 	pattern = "*",
 	callback = function(_)
@@ -68,21 +64,6 @@ U.map("n", "<leader>rn", "<Plug>(coc-rename)", {})
 -- Formatting selected code.
 U.map("x", "<leader>f", "<Plug>(coc-format-selected)", {})
 U.map("n", "<leader>f", "<Plug>(coc-format-selected)", {})
-
--- au.group("CocOverrides", function(grp)
--- 	grp.FileType = {
--- 		"typescript,json",
--- 		function()
--- 			vim.api.nvim_buf_set_option(0, "formatexpr", "CocAction('formatSelected')")
--- 		end,
--- 	}
--- 	grp.User = {
--- 		"CocJumpPlaceholder",
--- 		function()
--- 			vim.fn.CocActionAsync("showSignatureHelp")
--- 		end,
--- 	}
--- end)
 
 local cocOverrides = vim.api.nvim_create_augroup("CocOverrides", { clear = true })
 
