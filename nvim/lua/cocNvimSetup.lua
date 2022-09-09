@@ -1,6 +1,20 @@
 local U = require("utilities")
+local npairs = require("nvim-autopairs")
 local g = vim.g
 
+function CompletionConfirm()
+	if vim.fn["coc#pum#visible"]() ~= 0 then
+		return vim.fn["coc#pum#confirm"]()
+	else
+		return npairs.autopairs_cr()
+	end
+end
+
+-- Make <CR> either accept selected completion item and notify coc.nvim to format, or use nvim-autopairs.
+vim.keymap.set("i", "<CR>", CompletionConfirm, { expr = true, silent = true, noremap = true })
+
+-- Use <c-space> to trigger completion.
+vim.keymap.set("i", "<c-space>", vim.fn["coc#refresh"], { expr = true, silent = true, noremap = true })
 vim.cmd([[
 function! CheckBackspace() abort
 	let col = col('.') - 1
@@ -14,16 +28,6 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-	inoremap <silent><expr> <c-space> coc#refresh()
-else
-	inoremap <silent><expr> <c-@> coc#refresh()
-endif
 ]])
 
 -- Use `[g` and `]g` to navigate diagnostics
@@ -115,12 +119,18 @@ U.map("n", "<C-s>", "<Plug>(coc-range-select)", { silent = true })
 U.map("x", "<C-s>", "<Plug>(coc-range-select)", { silent = true })
 
 -- Add `:Format` command to format current buffer.
-vim.cmd([[command! -nargs=0 Format :call CocAction('format')]])
+vim.api.nvim_create_user_command("Format", function(_)
+	vim.fn.CocAction("format")
+end, { desc = "Format buffer using Language Server" })
 
 -- Add `:Fold` command to fold current buffer.
 vim.cmd([[command! -nargs=? Fold :call CocAction('fold', <f-args>)]])
+--vim.api.nvim_create_user_command("Fold", function(args) vim.fn.CocAction("fold", args.fargs) end, { desc = "fold buffer using Language Server" })
+
 --  Add `:OR` command for organize imports of the current buffer.
-vim.cmd([[command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')]])
+vim.api.nvim_create_user_command("OR", function(_)
+	vim.fn.CocAction("runCommand", "editor.action.organizeImport")
+end, { desc = "Organize import statements" })
 
 -- Mappings for CoCList
 --
