@@ -9,6 +9,19 @@ function M.nvimAutoPairsSetup()
 		map_cr = false,
 	})
 end
+function M.masonToolInstallerSetup()
+	require("mason-tool-installer").setup({
+
+		ensure_installed = {
+			"codelldb",
+		},
+		auto_update = true,
+	})
+end
+
+function M.masonNvimSetup()
+	require("mason").setup()
+end
 
 function M.nvimDapVirtualTextSetup()
 	require("nvim-dap-virtual-text").setup({
@@ -177,6 +190,7 @@ function M.nvimBufferlineSetup()
 				{ filetype = "NvimTree", text = "File Explorer", text_align = "center" },
 				{ filetype = "SidebarNvim", text = "Sidebar", text_align = "center" },
 				{ filetype = "vista", text = "Outline", text_align = "center" },
+				{ filetype = "coctree", text = "CoC Outline", text_align = "center" },
 			},
 		},
 	})

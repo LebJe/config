@@ -149,7 +149,10 @@ Installs [Starship](https://starship.rs).
 -   Mac
 -   Linux
 
-Installs [NPM](https://www.npmjs.com) packages like [`yarn`](https://yarnpkg.com).
+Installs packages available through the [NPM](https://www.npmjs.com) package manager:
+
+-   [`yarn`](https://yarnpkg.com)
+-   [`tree-sitter`](https://github.com/tree-sitter/tree-sitter)
 
 #### `osx.sh`
 
@@ -188,15 +191,6 @@ Replaces application icons with Big Sur style icons.
 -   Linux
 
 Runs [setupOMZ.sh](#setupomzsh), creates `$HOME/.config/nvim/`, and runs `install`.
-
-#### `setupCodeLLDB-Swift.sh`
-
-##### Platforms
-
--   Mac
--   Linux
-
-Copies `CodeLLDB-Swift.json` to `~/.config/nvim/plugged/vimspector/gadgets/macos/.gadgets.d/` or `~/.config/nvim/plugged/vimspector/gadgets/linux/.gadgets.d/` depending on the platform.
 
 #### `setupOMZ.sh`
 

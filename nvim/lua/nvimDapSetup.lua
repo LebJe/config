@@ -418,7 +418,6 @@ function M.addConfigToNvimDap(config)
 end
 
 function M.nvimDapSetup()
-	local dap_install = require("dap-install")
 	local dap = require("dap")
 	dap.set_log_level("TRACE")
 
@@ -431,7 +430,7 @@ function M.nvimDapSetup()
 
 	-- Mappings & Commands
 
-	vim.api.nvim_create_user_command("GenConfig", function(opts)
+	U.userCmd("GenConfig", function(opts)
 		for s in opts.args:gmatch("%S+") do
 			M.genConfig({ s })
 		end
@@ -443,47 +442,59 @@ function M.nvimDapSetup()
 		end,
 	})
 
-	vim.api.nvim_create_user_command("LoadConfig", function(opts)
+	U.userCmd("LoadConfig", function(opts)
 		M.loadConfig(false)
 	end, {
 		desc = "Load a debug config from a `nvim-dap.toml` file in the current directory.",
 	})
 
-	vim.keymap.set("n", "<F5>", function()
+	U.map("n", "<F5>", function()
 		dap.continue()
 	end, { silent = true })
 
-	vim.keymap.set("n", "<leader>dd", function()
+	U.map("n", "<leader>dd", function()
 		dap.disconnect()
 		dap.close()
 		require("dapui").close()
 	end, { silent = true })
 
-	vim.keymap.set("n", "<F8>", function()
+	U.map("n", "<F8>", function()
 		vim.ui.input({ prompt = "Breakpoint Condition: " }, function(input)
 			dap.set_breakpoint(input)
 		end)
 	end, { silent = true })
 
-	vim.keymap.set("n", "<F9>", function()
+	U.map("n", "<F9>", function()
 		dap.toggle_breakpoint()
 	end, { silent = true })
 
-	vim.keymap.set("n", "<F10>", function()
+	U.map("n", "<F10>", function()
 		dap.step_over()
 	end, { silent = true })
 
-	vim.keymap.set("n", "<F11>", function()
+	U.map("n", "<F11>", function()
 		dap.step_into()
 	end, { silent = true })
 
-	vim.keymap.set("n", "<F12>", function()
+	U.map("n", "<F12>", function()
 		dap.step_out()
 	end, { silent = true })
 
 	-- Debuggers
+	dap.adapters.codelldb = {
+		type = "server",
+		port = "1234",
+		executable = {
+			command = "codelldb",
+			args = { "--port", "1234" },
 
-	dap_install.config("codelldb", { configurations = M.cDAPConfig })
+			-- On windows you may have to uncomment this:
+			-- detached = false,
+		},
+	}
+
+	dap.configurations.c = M.cDAPConfig
+	dap.configurations.cpp = M.cDAPConfig
 
 	M.loadConfig(true)
 end

@@ -4,10 +4,17 @@ local U = {
 	--- Name of the configuration file for debugging.
 	nvimDapTOML = ".nvim-dap.toml",
 
-	--- Shorter name
+	--- Shorter name for `vim.keymap.set`
 	--- @type function
-	map = vim.api.nvim_set_keymap,
+	map = vim.keymap.set,
+
+	--- Shorter name for `vim.api.nvim_create_autocmd`
+	--- @type function
 	autocmd = vim.api.nvim_create_autocmd,
+
+	--- Shorter name for `vim.api.nvim_create_user_command`
+	--- @type function
+	userCmd = vim.api.nvim_create_user_command,
 }
 
 --- Runs `program` syncronously and returns its output.

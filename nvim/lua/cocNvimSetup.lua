@@ -13,10 +13,10 @@ Completion.CompletionConfirm = function()
 end
 
 -- Make <CR> either accept selected completion item and notify coc.nvim to format, or use nvim-autopairs.
-vim.keymap.set("i", "<CR>", "v:lua.Completion.CompletionConfirm()", { expr = true, noremap = true })
+U.map("i", "<CR>", "v:lua.Completion.CompletionConfirm()", { expr = true, noremap = true })
 
 -- Use <c-space> to trigger completion.
-vim.keymap.set("i", "<c-space>", vim.fn["coc#refresh"], { expr = true, silent = true, noremap = true })
+U.map("i", "<c-space>", vim.fn["coc#refresh"], { expr = true, silent = true, noremap = true })
 
 vim.cmd([[
 function! CheckBackspace() abort
@@ -58,7 +58,7 @@ endfunction
 ]])
 
 -- Highlight the symbol and its references when holding the cursor.
-vim.api.nvim_create_autocmd("CursorHold", {
+U.autocmd("CursorHold", {
 	pattern = "*",
 	callback = function(_)
 		vim.fn.CocActionAsync("highlight")
@@ -74,7 +74,7 @@ U.map("n", "<leader>f", "<Plug>(coc-format-selected)", {})
 
 local cocOverrides = vim.api.nvim_create_augroup("CocOverrides", { clear = true })
 
-vim.api.nvim_create_autocmd("FileType", {
+U.autocmd("FileType", {
 	pattern = "typescript,json",
 	group = cocOverrides,
 	callback = function(_)
@@ -82,7 +82,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("User", {
+U.autocmd("User", {
 	pattern = "CocJumpPlaceholder",
 	group = cocOverrides,
 	callback = function(_)
@@ -122,7 +122,7 @@ U.map("n", "<C-s>", "<Plug>(coc-range-select)", { silent = true })
 U.map("x", "<C-s>", "<Plug>(coc-range-select)", { silent = true })
 
 -- Add `:Format` command to format current buffer.
-vim.api.nvim_create_user_command("Format", function(_)
+U.userCmd("Format", function(_)
 	vim.fn.CocAction("format")
 end, { desc = "Format buffer using Language Server" })
 
@@ -131,7 +131,7 @@ vim.cmd([[command! -nargs=? Fold :call CocAction('fold', <f-args>)]])
 --vim.api.nvim_create_user_command("Fold", function(args) vim.fn.CocAction("fold", args.fargs) end, { desc = "fold buffer using Language Server" })
 
 --  Add `:OR` command for organize imports of the current buffer.
-vim.api.nvim_create_user_command("OR", function(_)
+U.userCmd("OR", function(_)
 	vim.fn.CocAction("runCommand", "editor.action.organizeImport")
 end, { desc = "Organize import statements" })
 
@@ -162,24 +162,27 @@ U.map("n", "<space>k", ":<C-u>CocPrev<CR>", { noremap = true, silent = true, now
 U.map("n", "<space>p", ":<C-u>CocListResume<CR>", { noremap = true, silent = true, nowait = true })
 
 g.coc_global_extensions = {
-	"coc-json",
-	"coc-yaml",
-	"coc-toml",
-	"coc-tsserver",
-	"coc-html",
-	"coc-css",
 	"coc-clangd",
-	"coc-pyright",
+	"coc-cmake",
+	"coc-css",
 	"coc-go",
-	"coc-snippets",
-	"coc-prettier",
+	"coc-html",
+	"coc-json",
+	"coc-lua",
 	"coc-marketplace",
+	"coc-pyright",
+	"coc-prettier",
+	"coc-rust-analyzer",
+	"coc-snippets",
 	"coc-sh",
 	"coc-stylua",
 	"coc-spell-checker",
-	"coc-rust-analyzer",
-	"coc-lua",
+	"coc-sql",
 	"coc-sourcekit",
+	"coc-symbol-line",
+	"coc-toml",
+	"coc-tsserver",
+	"coc-yaml",
 }
 
 g.coc_default_semantic_highlight_groups = true
@@ -191,14 +194,14 @@ g.coc_snippet_next = "<Tab>"
 g.coc_snippet_prev = "<S-Tab>"
 
 -- Format current buffer using :Prettier.
-vim.api.nvim_create_user_command("Prettier", function(_)
+U.userCmd("Prettier", function(_)
 	vim.cmd("CocCommand prettier.formatFile")
 end, {
 	desc = "Format buffer using Prettier.",
 })
 
--- Open Document Symbol Outline with <C-i>.
-vim.keymap.set("n", "<C-i>", function()
+--- Open CocOutline if it's closed, and close it if it's open.
+function OpenCocOutline()
 	local winID = vim.fn["coc#window#find"]("cocViewId", "OUTLINE")
 
 	if winID == -1 then
@@ -206,10 +209,14 @@ vim.keymap.set("n", "<C-i>", function()
 	else
 		vim.fn["coc#window#close"](winID)
 	end
+end
+-- Open Document Symbol Outline with <C-i>.
+U.map("n", "<C-i>", function()
+	OpenCocOutline()
 end, { noremap = true, silent = true })
 
 -- Close document symbol outline if it's the last window.
--- vim.api.nvim_create_autocmd("BufEnter", {
+-- U.autocmd("BufEnter", {
 -- 	pattern = "*",
 -- 	callback = function(_)
 -- 	vim.cmd([[
@@ -236,3 +243,6 @@ if vim.fn.filereadable(vim.loop.cwd() .. "/Package.swift") then
 else
 	vim.fn["coc#config"]("clangd", { enabled = true })
 end
+
+--vim.o.tabline = '%!v:lua.symbol_line()'
+vim.o.winbar = '%{%get(b:, "coc_symbol_line", "")%}'

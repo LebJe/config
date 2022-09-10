@@ -25,6 +25,7 @@ return require("packer").startup(function(use, use_rocks)
 
 	-- Plugins
 
+	-- Find the enemy and replace them with dark power.
 	use({ "windwp/nvim-spectre" })
 
 	-- One dark and light colorscheme for neovim >= 0.5.0 written in lua based on Atom's One Dark and Light theme. Additionally, it comes with 5 color variant styles
@@ -241,14 +242,31 @@ return require("packer").startup(function(use, use_rocks)
 			},
 
 			-- 🐞 Debug Adapter Protocol manager for Neovi
-			{
-				"Pocco81/dap-buddy.nvim",
-				branch = "dev",
-			},
+			-- {
+			-- 	"Pocco81/dap-buddy.nvim",
+			-- 	branch = "dev",
+			-- },
 		},
 		config = function()
 			require("pluginsSetup").nvimDapUISetup()
 		end,
+	})
+
+	-- Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP servers, DAP servers, linters, and formatters.
+	use({
+		"williamboman/mason.nvim",
+		config = function()
+			require("pluginsSetup").masonNvimSetup()
+		end,
+		requires = {
+			-- Install and upgrade third party tools automatically
+			{
+				"WhoIsSethDaniel/mason-tool-installer.nvim",
+				config = function()
+					require("pluginsSetup").masonToolInstallerSetup()
+				end,
+			},
+		},
 	})
 
 	-- autopairs for neovim written by lua

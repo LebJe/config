@@ -2,6 +2,9 @@ local M = {}
 local feline = require("feline")
 
 -- From https://github.com/glepnir/galaxyline.nvim/blob/d544cb9d0b56f6ef271db3b4c3cf19ef665940d5/lua/galaxyline/provider_diagnostic.lua#L5
+--- Get number of `diagType` diagnostic from CoC.
+--- @param diagType string CoC diagnostic name
+--- @return integer
 local function getCoCDiagnostic(diagType)
 	local has_info, info = pcall(vim.api.nvim_buf_get_var, 0, "coc_diagnostic_info")
 	if not has_info then
@@ -15,6 +18,13 @@ local function getCoCDiagnostic(diagType)
 	end
 
 	return 0
+end
+
+--- @return string
+local function getCocSymbolLine()
+	local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
+	local ok, line = pcall(vim.api.nvim_buf_get_var, bufnr, "coc_symbol_line")
+	return ok and line or ""
 end
 
 -- Left Components
@@ -120,25 +130,13 @@ local gitDiffRemoved = {
 -- Middle Components
 
 local LSPStatus = {
-	provider = function()
-		if vim.g.coc_status == nil or vim.g.coc_status == "" then
-			return "LSP: No status"
-		end
-		return "LSP: " .. vim.g.coc_status
-	end,
-	update = function()
-		return vim.g.coc_status ~= nil or vim.g.coc_status ~= ""
-	end,
+	provider = getCocSymbolLine,
+	update = getCocSymbolLine,
 	enabled = function()
-		return vim.g.coc_status ~= nil or vim.g.coc_status ~= ""
+		local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
+		local ok, _ = pcall(vim.api.nvim_buf_get_var, bufnr, "coc_symbol_line")
+		return ok
 	end,
-	icon = {
-		str = "  ",
-		hl = {
-			fg = "gray",
-			bg = "bg",
-		},
-	},
 	right_sep = {
 		str = "  ",
 		bg = "bg",
