@@ -35,6 +35,8 @@
 	"coc.preferences.excludeImageLinksInMarkdownDocument": false,
 	"coc.preferences.silentAutoupdate": false,
 
+	"inlayHint.refreshOnInsertMode": true,
+
 	"semanticTokens.filetypes": ["*"],
 
 	"list.indicator": "➤",

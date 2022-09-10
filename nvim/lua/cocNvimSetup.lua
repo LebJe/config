@@ -2,7 +2,9 @@ local U = require("utilities")
 local npairs = require("nvim-autopairs")
 local g = vim.g
 
-function CompletionConfirm()
+_G.Completion = {}
+
+Completion.CompletionConfirm = function()
 	if vim.fn["coc#pum#visible"]() ~= 0 then
 		return vim.fn["coc#pum#confirm"]()
 	else
@@ -11,10 +13,11 @@ function CompletionConfirm()
 end
 
 -- Make <CR> either accept selected completion item and notify coc.nvim to format, or use nvim-autopairs.
-vim.keymap.set("i", "<CR>", CompletionConfirm, { expr = true, silent = true, noremap = true })
+vim.keymap.set("i", "<CR>", "v:lua.Completion.CompletionConfirm()", { expr = true, noremap = true })
 
 -- Use <c-space> to trigger completion.
 vim.keymap.set("i", "<c-space>", vim.fn["coc#refresh"], { expr = true, silent = true, noremap = true })
+
 vim.cmd([[
 function! CheckBackspace() abort
 	let col = col('.') - 1
@@ -172,6 +175,7 @@ g.coc_global_extensions = {
 	"coc-prettier",
 	"coc-marketplace",
 	"coc-sh",
+	"coc-stylua",
 	"coc-spell-checker",
 	"coc-rust-analyzer",
 	"coc-lua",

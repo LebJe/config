@@ -273,9 +273,6 @@ return require("packer").startup(function(use, use_rocks)
 		end,
 	})
 
-	-- A Vim plugin that always highlights the enclosing html/xml tags.
-	use({ "Valloric/MatchTagAlways" })
-
 	-- Utilities
 
 	-- Find, Filter, Preview, Pick. All lua, all the time.
