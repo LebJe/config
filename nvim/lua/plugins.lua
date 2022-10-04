@@ -66,6 +66,7 @@ return require("packer").startup(function(use, use_rocks)
 	-- UI Component Library for Neovim.
 	use({ "MunifTanjim/nui.nvim" })
 
+	-- Neovim plugin to improve the default vim.ui interfaces
 	use({ "stevearc/dressing.nvim" })
 
 	-- UI - Search
@@ -78,6 +79,7 @@ return require("packer").startup(function(use, use_rocks)
 		end,
 	})
 
+	-- Hlsearch Lens for Neovim
 	use({
 		"kevinhwang91/nvim-hlslens",
 		config = function()
@@ -193,6 +195,7 @@ return require("packer").startup(function(use, use_rocks)
 	-- Treesitter playground integrated into Neovim
 	use({ "nvim-treesitter/playground" })
 
+	-- Rainbow parentheses for neovim using tree-sitter.
 	use({
 		"p00f/nvim-ts-rainbow",
 		config = function()

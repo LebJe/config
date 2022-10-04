@@ -12,26 +12,30 @@ Completion.CompletionConfirm = function()
 	end
 end
 
+function Completion.CheckBackspace()
+	local col = vim.fn.col(".") - 1
+	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+end
+
 -- Make <CR> either accept selected completion item and notify coc.nvim to format, or use nvim-autopairs.
-U.map("i", "<CR>", "v:lua.Completion.CompletionConfirm()", { expr = true, noremap = true })
+U.map("i", "<CR>", Completion.CompletionConfirm, { expr = true, noremap = true, replace_keycodes = false })
 
 -- Use <c-space> to trigger completion.
 U.map("i", "<c-space>", vim.fn["coc#refresh"], { expr = true, silent = true, noremap = true })
 
-vim.cmd([[
-function! CheckBackspace() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Insert <tab> when previous text is space, refresh completion if not.
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-]])
+-- Insert <tab> when previous text is space, refresh completion if not.
+U.map(
+	"i",
+	"<TAB>",
+	'coc#pum#visible() ? coc#pum#next(1) : v:lua.Completion.CheckBackspace() ? "<TAB>" : coc#refresh()',
+	{ silent = true, noremap = true, expr = true, replace_keycodes = false }
+)
+U.map(
+	"i",
+	"<S-TAB>",
+	[[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]],
+	{ silent = true, noremap = true, expr = true, replace_keycodes = false }
+)
 
 -- Use `[g` and `]g` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -45,17 +49,16 @@ U.map("n", "gi", "<Plug>(coc-implementation)", { silent = true })
 U.map("n", "gr", "<Plug>(coc-references)", { silent = true })
 
 -- Use K to show documentation in preview window.
-U.map("n", "K", ":call ShowDocumentation()<CR>", { noremap = true, silent = true })
-
-vim.cmd([[
-function! ShowDocumentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
+U.map("n", "K", function()
+	local cw = vim.fn.expand("<cword>")
+	if vim.fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
+		vim.api.nvim_command("h " .. cw)
+	elseif vim.api.nvim_eval("coc#rpc#ready()") then
+		vim.fn.CocActionAsync("doHover")
 	else
-		call CocAction('doHover')
-	endif
-endfunction
-]])
+		vim.api.nvim_command("!" .. vim.o.keywordprg .. " " .. cw)
+	end
+end, { noremap = true, silent = true })
 
 -- Highlight the symbol and its references when holding the cursor.
 U.autocmd("CursorHold", {
@@ -63,6 +66,7 @@ U.autocmd("CursorHold", {
 	callback = function(_)
 		vim.fn.CocActionAsync("highlight")
 	end,
+	desc = "Highlight the symbol and its references when holding the cursor.",
 })
 
 -- Symbol renaming.
@@ -127,7 +131,8 @@ U.userCmd("Format", function(_)
 end, { desc = "Format buffer using Language Server" })
 
 -- Add `:Fold` command to fold current buffer.
-vim.cmd([[command! -nargs=? Fold :call CocAction('fold', <f-args>)]])
+U.userCmd("Fold", "call CocAction('fold', <f-args>)", { nargs = "?", desc = "fold buffer using Language Server" })
+
 --vim.api.nvim_create_user_command("Fold", function(args) vim.fn.CocAction("fold", args.fargs) end, { desc = "fold buffer using Language Server" })
 
 --  Add `:OR` command for organize imports of the current buffer.
@@ -178,20 +183,21 @@ g.coc_global_extensions = {
 	"coc-stylua",
 	"coc-spell-checker",
 	"coc-sql",
-	"coc-sourcekit",
+	--"coc-sourcekit",
+	"https://github.com/LebJe/coc-sourcekit",
 	"coc-symbol-line",
 	"coc-toml",
 	"coc-tsserver",
 	"coc-yaml",
 }
 
-g.coc_default_semantic_highlight_groups = true
+vim.g.coc_default_semantic_highlight_groups = true
 
 -- Use <Tab> for jump to next placeholder, it's default of coc.nvim
-g.coc_snippet_next = "<Tab>"
+vim.g.coc_snippet_next = "<Tab>"
 
 -- Use <S-Tab> for jump to previous placeholder, it's default of coc.nvim
-g.coc_snippet_prev = "<S-Tab>"
+vim.g.coc_snippet_prev = "<S-Tab>"
 
 -- Format current buffer using :Prettier.
 U.userCmd("Prettier", function(_)
@@ -236,13 +242,24 @@ g.vim_json_syntax_conceal = 0
 vim.cmd("hi link CocSemIdentifer TSVariable")
 vim.cmd("hi CocMenuSel ctermbg=237 guibg=#042d6e")
 vim.cmd("hi link CocTreeSelected CocMenuSel")
+vim.cmd("hi link CocInlayHintParameter CocSemString")
 
--- Enable clangd if we are not inside a Swift package.
-if vim.fn.filereadable(vim.loop.cwd() .. "/Package.swift") then
-	vim.fn["coc#config"]("clangd", { enabled = false })
-else
-	vim.fn["coc#config"]("clangd", { enabled = true })
-end
+local enableLS = vim.api.nvim_create_augroup("EnableLS", { clear = true })
+
+U.autocmd("BufEnter", {
+	pattern = "*",
+	group = enableLS,
+	callback = function(_)
+		-- Enable clangd if we are not inside a Swift package or editing a swift file, otherwise, enable SourceKit-LSP.
+		if vim.fn.filereadable(vim.loop.cwd() .. "/Package.swift") == 1 or vim.fn.expand("%:e") == "swift" then
+			vim.fn["coc#config"]("sourcekit", { enabled = true })
+			vim.fn["coc#config"]("clangd", { enabled = false })
+		else
+			vim.fn["coc#config"]("clangd", { enabled = true })
+			vim.fn["coc#config"]("sourcekit", { enabled = false })
+		end
+	end,
+})
 
 --vim.o.tabline = '%!v:lua.symbol_line()'
 vim.o.winbar = '%{%get(b:, "coc_symbol_line", "")%}'

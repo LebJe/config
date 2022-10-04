@@ -1,10 +1,8 @@
 #!/bin/bash
 
-echo "Enabling Touch ID Authentication, you'll be asked for your password..."
+echo "Enabling Touch ID Authentication, make sure you run this script with \`sudo\`!"
 
 # Authenticate using Touch ID for `sudo`.
-sudo su -
+echo \"auth       sufficient     pam_tid.so\n$(cat /etc/pam.d/sudo)\" > /etc/pam.d/sudo
 
-echo "auth       sufficient     pam_tid.so\n$(cat /etc/pam.d/sudo)" > /etc/pam.d/sudo
 
-exit

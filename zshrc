@@ -85,17 +85,12 @@ alias nvim-cNvimDAP="nvim ~/.config/nvim/lua/nvimDapSetup.lua"
 alias nvim-cCocNvim="nvim ~/.config/nvim/lua/cocNvimSetup.lua"
 alias nvim-cStatusBar="nvim ~/.config/nvim/lua/felineSetup.lua"
 
-
 alias bat="bat --pager=\"less -FRS\" --theme \"TwoDark\""
 alias ts="tree-sitter"
 alias sba="swift build --arch x86_64 && swift build --arch arm64"
 alias sbdr="swift build -c debug && swift build -c release"
 
-# fpath
-
-fpath=($HOME/.zsh $fpath)
-fpath=($(brew --prefix)/share/zsh/site-functions/ $fpath)
-fpath=($HOME/.zsh/completion $fpath)
+alias luamake=/Users/lebje/luamake/luamake
 
 export PATH="/usr/local/opt/m4/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
@@ -127,17 +122,21 @@ export LIBRARY_PATH="/usr/local/lib:/Users/lebje/homebrew/lib"
 
 export FZF_DEFAULT_COMMAND="fd"
 
+# fpath
+
+fpath=($HOME/.zsh $fpath)
+fpath=($(brew --prefix)/share/zsh/site-functions/ $fpath)
+fpath=($HOME/.zsh/completion $fpath)
+
 autoload -U compinit
 compinit
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-test -e ~/.iterm2_shell_integration.zsh && source ~/.iterm2_shell_integration.zsh || true
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C ~/homebrew/bin/bit bit
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+eval "$(atuin init zsh)"
 
 # ZSH Customization
 HISTFILE="$HOME/.zsh_history"
@@ -157,11 +156,9 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 export SAVEHIST=$HISTSIZE
 
+test -e ~/.iterm2_shell_integration.zsh && source ~/.iterm2_shell_integration.zsh || true
 
-alias luamake=/Users/lebje/luamake/luamake
-
-eval "$(atuin init zsh)"
-
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Fig post block. Keep at the bottom of this file.
 [ -s $HOME/.fig/shell/zshrc.post.zsh ] &&
 

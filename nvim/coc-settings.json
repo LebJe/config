@@ -3,7 +3,6 @@
 
 	// Swift
 	"sourcekit.trace.server": "verbose",
-	"sourcekit.enable": true,
 	"sourcekit.env": { "TOOLCHAINS": "swift" },
 	"sourcekit.args": ["--log-level", "info"],
 
@@ -29,15 +28,19 @@
 	"rust-analyzer.inlayHints.renderColons": true,
 
 	"coc.preferences.jumpCommand": "edit",
+	"coc.preferences.maxFileSize": "1GB",
+
 	//"coc.preferences.formatOnSaveFiletypes": ["*"],
 	"coc.preferences.extensionUpdateCheck": "daily",
 	"coc.preferences.enableMessageDialog": true,
 	"coc.preferences.excludeImageLinksInMarkdownDocument": false,
 	"coc.preferences.silentAutoupdate": false,
 
+	"notification.statusLineProgress": false,
+
 	"inlayHint.refreshOnInsertMode": true,
 
-	"semanticTokens.filetypes": ["*"],
+	"semanticTokens.enable": true,
 
 	"list.indicator": "➤",
 
@@ -62,17 +65,16 @@
 	"outline.detailAsDescription": true,
 	"outline.previewBorderRounded": true,
 
-	"suggest.virtualText": true,
+	"suggest.virtualText": false,
 	"suggest.reversePumAboveCursor": true,
 	"suggest.pumFloatConfig": {
 		"border": true,
-		"shadow": true,
+		//"shadow": true,
 		"rounded": true
 	},
 	"suggest.removeDuplicateItems": true,
 	"suggest.detailField": "preview",
-	"suggest.detailMaxLength": 100,
-	"suggest.floatConfig": { "rounded": true, "border": true, "shadow": true },
+	"suggest.labelMaxLength": 300,
 
 	"hover.floatConfig": { "border": true, "shadow": true },
 	"signature.floatConfig": { "border": true, "shadow": true },

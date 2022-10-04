@@ -36,11 +36,6 @@ function Settings.setOptions()
 	vim.filetype.add({
 		extension = {
 			scm = "query",
-		},
-	})
-
-	vim.filetype.add({
-		extension = {
 			geojson = "json",
 		},
 	})
@@ -57,9 +52,6 @@ function Settings.setOptions()
 	o.cursorline = true
 	o.encoding = "utf8"
 	o.cmdheight = 2
-
-	vim.g.do_filetype_lua = 1
-	vim.g.did_load_filetypes = 0
 
 	vim.cmd([[
 	set shortmess+=nc
@@ -95,14 +87,3 @@ function Settings.setKeymaps()
 end
 
 return Settings
-
--- minimap.vim config
--- let g:minimap_width = 20
--- let g:minimap_git_colors = 1
--- hi MinimapCurrentLine ctermfg=Green guifg=#50FA7B guibg=#32302f
--- let g:minimap_highlight = 'MinimapCurrentLine'
--- let g:minimap_block_filetypes = ['coc-explorer']
--- let g:minimap_block_buftypes = ['nofile', 'nowrite', 'quickfix', 'terminal', 'prompt', 'coc-explorer']
--- let g:minimap_close_filetypes = ['startify', 'netrw', 'vim-plug', 'coc-explorer']
---
--- let g:minimap_auto_start = 0
