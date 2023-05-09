@@ -27,7 +27,7 @@ U.map("i", "<c-space>", vim.fn["coc#refresh"], { expr = true, silent = true, nor
 U.map(
 	"i",
 	"<TAB>",
-	'coc#pum#visible() ? coc#pum#next(1) : v:lua.Completion.CheckBackspace() ? "<TAB>" : coc#refresh()',
+	'coc#pum#visible() ? coc#pum#next(1) : "<TAB>"',
 	{ silent = true, noremap = true, expr = true, replace_keycodes = false }
 )
 U.map(
@@ -185,13 +185,13 @@ g.coc_global_extensions = {
 	"coc-sql",
 	--"coc-sourcekit",
 	"https://github.com/LebJe/coc-sourcekit",
-	"coc-symbol-line",
+	--"coc-symbol-line",
 	"coc-toml",
 	"coc-tsserver",
 	"coc-yaml",
 }
 
-vim.g.coc_default_semantic_highlight_groups = true
+--vim.g.coc_default_semantic_highlight_groups = true
 
 -- Use <Tab> for jump to next placeholder, it's default of coc.nvim
 vim.g.coc_snippet_next = "<Tab>"
@@ -238,11 +238,17 @@ end, { noremap = true, silent = true })
 -- })
 
 g.vim_json_syntax_conceal = 0
+g.coc_default_semantic_highlight_groups = 1
 
-vim.cmd("hi link CocSemIdentifer TSVariable")
-vim.cmd("hi CocMenuSel ctermbg=237 guibg=#042d6e")
-vim.cmd("hi link CocTreeSelected CocMenuSel")
-vim.cmd("hi link CocInlayHintParameter CocSemString")
+-- Highlights
+vim.api.nvim_set_hl(0, "@variable", { fg = "#47959e" })
+vim.api.nvim_set_hl(0, "CocInlayHintParameter", { fg = "#72b83d" })
+vim.api.nvim_set_hl(0, "CocMenuSel", { bg = "#042d6e", ctermbg = 237 })
+
+vim.api.nvim_set_hl(0, "CocSemIdentifier", { link = "@variable" })
+--vim.api.nvim_set_hl(0, "CocSemStruct", { link = "CocSemType" })
+vim.api.nvim_set_hl(0, "CocSemOperator", { link = "CocSemFunction" })
+vim.api.nvim_set_hl(0, "CocTreeSelected", { link = "CocMenuSel" })
 
 local enableLS = vim.api.nvim_create_augroup("EnableLS", { clear = true })
 
@@ -262,4 +268,4 @@ U.autocmd("BufEnter", {
 })
 
 --vim.o.tabline = '%!v:lua.symbol_line()'
-vim.o.winbar = '%{%get(b:, "coc_symbol_line", "")%}'
+--vim.o.winbar = '%{%get(b:, "coc_symbol_line", "")%}'

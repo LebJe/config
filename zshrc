@@ -1,7 +1,5 @@
 # Fig pre block. Keep at the top of this file.
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-# Fig pre block. Keep at the top of this file.
-[ -s $HOME/.fig/shell/zshrc.pre.zsh ] && # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -73,8 +71,8 @@ iBrew() {
 }
 
 # Aliases
-alias ls="exa -lah --git --icons"
-alias lsl="ls -mugU --octal-permissions"
+alias ls="lsd --blocks=permission,user,size,date,name -a -F -l --header"
+#alias lsl="ls -mugU --octal-permissions"
 alias weather="curl wttr.in"
 alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
 alias nvim-init="nvim ~/config/nvim/init.lua"
@@ -96,7 +94,6 @@ export PATH="/usr/local/opt/m4/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/opt/python@3.9/bin:$PATH"
-#export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="/Users/lebje/homebrew/bin:$PATH"
 export PATH="/Users/lebje/homebrew/opt/icu4c/bin:$PATH"
 export PATH="/Users/lebje/homebrew/opt/icu4c/sbin:$PATH"
@@ -104,7 +101,7 @@ export PATH="/Users/lebje/homebrew/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/lib/python3.9/site-packages/:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 export PATH="/usr/local/opt/binutils/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/Users/lebje/homebrew/opt/llvm/bin:$PATH"
 export PATH="$HOME/Programs/sourcekit-lsp/.build/release/sourcekit-lsp:$PATH"
 export PATH="$HOME/tree-sitter/target/release/:$PATH"
 
@@ -159,8 +156,6 @@ export SAVEHIST=$HISTSIZE
 test -e ~/.iterm2_shell_integration.zsh && source ~/.iterm2_shell_integration.zsh || true
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# Fig post block. Keep at the bottom of this file.
-[ -s $HOME/.fig/shell/zshrc.post.zsh ] &&
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

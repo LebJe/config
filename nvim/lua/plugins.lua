@@ -83,6 +83,8 @@ return require("packer").startup(function(use, use_rocks)
 	use({
 		"kevinhwang91/nvim-hlslens",
 		config = function()
+			require("hlslens").setup()
+
 			vim.api.nvim_set_keymap(
 				"n",
 				"n",
@@ -211,7 +213,7 @@ return require("packer").startup(function(use, use_rocks)
 
 	-- LSP and DAP Clients
 
-	-- Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode.
+	-- Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers.
 	use({
 		"neoclide/coc.nvim",
 		branch = "master",

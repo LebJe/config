@@ -2,6 +2,7 @@
 	// Plugins
 
 	// Swift
+	"sourcekit.enable": false,
 	"sourcekit.trace.server": "verbose",
 	"sourcekit.env": { "TOOLCHAINS": "swift" },
 	"sourcekit.args": ["--log-level", "info"],
@@ -13,28 +14,41 @@
 
 	// Lua
 	"Lua.hint.enable": true,
-	"Lua.telemetry.enable": false,
 	"Lua.completion.callSnippet": "Both",
-	"Lua.color.mode": "Semantic",
+	"Lua.codeLens.enable": true,
 	"Lua.workspace.library": ["~/.local/share/nvim/site/pack/packer/start/"],
+
+	// Typescript & Javascript
+	"typescript.inlayHints.variableTypes.enabled": true,
+	"typescript.inlayHints.parameterNames.enabled": "all",
+	"typescript.inlayHints.enumMemberValues.enabled": true,
+	"typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+
+	"javascript.inlayHints.variableTypes.enabled": true,
+	"javascript.inlayHints.parameterNames.enabled": "all",
+	"javascript.inlayHints.parameterTypes.enabled": true,
+	"javascript.inlayHints.enumMemberValues.enabled": true,
+	"javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+	"javascript.inlayHints.propertyDeclarationTypes.enabled": true,
 
 	// TOML
 	"toml.semanticTokens": true,
 
 	// Rust
 
-	"rust-analyzer.inlayHints.enable": true,
 	"rust-analyzer.inlayHints.maxLength": null,
 	"rust-analyzer.inlayHints.renderColons": true,
 
 	"coc.preferences.jumpCommand": "edit",
 	"coc.preferences.maxFileSize": "1GB",
-
 	//"coc.preferences.formatOnSaveFiletypes": ["*"],
 	"coc.preferences.extensionUpdateCheck": "daily",
 	"coc.preferences.enableMessageDialog": true,
 	"coc.preferences.excludeImageLinksInMarkdownDocument": false,
 	"coc.preferences.silentAutoupdate": false,
+
+	"links.tooltip": true,
+	"links.highlight": true,
 
 	"notification.statusLineProgress": false,
 
@@ -51,8 +65,14 @@
 
 	"diagnostic.refreshOnInsertMode": true,
 	"diagnostic.virtualText": true,
-	"diagnostic.virtualTextCurrentLineOnly": true,
-	"diagnostic.floatConfig": { "border": true, "shadow": true },
+	"diagnostic.virtualTextFormat": "%message",
+	"diagnostic.virtualTextCurrentLineOnly": false,
+	"diagnostic.floatConfig": {
+		"border": true,
+		"shadow": true,
+		"maxWidth": 200,
+		"maxHeight": 200
+	},
 
 	"codeLens.enable": true,
 	"codeLens.separator": "‣",
@@ -60,10 +80,11 @@
 
 	"outline.autoWidth": true,
 	"outline.followCursor": true,
-	"outline.autoPreview": true,
+	"outline.autoPreview": false,
 	"outline.showLineNumber": true,
 	"outline.detailAsDescription": true,
 	"outline.previewBorderRounded": true,
+	"outline.expandLevel": 0,
 
 	"suggest.virtualText": false,
 	"suggest.reversePumAboveCursor": true,
@@ -76,35 +97,36 @@
 	"suggest.detailField": "preview",
 	"suggest.labelMaxLength": 300,
 
-	"hover.floatConfig": { "border": true, "shadow": true },
+	"hover.floatConfig": { "border": true, "shadow": true, "maxWidth": 0 },
 	"signature.floatConfig": { "border": true, "shadow": true },
 
 	"suggest.completionItemKindLabels": {
-		"text": "",
-		"method": "",
-		"function": "",
-		"field": "ﰠ",
-		"variable": "",
 		"class": "ﴯ",
-		"interface": "",
-		"module": "",
-		"property": "ﰠ",
-		"unit": "塞",
-		"value": "",
+		"color": "",
+		"constant": "",
+		"constructor": "",
+		"default": "",
 		"enum": "",
 		"enumMember": "",
-		"keyword": "",
-		"snippet": "",
-		"color": "",
+		"event": "",
+		"field": "ﰠ",
 		"file": "",
 		"folder": "",
-		"reference": "",
-		"constant": "",
-		"struct": "פּ",
-		"event": "",
+		"function": "",
+		"interface": "",
+		"keyword": "",
+		"method": "",
+		"module": "",
 		"operator": "",
-		"typeParameter": "\uf728",
-		"default": ""
+		"property": "ﰠ",
+		"reference": "",
+		"snippet": "",
+		"struct": "פּ",
+		"text": "",
+		"typeParameter": "<>",
+		"unit": "塞",
+		"value": "",
+		"variable": ""
 	},
 
 	"cSpell.userWords": [

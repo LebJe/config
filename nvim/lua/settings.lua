@@ -59,7 +59,7 @@ function Settings.setOptions()
 	set guicursor+=a:blinkon100
 
 	if has("patch-8.1.1564")	
-		set signcolumn=number
+		set signcolumn=yes
 	else
 		set signcolumn=yes
 	endif

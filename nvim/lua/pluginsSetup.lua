@@ -66,7 +66,9 @@ end
 
 -- GitSigns
 function M.gitSignsSetup()
-	require("gitsigns").setup({
+	local gitsigns = require("gitsigns")
+
+	gitsigns.setup({
 		current_line_blame_opts = { delay = 100 },
 		current_line_blame = true,
 		sign_priority = 100,
@@ -103,6 +105,8 @@ function M.gitSignsSetup()
 			},
 		},
 	})
+
+	U.map("n", "<leader>hp", gitsigns.preview_hunk)
 end
 
 -- TreeSitter
@@ -225,13 +229,20 @@ function M.nvimTreeSetup()
 		diagnostics = {
 			enable = true,
 		},
-		open_on_setup = true,
 		update_cwd = true,
 		renderer = {
 			highlight_git = true,
 			highlight_opened_files = "2",
 			indent_markers = { enable = false },
-			special_files = { "README.md", "Package.swift", "Cargo.toml", "package.json", "Makefile", "MAKEFILE" },
+			special_files = {
+				"README.md",
+				"Package.swift",
+				"Cargo.toml",
+				"package.json",
+				"go.mod",
+				"Makefile",
+				"MAKEFILE",
+			},
 			icons = {
 				show = {
 					file = true,
@@ -249,7 +260,7 @@ function M.nvimTreeSetup()
 		filters = {
 			dotfiles = false,
 			custom = {
-				".git",
+				".git$",
 				"node_modules",
 				".cache",
 				".build",
@@ -260,6 +271,22 @@ function M.nvimTreeSetup()
 			--ignore = true,
 		},
 	})
+
+	local function open(data)
+		-- buffer is a directory
+		local directory = vim.fn.isdirectory(data.file) == 1
+
+		if not directory then
+			return
+		end
+
+		-- open the tree
+		require("nvim-tree.api").tree.open()
+	end
+
+	-- Open at startup
+	U.autocmd({ "VimEnter" }, { callback = open })
+
 	-- Open file tree with <C-n>.
 	U.map("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true })
 
