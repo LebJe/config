@@ -8,7 +8,7 @@ local feline = require("feline")
 local function getCoCDiagnostic(diagType)
 	local has_info, info = pcall(vim.api.nvim_buf_get_var, 0, "coc_diagnostic_info")
 	if not has_info then
-		return "0"
+		return 0
 	end
 
 	if info[diagType] ~= nil and type(info[diagType]) == "number" then

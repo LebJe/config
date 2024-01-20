@@ -488,7 +488,7 @@ function M.nvimDapSetup()
 			command = "codelldb",
 			args = { "--port", "1234" },
 
-			-- On windows you may have to uncomment this:
+			-- On Windows you may have to uncomment this:
 			-- detached = false,
 		},
 	}

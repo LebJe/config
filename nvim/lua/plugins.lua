@@ -173,10 +173,18 @@ return require("packer").startup(function(use, use_rocks)
 	use({ "editorconfig/editorconfig-vim" })
 
 	-- A file explorer tree for neovim written in lua
+	-- use({
+	-- 	"kyazdani42/nvim-tree.lua",
+	-- 	config = function()
+	-- 		require("pluginsSetup").nvimTreeSetup()
+	-- 	end,
+	-- })
+
 	use({
-		"kyazdani42/nvim-tree.lua",
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
 		config = function()
-			require("pluginsSetup").nvimTreeSetup()
+			require("pluginsSetup").neoTreeSetup()
 		end,
 	})
 
@@ -199,13 +207,24 @@ return require("packer").startup(function(use, use_rocks)
 
 	-- Rainbow parentheses for neovim using tree-sitter.
 	use({
-		"p00f/nvim-ts-rainbow",
+		"HiPhish/nvim-ts-rainbow2",
 		config = function()
+			local rainbow = require("ts-rainbow")
 			require("nvim-treesitter.configs").setup({
 				rainbow = {
-					enable = true,
-					extended_mode = true,
-					max_file_lines = nil,
+					query = {
+						"rainbow-parens",
+					},
+					strategy = rainbow.strategy.global,
+					hlgroups = {
+						"TSRainbowRed",
+						"TSRainbowYellow",
+						"TSRainbowBlue",
+						"TSRainbowOrange",
+						"TSRainbowGreen",
+						"TSRainbowViolet",
+						"TSRainbowCyan",
+					},
 				},
 			})
 		end,
@@ -217,7 +236,7 @@ return require("packer").startup(function(use, use_rocks)
 	use({
 		"neoclide/coc.nvim",
 		branch = "master",
-		run = "yarn install --frozen-lockfile",
+		run = "npm ci",
 		config = function()
 			require("cocNvimSetup")
 		end,

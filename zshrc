@@ -83,6 +83,7 @@ alias nvim-cNvimDAP="nvim ~/.config/nvim/lua/nvimDapSetup.lua"
 alias nvim-cCocNvim="nvim ~/.config/nvim/lua/cocNvimSetup.lua"
 alias nvim-cStatusBar="nvim ~/.config/nvim/lua/felineSetup.lua"
 
+alias python="python3"
 alias bat="bat --pager=\"less -FRS\" --theme \"TwoDark\""
 alias ts="tree-sitter"
 alias sba="swift build --arch x86_64 && swift build --arch arm64"
@@ -90,18 +91,20 @@ alias sbdr="swift build -c debug && swift build -c release"
 
 alias luamake=/Users/lebje/luamake/luamake
 
+export BREW_DIR="$(brew --prefix)"
+
 export PATH="/usr/local/opt/m4/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/opt/python@3.9/bin:$PATH"
-export PATH="/Users/lebje/homebrew/bin:$PATH"
-export PATH="/Users/lebje/homebrew/opt/icu4c/bin:$PATH"
-export PATH="/Users/lebje/homebrew/opt/icu4c/sbin:$PATH"
-#export PATH="/Users/lebje/homebrew/opt/llvm/bin:$PATH"
+export PATH="$BREW_DIR/bin:$PATH"
+export PATH="$BREW_DIR/opt/icu4c/bin:$PATH"
+export PATH="#BREW_DIR/opt/icu4c/sbin:$PATH"
+#export PATH="$BREW_DIR/opt/llvm/bin:$PATH"
 export PATH="/usr/local/lib/python3.9/site-packages/:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 export PATH="/usr/local/opt/binutils/bin:$PATH"
-export PATH="/Users/lebje/homebrew/opt/llvm/bin:$PATH"
+export PATH="$BREW_DIR/opt/llvm/bin:$PATH"
 export PATH="$HOME/Programs/sourcekit-lsp/.build/release/sourcekit-lsp:$PATH"
 export PATH="$HOME/tree-sitter/target/release/:$PATH"
 
@@ -109,13 +112,15 @@ export EDITOR="nvim"
 
 export GPG_TTY=$(tty)
 
-export LDFLAGS="-L/Users/lebje/homebrew/lib"
-export CPPFLAGS="-I/Users/lebje/homebrew/include"
-export CFLAGS="-I/Users/lebje/homebrew/include"
+export LDFLAGS="-L$BREW_DIR/lib"
+export CPPFLAGS="-I$BREW_DIR/include"
+export CFLAGS="-I$BREW_DIR/include"
 
-export CPATH="/usr/local/include:/Users/lebje/homebrew/include"
-export C_INCLUDE_PATH="/usr/local/include:/Users/lebje/homebrew/include"
-export LIBRARY_PATH="/usr/local/lib:/Users/lebje/homebrew/lib"
+export CPATH="/usr/include:/usr/local/include:$BREW_DIR"
+export C_INCLUDE_PATH="/usr/include:/usr/local/include:$BREW_DIR/include"
+export CPLUS_INCLUDE_PATH="/usr/include:/usr/local/include:$BREW_DIR/include"
+export CPP_INCLUDE_PATH="/usr/include:/usr/local/include:$BREW_DIR/include"
+export LIBRARY_PATH="/usr/lib:/usr/local/lib:$BREW_DIR/lib"
 
 export FZF_DEFAULT_COMMAND="fd"
 
@@ -129,7 +134,7 @@ autoload -U compinit
 compinit
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C ~/homebrew/bin/bit bit
+complete -o nospace -C $BREW_DIR/bin/bit bit
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
@@ -159,3 +164,5 @@ test -e ~/.iterm2_shell_integration.zsh && source ~/.iterm2_shell_integration.zs
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+[[ "$TERM_PROGRAM" == "CodeEditApp_Terminal" ]] && . "/Applications/CodeEdit.app/Contents/Resources/codeedit_shell_integration.zsh"

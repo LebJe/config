@@ -131,6 +131,7 @@ function M.treeSitterSetup()
 			"typescript",
 			"query",
 			"yaml",
+			"vimdoc",
 		},
 		highlight = { enable = true },
 	})
@@ -192,6 +193,7 @@ function M.nvimBufferlineSetup()
 			enforce_regular_tabs = false,
 			offsets = {
 				{ filetype = "NvimTree", text = "File Explorer", text_align = "center" },
+				{ filetype = "neo-tree", text = "File Explorer", text_align = "center" },
 				{ filetype = "SidebarNvim", text = "Sidebar", text_align = "center" },
 				{ filetype = "vista", text = "Outline", text_align = "center" },
 				{ filetype = "coctree", text = "CoC Outline", text_align = "center" },
@@ -220,7 +222,44 @@ function M.indentBlankLineSetup()
 	g.indentLine_char = "▏"
 	g.indent_blankline_buftype_exclude = { "terminal" }
 
-	require("indent_blankline").setup({ space_char_blankline = " " })
+	require("ibl").setup({ indent = { char = "▏" } })
+	--require("indent_blankline").setup({ space_char_blankline = " " })
+end
+
+function M.neoTreeSetup()
+	require("neo-tree").setup({
+		close_if_last_window = true,
+		popup_border_style = "rounded",
+		default_component_configs = {
+			modified = {
+				symbol = "",
+			},
+
+			window = {
+				position = "left",
+				width = 64,
+			},
+
+			filesystem = {
+				filtered_items = {
+					visible = true,
+					hide_dotfiles = false,
+					hide_gitignored = false,
+					force_visible_in_empty_folder = true,
+				},
+				use_libuv_file_watcher = true,
+			},
+
+			file_size = {
+				enabled = true,
+			},
+
+			follow_current_file = true,
+			use_libuv_file_watcher = true,
+		},
+	})
+
+	U.map("n", "<C-n>", ":Neotree toggle filesystem left<CR>", { noremap = true })
 end
 
 -- nvim-tree.lua
@@ -285,15 +324,15 @@ function M.nvimTreeSetup()
 	end
 
 	-- Open at startup
-	U.autocmd({ "VimEnter" }, { callback = open })
+	-- U.autocmd({ "VimEnter" }, { callback = open })
 
-	-- Open file tree with <C-n>.
-	U.map("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true })
+	-- -- Open file tree with <C-n>.
+	-- U.map("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true })
 
-	-- Close tab/nvim when NvimTree is the last window open.
-	vim.cmd(
-		[[ autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif ]]
-	)
+	-- -- Close tab/nvim when NvimTree is the last window open.
+	-- vim.cmd(
+	-- 	[[ autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif ]]
+	-- )
 end
 
 function M.sidebarNvimConfig()

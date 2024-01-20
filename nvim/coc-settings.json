@@ -2,7 +2,7 @@
 	// Plugins
 
 	// Swift
-	"sourcekit.enable": false,
+	"sourcekit.enable": true,
 	"sourcekit.trace.server": "verbose",
 	"sourcekit.env": { "TOOLCHAINS": "swift" },
 	"sourcekit.args": ["--log-level", "info"],
@@ -16,6 +16,7 @@
 	"Lua.hint.enable": true,
 	"Lua.completion.callSnippet": "Both",
 	"Lua.codeLens.enable": true,
+	"Lua.workspace.checkThirdParty": false,
 	"Lua.workspace.library": ["~/.local/share/nvim/site/pack/packer/start/"],
 
 	// Typescript & Javascript
@@ -192,5 +193,6 @@
 		"ujihisa",
 		"vsplit",
 		"wfxr"
-	]
+	],
+	"snippets.ultisnips.pythonPrompt": false
 }

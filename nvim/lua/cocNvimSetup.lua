@@ -240,9 +240,14 @@ end, { noremap = true, silent = true })
 g.vim_json_syntax_conceal = 0
 g.coc_default_semantic_highlight_groups = 1
 
--- Highlights
+-- Highlights #bf68d9
 vim.api.nvim_set_hl(0, "@variable", { fg = "#47959e" })
-vim.api.nvim_set_hl(0, "CocInlayHintParameter", { fg = "#72b83d" })
+
+local inlayHintBGColor = "#303030"
+
+vim.api.nvim_set_hl(0, "CocInlayHintParameter", { fg = "#72b83d", bg = inlayHintBGColor })
+vim.api.nvim_set_hl(0, "CocInlayHint", { fg = "#bf68d9", bg = inlayHintBGColor })
+
 vim.api.nvim_set_hl(0, "CocMenuSel", { bg = "#042d6e", ctermbg = 237 })
 
 vim.api.nvim_set_hl(0, "CocSemIdentifier", { link = "@variable" })
