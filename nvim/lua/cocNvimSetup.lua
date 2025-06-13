@@ -263,11 +263,11 @@ U.autocmd("BufEnter", {
 	callback = function(_)
 		-- Enable clangd if we are not inside a Swift package or editing a swift file, otherwise, enable SourceKit-LSP.
 		if vim.fn.filereadable(vim.loop.cwd() .. "/Package.swift") == 1 or vim.fn.expand("%:e") == "swift" then
-			vim.fn["coc#config"]("sourcekit", { enabled = true })
-			vim.fn["coc#config"]("clangd", { enabled = false })
+			vim.fn["coc#config"]("sourcekit", { enable = true })
+			vim.fn["coc#config"]("clangd", { enable = false })
 		else
-			vim.fn["coc#config"]("clangd", { enabled = true })
-			vim.fn["coc#config"]("sourcekit", { enabled = false })
+			vim.fn["coc#config"]("clangd", { enable = true })
+			vim.fn["coc#config"]("sourcekit", { enable = false })
 		end
 	end,
 })

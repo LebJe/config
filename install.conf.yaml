@@ -13,3 +13,4 @@
       ~/.tmux.conf:
       ~/.config/starship.toml:
       /usr/local/bin/temp:
+      ~/.config/gitui/theme.ron:

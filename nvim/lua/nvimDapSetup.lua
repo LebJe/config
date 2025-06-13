@@ -343,6 +343,7 @@ function M.genConfig(langs)
 	local table = {}
 
 	for _, lang in ipairs(langs) do
+		lang = string.lower(lang)
 		if lang == "swift" then
 			local swiftConfig = M.dapConfigFromSwiftPackage()
 

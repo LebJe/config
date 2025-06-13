@@ -147,7 +147,7 @@ return require("packer").startup(function(use, use_rocks)
 
 	-- A minimal, stylish and customizable statusline for Neovim written in Lua
 	use({
-		"feline-nvim/feline.nvim",
+		"freddiehaddad/feline.nvim",
 		config = function()
 			require("felineSetup").configureStatusline()
 		end,
@@ -166,6 +166,20 @@ return require("packer").startup(function(use, use_rocks)
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
 			require("pluginsSetup").indentBlankLineSetup()
+		end,
+	})
+
+	use({
+		"OXY2DEV/markview.nvim",
+		config = function()
+			local markview = require("markview")
+			local presets = require("markview.presets")
+
+			markview.setup({
+				headings = presets.headings.glow_labels,
+			})
+
+			vim.cmd("Markview enableAll")
 		end,
 	})
 
@@ -264,6 +278,9 @@ return require("packer").startup(function(use, use_rocks)
 					require("pluginsSetup").nvimDapVirtualTextSetup()
 				end,
 			},
+
+			-- A library for asynchronous IO in Neovim
+			{ "nvim-neotest/nvim-nio" },
 
 			-- 🐞 Debug Adapter Protocol manager for Neovi
 			-- {
