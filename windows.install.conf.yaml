@@ -1,0 +1,9 @@
+- link:
+  "Microsoft.PowerShell_profile.ps1":
+      - create: true
+      - path: "$HOME\\Documents\\WindowsPowerShell\\Microsoft.PowerShell_profile.ps1"
+- shell:
+      # Install atuin with Powershell support
+      - [
+            cargo install --git https://github.com/ltrzesniewski/atuin.git --branch powershell-pr,
+        ]
